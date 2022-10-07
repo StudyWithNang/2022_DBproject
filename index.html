@@ -49,6 +49,9 @@
   <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
   <title>Sign in</title>
 
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <link href="css/styles.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 
   <style>
     .jb-default-1 { font-size: 13px; padding-left: 20px; vertical-align: text-top; }
@@ -100,33 +103,81 @@
                     <div class="collapse navbar-collapse justify-content-md-center" id="cloapediamenu">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link color-pink-hover" href="index.html">ÏµúÏã† Îâ¥Ïä§</a>
+                                <a class="nav-link color-pink-hover" href="index.html">New Post</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link color-pink-hover" href="blog-category-01.html">ÎÇòÏùò Í¥ÄÏã¨ Îâ¥Ïä§</a>
+                                <a class="nav-link color-pink-hover" href="blog-category-01.html">My Interested News</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link color-pink-hover" href="blog-category-02.html">keya ÏÜåÍ∞ú</a>
+                                <a class="nav-link color-pink-hover" href="blog-category-02.html">keya INFO</a>
                             </li>
                             <!-- <li class="nav-item">
-                                <a class="nav-link color-pink-hover" font-size=20%>Í∏àÏùº Îâ¥Ïä§ ÏàòÏßë</a>
+                                <a class="nav-link color-pink-hover" font-size=20%>±›¿œ ¥∫Ω∫ ºˆ¡˝</a>
                             </li> -->
-                            <span class="jb-default-1 ex6">Í∏àÏùº Îâ¥Ïä§ ÏàòÏßë</span>
-                            <span class="jb-default-1 ex8">Ï†ÑÏ≤¥ Îâ¥Ïä§ ÏàòÏßë</span>
+                            <span class="jb-default-1 ex6">±›¿œ ¥∫Ω∫ ºˆ¡˝</span>
+                            <span class="jb-default-1 ex8">¿¸√º ¥∫Ω∫ ºˆ¡˝</span>
                         </ul>
                     </div>
                 </nav>
             </div><!-- end container -->
         </header><!-- end header -->
 
-        <div class="login">
-            <h1>Login</h1>
-              <form method="post">
-                <input type="text" name="u" placeholder="Username" required="required" />
-                  <input type="password" name="p" placeholder="Password" required="required" />
-                  <button type="submit" class="btn2 btn-primary2 btn-block2 btn-large2">Let me in.</button>
-              </form>
-          </div>
+		<!-- login -->
+        <div id="layoutAuthentication" class="bg-primary">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-5">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+                                    <div class="card-body">
+                                        <form name = "loginSbmt" id = "loginSbmt" method="post" action="login_test.php">
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" name= "userID" id="userID" type="text" placeholder="ID"/>
+                                                <label for="userID">ID</label>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" name= "userPassword" id="userPassword" type="password" placeholder="Password" />
+                                                <label for="userPassword">Password</label>
+                                            </div>
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
+                                                <label class="form-check-label" for="inputRememberPassword">Remember Password</label>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                                <a class="small" href="password.html">Forgot Password?</a>
+                                                <button type = "submit" class="btn btn-primary" onclick="check_input()" herf="#">Login</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-center py-3">
+                                        <div class="small"><a href="register.html">Need an account? Sign up!</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+            <div id="layoutAuthentication_footer">
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2021</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>  
+        </div> <!-- end login -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
 
         <div class="dmtop">Scroll to Top</div>
         
