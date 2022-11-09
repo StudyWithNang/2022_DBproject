@@ -1,17 +1,17 @@
-ZZ<?php
-$conn = mysqli_connect('localhost','root','111111','DBproject');
+<?php
+$conn = mysqli_connect('localhost','root','111111','keya2');
 
 $userID = $_POST['userID'];
 $userPassword = $_POST['userPassword'];
 
 
-$sql = "SELECT * FROM user WHERE userID ='{$userID}'";
+$sql = "SELECT * FROM user WHERE id ='{$userID}'";
 $result = mysqli_query($conn, $sql);
 
 $row = mysqli_fetch_array($result);
-$hashedPassword = $row['userPW'];
+$hashedPassword = $row['pw'];
 // $userPW = $row['userPW'];
-$row['userID'];
+$row['id'];
 
 foreach($row as $key => $r){
     echo "{$key} : {$r} <br>";
@@ -21,14 +21,14 @@ $passwordResult = password_verify($userPassword, $hashedPassword);
 if ($passwordResult === true) {
 
     session_start();
-    $_SESSION['userID'] = $row['userID'];
+    $_SESSION['id'] = $row['id'];
     print_r($_SESSION);
-    echo $_SESSION['userID'];
-    
+    echo $_SESSION['id'];
+
 ?>
     <script>
         alert("success.")
-        location.href = "index.html";
+        location.href = "recent-news.php";
     </script>
 <?php
 } else {
@@ -36,7 +36,7 @@ if ($passwordResult === true) {
 ?>
     <script>
         alert("fail");
-        location.href = "login.html";
+        location.href = "main.html";
     </script>
 <?php
 }

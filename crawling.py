@@ -44,16 +44,22 @@ def crawling(news_type):
     def get_news_info_df(news_type):
         title = driver.find_element_by_xpath('//*[@id="ct"]/div[1]/div[2]/h2').text
         date = driver.find_element_by_xpath('//*[@id="ct"]/div[1]/div[3]/div[1]/div[1]/span').text
+        editor = driver.find_element_by_xpath('//*[@id="ct"]/div[1]/div[3]/div[2]/a/em').text
+        press = driver.find_element_by_xpath('//*[@id="ct"]/div[1]/div[1]/a/img[1]').get_attribute('alt')
         p = re.compile(r'[0-9]+.[0-9]+.[0-9]+')
         if p.match(date) is None:
             date = driver.find_element_by_xpath('//*[@id="ct"]/div[1]/div[3]/div[1]/div/span').text
+        date = date[:10]
+        print("first date",date)
+        date = date.replace('.', '-')
+        print(date)
 
         pre_contents = driver.find_element_by_xpath('//*[@id="dic_area"]').text
         contents = preprocessing_div_contents(pre_contents)
         image_url = get_poster_url()
         news_url = driver.current_url
-        df = pd.DataFrame([news_type, title, date, pre_contents, contents, image_url, news_url]).T
-        df.columns = ['news_type', 'title', 'date', 'all_contents', 'contents', 'image_url', 'news_url']
+        df = pd.DataFrame([news_type, title, date, pre_contents, contents, image_url, news_url, editor, press]).T
+        df.columns = ['news_type', 'title', 'date', 'all_contents', 'contents', 'image_url', 'news_url', 'editor', 'press']
         return df
 
     def get_poster_url():
