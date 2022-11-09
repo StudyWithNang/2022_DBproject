@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
     <!-- Basic -->
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
     <!-- Mobile Metas -->
@@ -46,7 +46,7 @@
     <link rel="stylesheet" href="css/style2.css">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+<!--  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
   <title>Sign in</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -79,7 +79,7 @@
                     </form>
                 </div><!-- end newsletter -->
             </div>
-        </div><!-- end top-search -->
+       </div><!-- end top-search -->
 
 
         <div class="header-section">
@@ -87,7 +87,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="logo">
-                            <a href="main.html"><img src="images/logo.png" width=150px alt=""></a>
+                            <a href="recent-news.php"><img src="images/logo.png" width=150px alt=""></a>
                         </div><!-- end logo -->
                     </div>
                 </div><!-- end row -->
@@ -102,82 +102,51 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-md-center" id="cloapediamenu">
                         <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link color-pink-hover" href="index.html">New Post</a>
+			    <li class="nav-item dropdown has-submenu">
+                                <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Recent News</a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdown02">
+                                    <li><a class="dropdown-item" href="today-issue.php">Today Issue</a></li>
+                                    <li><a class="dropdown-item" href="collect-press.php">Collect Press</a></li>
+                                    <li><a class="dropdown-item" href="collect-editor.php">Collect Editor</a></li>
+                                </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link color-pink-hover" href="blog-category-01.html">My Interested News</a>
+                                <a class="nav-link color-aqua-hover" href="my-interested-news.php">my interested news</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link color-pink-hover" href="blog-category-02.html">keya INFO</a>
+                                <a class="nav-link color-pink-hover" href="keya-info.php">keya INFO</a>
                             </li>
                             <!-- <li class="nav-item">
-                                <a class="nav-link color-pink-hover" font-size=20%>±›¿œ ¥∫Ω∫ ºˆ¡˝</a>
+                                <a class="nav-link color-pink-hover" font-size=20%>Í∏àÏùº Îâ¥Ïä§ ÏàòÏßë</a>
                             </li> -->
-                            <!-- <span class="jb-default-1 ex6">±›¿œ ¥∫Ω∫ ºˆ¡˝</span>
-                            <span class="jb-default-1 ex8">¿¸√º ¥∫Ω∫ ºˆ¡˝</span>-->
                         </ul>
                     </div>
-                </nav>
+               </nav>
             </div><!-- end container -->
         </header><!-- end header -->
 
-		<!-- login -->
-        <div id="layoutAuthentication" class="bg-primary">
+
+
+
+	<!-- login button -->
+	<div id="layoutAuthentication" class="bg-primary">
             <div id="layoutAuthentication_content">
                 <main>
                     <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-5">
-                                <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
-                                    <div class="card-body">
-                                        <form name = "loginSbmt" id = "loginSbmt" method="post" action="login_test.php">
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" name= "userID" id="userID" type="text" placeholder="ID"/>
-                                                <label for="userID">ID</label>
-                                            </div>
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" name= "userPassword" id="userPassword" type="password" placeholder="Password" />
-                                                <label for="userPassword">Password</label>
-                                            </div>
-                                            <div class="form-check mb-3">
-                                                <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
-                                                <label class="form-check-label" for="inputRememberPassword">Remember Password</label>
-                                            </div>
-                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="password.html">Forgot Password?</a>
-                                                <button type = "submit" class="btn btn-primary" onclick="check_input()" herf="pages/recent/recent-news.html">Login</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="register.html">Need an account? Sign up!</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+			<div class="today-title-list" style="">
+			        <button type="button" class="main-login" onClick="location.href='update-keywords.html'" style="width: 200px; height: 100px; position: absolute; margin: auto;transform: translate(0%, 50%);">11</button>
+			        <button type="button" class="main-login" onClick="location.href='update-keywords.html'" style="width: 200px; height: 100px; position: absolute; margin: auto;transform: translate(0%, 50%);">222</button>
+			        <button type="button" class="main-login" onClick="location.href='update-keywords.html'" style="width: 200px; height: 100px; position: absolute; margin: auto;transform: translate(0%, 50%);">333</button>
+			        <button type="button" class="main-login" onClick="location.href='update-keywords.html'" style="width: 200px; height: 100px; position: absolute; margin: auto;transform: translate(0%, 50%);">444</button>
+
                     </div>
                 </main>
             </div>
+	</div>
 
-            <div id="layoutAuthentication_footer">
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2021</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-            </div>  
-        </div> <!-- end login -->
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <!-- <script src="../js/scripts.js"></script> -->
 
         <div class="dmtop">Scroll to Top</div>
         

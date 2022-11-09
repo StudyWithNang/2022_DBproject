@@ -1,5 +1,5 @@
 <?php
-$conn = mysqli_connect('localhost','root','111111','DBproject');
+$conn = mysqli_connect('localhost','root','111111','keya2');
 $hashedPassword = password_hash($_POST['inputPassword'], PASSWORD_DEFAULT);
 echo $hashedPassword;
 
@@ -15,7 +15,15 @@ if($conn->connect_error){
 $userId = $_POST['inputID'];
 $userEMAIL = $_POST['inputEMAIL'];
 
-$sql = "SELECT * FROM user WHERE userID ='{$userId}'";
+$key1 = $_POST['inputkey1'];
+$key2 = $_POST['inputkey2'];
+$key3 = $_POST['inputkey3'];
+$key4 = $_POST['inputkey4'];
+$key5 = $_POST['inputkey5'];
+$key6 = $_POST['inputkey6'];
+
+
+$sql = "SELECT * FROM user WHERE id ='{$userId}'";
 
 echo $sql;
 
@@ -34,8 +42,8 @@ if($result->num_rows > 0){
 
 $sql2 = "
     INSERT INTO user
-    (userID, userPW, email)
-    VALUES('{$userId}', '{$hashedPassword}', '{$userEMAIL}'
+    (id, pw, email, my_key1, my_key2, my_key3, my_key4, my_key5, my_key6)
+    VALUES('{$userId}', '{$hashedPassword}', '{$userEMAIL}', '{$key1}', '{$key2}', '{$key3}', '{$key4}', '{$key5}', '{$key6}'
     )";
 
 echo $sql2;
@@ -50,7 +58,7 @@ if ($result == false) {
 ?>
     <script>
         alert("succuess");
-        location.href = "login.html";
+        location.href = "main.html";
     </script>
 <?php
 }
