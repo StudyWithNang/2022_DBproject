@@ -1,5 +1,5 @@
 <?php
-$conn = mysqli_connect('localhost','root','111111','keya2');
+$conn = mysqli_connect('localhost','root','111111','keya');
 
 $userID = $_POST['userID'];
 $userPassword = $_POST['userPassword'];
