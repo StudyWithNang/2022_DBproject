@@ -59,6 +59,19 @@
     .jb-default-1 { font-size: 13px; padding-left: 20px; vertical-align: text-top; }
     .ex6 {vertical-align: super;}
     .ex8 {vertical-align: text-bottom;}
+     /* 슬릭 배너 */
+    .ban {position: relative; padding: 24px 0 20px;}
+    .ban .slick-prev {position: absolute; left: -80px; top: 80px; width: 43px; height: 43px; background: #ccc; background: url(../img/icon.png) no-repeat -150px 0; text-indent: -9999px;}
+    .ban .slick-next {position: absolute; right: -80px; top: 80px; width: 43px; height: 43px; background: #ccc; background: url(../img/icon.png) no-repeat -150px -43px; text-indent: -9999px;}
+    .ban .slick-prev:hover {background-position: -193px 0;}
+    .ban .slick-next:hover{background-position: -193px -43px;}
+    .ban img {border: 4px solid #dcdcdc;}
+    .ban img:hover {border-color: #98bcdc;}
+    .ban .slick-slide {margin: 10px;}
+    .ban .slick-dots {position: absolute; bottom: 15px; display: block; width: 100%; text-align: center;}
+    .ban .slick-dots li {display: inline-block; width: 15px; height: 15px; margin: 5px;}
+    .ban .slick-dots li button {font-size: 0; line-height: 0; display: block; width: 15px; height: 15px; cursor: pointer; background: #5dbfeb; border-radius: 50%;}
+    .ban .slick-dots li.slick-active button {background: #2b91c8;}
   </style>
   
 
@@ -130,33 +143,27 @@
             </div><!-- end container -->
         </header><!-- end header -->
 
-	<!-- login button -->
-	<!--<div id="layoutAuthentication" class="bg-primary">
-            <div id="layoutAuthentication_content">
-                <main>
-                    <div class="container">
-                        <div class="row justify-content-center">
-  			    <div class="main-login-container" style="display: flex; justify-content: center; align-items: center;">
-			        <button type="button" class="main-login" onClick="location.href='update-keywords.html'" style="width: 200px; height: 100px; position: absolute; margin: auto;transform: translate(0%, 50%);">update my keywords</button>
-	   	            </div>
-			</div>
-                    </div>
-                </main>
-            </div>
-	</div>-->
         <div class ="container">
             <div class="ban">
-                <div style="padding: 2em 2em; margin: 2em 10px; font-weight: bold; color: #565656; background: #ffeaea; box-shadow: 0px 0px 0px 10px #ffeaea; border: dashed 2px #ffc3c3; border-radius: 8px;">
-                <p>11111111</p>
+                <div style="width: 0.5px; height: 500px;padding: 2em 2em 30px; margin: 2em 30px; font-weight: bold; color: #565656; background: #ffeaea; box-shadow: 0px 0px 0px 10px #ffeaea; border: dashed 2px #ffc3c3; border-radius: 8px;">
+                <p>Title1</p>
+                <p>date</p>
+                <p>article1</p>
                 </div>
-                <div style="padding: 2em 2em; margin: 2em 10px; font-weight: bold; color: #565656; background: #ffeaea; box-shadow: 0px 0px 0px 10px #ffeaea; border: dashed 2px #ffc3c3; border-radius: 8px;">
-                <p>2222222222222</p>
+                <div style="width: 0.50px; height: 500px;padding: 2em 2em 30px; margin: 2em 30px; font-weight: bold; color: #565656; background: #ffeaea; box-shadow: 0px 0px 0px 10px #ffeaea; border: dashed 2px #ffc3c3; border-radius: 8px;">
+                <p>Title2</p>
+                <p>date</p>
+                <p>article2</p>
                 </div>
-                <div style="padding: 2em 2em; margin: 2em 10px; font-weight: bold; color: #565656; background: #ffeaea; box-shadow: 0px 0px 0px 10px #ffeaea; border: dashed 2px #ffc3c3; border-radius: 8px;">
-                <p>3333333333333333</p>
+                <div style="width: 0.50px; height: 500px;padding: 2em 2em 30px; margin: 2em 30px; font-weight: bold; color: #565656; background: #ffeaea; box-shadow: 0px 0px 0px 10px #ffeaea; border: dashed 2px #ffc3c3; border-radius: 8px;">
+                <p>Title3</p>
+                <p>date</p>
+                <p>article3</p>
                 </div>
-                <div style="padding: 2em 2em; margin: 2em 10px; font-weight: bold; color: #565656; background: #ffeaea; box-shadow: 0px 0px 0px 10px #ffeaea; border: dashed 2px #ffc3c3; border-radius: 8px;">
-                <p>44444444444444.</p>
+                <div style="width: 0.50px; height: 500px;padding: 2em 2em 30px; margin: 2em 30px; font-weight: bold; color: #565656; background: #ffeaea; box-shadow: 0px 0px 0px 10px #ffeaea; border: dashed 2px #ffc3c3; border-radius: 8px;">
+                <p>Title4</p>
+                <p>date</p>
+                <p>article4</p>
             </div>
         </div>
 
@@ -178,6 +185,20 @@
     <script>
         // 배너
         $(".ban").slick({
+            dots: true,
+            infinite: true,
+            slidesToShow:3,
+            slidesToScroll:3,
+            arrows:false,
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        arrows:false,
+                        autoplay: false,
+                        }
+                }
+            ]
         });</script>
         
 </body>
