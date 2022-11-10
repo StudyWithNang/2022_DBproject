@@ -1,5 +1,5 @@
 <?php
-$conn = mysqli_connect('localhost','root','111111','keya2');
+$conn = mysqli_connect('localhost','root','111111','keya');
 $hashedPassword = password_hash($_POST['inputPassword'], PASSWORD_DEFAULT);
 echo $hashedPassword;
 
