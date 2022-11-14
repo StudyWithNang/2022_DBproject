@@ -1,13 +1,15 @@
-# -*- coding: utf-8 -*- 
+# -*- coding: utf-8 -*-
 
-import pandas as pd 
-import pymysql 
-import matplotlib.pyplot as plt 
+import pandas as pd
+import pymysql
+import matplotlib.pyplot as plt
 import seaborn as sns
 import sys
 import datetime
+import time
+
 sns.set()
- 
+
 # Connect to mysql Platform
 try:
     mydb = pymysql.Connect(
@@ -20,47 +22,34 @@ try:
 except pymysql.Error as e:
     # print(f"Error connecting to mysql Platform: {e}")
     sys.exit(1)
- 
+
 # Get Cursor
 curs = mydb.cursor()
- 
- 
-# data = pd.read_csv('soho_seoul.csv', header=None) # KeyError: '상권업종대분류명'
-stores_info = pd.read_csv('crawl_data/20221110-03.csv') # KeyError: '상권업종대분류명'
-
-# for index, row in stores_info.iterrows():
-#     tu = (row.title,row.date)
-#     pre =  """'INSERT IGNORE INTO raw_news (title, date) VALUES ({},STR_TO_DATE({}, '%Y-%m-%d'))'.format(row.title, row.date)'"""
-#     print(pre)
-#     #curs.execute(pre)
-#     result = curs.fetchall()
-
-# # print(result)
 
 
-# query = """LOAD DATA INFILE 'crawl_data/20221110-03.csv'
-query = """LOAD DATA INFILE '/var/lib/mysql-files/20221110-03.csv'
-INTO TABLE raw_news
-FIELDS TERMINATED BY ',' 
-ENCLOSED BY '"'
-LINES TERMINATED BY '\n'
-IGNORE 1 ROWS
-(@news_type,@title,@date,@all_contents,@contents,@image_url,@news_url,@editor,@press)
-SET news_id = 1,
-    title = @title,
-    date = @date;"""
 
-# query = "SELECT date FROM raw_news"
-curs.execute(query)
+stores_info = pd.read_csv('crawl_data/20221113-22.csv')
 
-# query2 = "delete from raw_news where article='" + row.article + "'"
-# curs.execute(query2)
-curs.fetchall()
+# time for news_id
+tm = time.localtime()
+year = tm.tm_year
+month = tm.tm_mon
+day = tm.tm_mday
+hour = tm.tm_hour
+i=0
 
+for index, row in stores_info.iterrows():
+    news_id = str(year)+'_'+str(month)+'_'+str(day)+'_'+str(hour)+'_'+str(i)+'_'+str(row.news_type)
+    i = i+1
+    
+    update_history = (row.date, '11', '22', '33')
+    curs.execute("""INSERT IGNORE INTO history (date, temp, rain, dust) VALUES (%s, %s, %s, %s)""", update_history)
+    tu = (news_id, row.title, row.all_contents, row.date,row.press, row.editor, 'babo', row.image_url, row.news_type)
+    #tu = (row.news_type, row.title, row.all_contents, row.date,row.press, row.editor, 'babo', row.image_url, row.news_type)
+    curs.execute("""INSERT INTO raw_news (news_id, title, article, date, press_id, editor_id, ner, image_url, category) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)""", tu)
+    # result = curs.fetchall()
 # print(result)
 
 
-
-# 결과 저장 및 데이터베이스 종료
 mydb.commit()
 mydb.close()

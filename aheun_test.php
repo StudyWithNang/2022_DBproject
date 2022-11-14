@@ -129,92 +129,48 @@
         </header><!-- end header -->
 
 
-
-        <section class="section wb">
+	<!-- test -->
+	<section class="section wb">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-			<!-- main news list -->
-			<h2> Today Issue </h2>
-<?php
-						//mysql 접속 계정 정보 설정
-						$mysql_host = 'localhost';
-						$mysql_user = 'root';
-						$mysql_password = '111111';
-						$mysql_db = 'keya';
-						//connetc 설정(host,user,password)
-						$con = mysqli_connect($mysql_host, $mysql_user, $mysql_password, $mysql_db);
-						if(mysqli_connect_error($con)) {
-							echo "mysql connect fail!!", "<br>";
-							echo mysqli_connect_error();
-							exit(); }
-						echo "mysql connect success!!";
+			<div style="border: 1px solid gray; float: left; width: 20%;">first</div>
+			<div style="border: 1px solid gray; float: left; width: 20%;">second</div>
+			<div style="border: 1px solid gray; float: left; width: 20%;">third</div>
+			<div style="border: 1px solid gray; float: left; width: 20%;">fourth</div>
+			<div style="border: 1px solid gray; float: left; width: 20%;">fifth</div>
 
-						//$result = mysqli_query($con, "select * from raw_news order by rand() limit 5");
-                                                $result = mysqli_query($con, "select * from raw_news");
-						/*
-						//while($row = mysqli_fetch_assoc($result)) {
-							//echo $row['title']."<br>";
-							//echo mysqli_fetch_assoc($result)['title']."<br>";
-							//echo mysqli_fetch_assoc($result)['title'];
+			<div class="news-cate v1 news-cate-modify " style="margin-top: 0px;">
+				<div class="swiper-container news-swiper">
+					<div class="swiper-wrapper tab-link tab01">
+						<div class="swiper-slide slide01 issue-item active"	data-idx="0"
+							style="width: 33%">
+							<a href="#issue-0" class="issue-item-link"
+								data-toggle="tab" data-idx="0"
+								data-query="Presidential disaster Biden's dinner with South Korea and the U.S "
+								data-rank="111"
+								title="Today's Korea-Japan, Korea-U.S., Korea-U.S. Japan summit...Attention to discussions on North Korea's nuclear weapons program"> 
+								<span class="issue-topic-txt">Today's Korea-Japan, Korea-U.S., Korea-U.S. Japan summit...Attention to discussions on North Korea's nuclear weapons program </span> 
+								<span class="num"data-rownum="1"> <b>111</b>posts</span>
+							</a>
+						</div>
 
-						//}
-						
-						$i = 0;
-						while($i<5) {
-							echo mysqli_fetch_assoc($result)['title']."<br>";
-							$i++;
-						}
-
-						//echo "<br><br><br>".$row['title'][0];
-						*/
-					?>
-
-
-			<div class="a_main">
-				<input type="radio" id="a_tab-1" name="show" checked/>
-				<input type="radio" id="a_tab-2" name="show" />
-				<input type="radio" id="a_tab-3" name="show" />
-				<input type="radio" id="a_tab-4" name="show" />
-				<input type="radio" id="a_tab-5" name="show" />
-				<div class="a_tab">
-					<label for="a_tab-1">main news</label>
-					<label for="a_tab-2">politics</label>
-					<label for="a_tab-3">economy</label>
-					<label for="a_tab-4">society</label>
-					<label for="a_tab-5">it</label>
+						<div class="swiper-slide slide01 issue-item"	data-idx="1">
+							<a href="#issue-1" class="issue-item-link"
+								data-toggle="tab" data-idx="1"
+								data-query="Democratic Party wins Senate with 50 seats in Nevada "
+								data-rank="32"
+								title=""Big win over Biden" Democrats win Senate majority"> 
+								<span class="issue-topic-txt">"Big win over Biden" Democrats win Senate majority </span> 
+								<span class="num"data-rownum="2"> <b>32</b>posts</span>
+							</a>
+						</div>
+					</div>
 				</div>
-
-				<div class="a_content">
-					<div class="a_content-dis">
-						<?php echo mysqli_fetch_assoc($result)['title']; ?>
-					</div>
-					<div class="a_content-dis">
-                                                <?php echo mysqli_fetch_assoc($result)['title']; ?>
-					</div>
-					<div class="a_content-dis">
-                                                <?php echo mysqli_fetch_assoc($result)['title']; ?>
-					</div>
-					<div class="a_content-dis">
-                                                <?php echo mysqli_fetch_assoc($result)['title']; ?>
-					</div>
-        	                        <div class="a_content-dis">
-                                                <?php echo mysqli_fetch_assoc($result)['title']; ?>
-                        	        </div>
-				</div>
-			</div> <!-- end main news list -->
-
-
-			<!-- visualization section -->
-			<div class="a_today_vi_section">
-				<h2> Today Keywords </h2>
-				<img src="images/today_visualization.jpg" class="a_today_key_img">
-			</div> <!-- end visualization section -->
-
+			</div>
                     </div><!-- end col -->
 
 
-		    <!-- sidebar col-->
                     <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                         <div class="sidebar">
                             <div class="widget">
@@ -256,13 +212,57 @@
                                     </div><!-- end banner-img -->
                                 </div><!-- end banner -->
                             </div><!-- end widget -->
-                        </div><!-- end sidebar
-                    </div><!-- end sidebar col -->
 
+                        </div><!-- end sidebar -->
+                    </div><!-- end col -->
                 </div><!-- end row -->
             </div><!-- end container -->
         </section>
 
+
+
+
+	<!-- end test -->
+
+
+
+
+
+
+
+
+
+	<!-- left container -->
+	<div class="ti_left">
+	
+	</div>
+	<!-- end left container -->
+
+
+
+	<!-- right container -->
+	<div class="ti_right"
+
+	</div>
+	<!-- end right container -->
+
+
+
+	<!-- login button -->
+	<div id="layoutAuthentication" class="bg-primary">
+            <div id="layoutAuthentication_content" class="row">
+                <main>
+                    <div class="container">
+			<div class="today-title-list" style="">
+			        <button type="button" class="main-login" onClick="location.href='update-keywords.html'" style="width: 200px; height: 100px; position: absolute; margin: auto;transform: translate(0%, 50%);">11</button>
+			        <button type="button" class="main-login" onClick="location.href='update-keywords.html'" style="width: 200px; height: 100px; position: absolute; margin: auto;transform: translate(0%, 50%);">222</button>
+			        <button type="button" class="main-login" onClick="location.href='update-keywords.html'" style="width: 200px; height: 100px; position: absolute; margin: auto;transform: translate(0%, 50%);">333</button>
+			        <button type="button" class="main-login" onClick="location.href='update-keywords.html'" style="width: 200px; height: 100px; position: absolute; margin: auto;transform: translate(0%, 50%);">444</button>
+
+                    </div>
+                </main>
+            </div>
+	</div>
 
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

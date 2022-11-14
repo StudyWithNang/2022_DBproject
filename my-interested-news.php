@@ -45,6 +45,8 @@
     <![endif]-->
 
 
+
+
     <link rel="stylesheet" href="css/style2.css">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -72,6 +74,47 @@
     .ban .slick-dots li {display: inline-block; width: 15px; height: 15px; margin: 5px;}
     .ban .slick-dots li button {font-size: 0; line-height: 0; display: block; width: 15px; height: 15px; cursor: pointer; background: #5dbfeb; border-radius: 50%;}
     .ban .slick-dots li.slick-active button {background: #2b91c8;}
+
+     /* cardType */
+     .card__inner {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .card__inner .card {
+            width: 24%;
+            text-align: left;
+        }
+        .card__inner .card:nth-child(1){
+            margin-bottom: 50px;
+        }
+        .card__body {
+            position: relative;
+        }
+        .card__body h3 {
+            font-size: 28px;
+            font-weight: 500;
+            margin: 20px 0 10px;
+        }
+        .card__body p {
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 1.4;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3; 
+            -webkit-box-orient: vertical;
+        }
+        .card__body a {
+            position: absolute;
+            right: 0; 
+            top: 0;
+            width: 28px; 
+            height: 28px;
+            background: url(https://webstoryboy.github.io/web2022/webs_img/card02_arrow.svg);
+            background-size: cover;
+        }
   </style>
   
 
@@ -143,29 +186,172 @@
             </div><!-- end container -->
         </header><!-- end header -->
 
-        <div class ="container">
-            <div class="ban">
-                <div style="width: 0.5px; height: 500px;padding: 2em 2em 30px; margin: 2em 30px; font-weight: bold; color: #565656; background: #ffeaea; box-shadow: 0px 0px 0px 10px #ffeaea; border: dashed 2px #ffc3c3; border-radius: 8px;">
-                <p>Title1</p>
-                <p>date</p>
-                <p>article1</p>
-                </div>
-                <div style="width: 0.50px; height: 500px;padding: 2em 2em 30px; margin: 2em 30px; font-weight: bold; color: #565656; background: #ffeaea; box-shadow: 0px 0px 0px 10px #ffeaea; border: dashed 2px #ffc3c3; border-radius: 8px;">
-                <p>Title2</p>
-                <p>date</p>
-                <p>article2</p>
-                </div>
-                <div style="width: 0.50px; height: 500px;padding: 2em 2em 30px; margin: 2em 30px; font-weight: bold; color: #565656; background: #ffeaea; box-shadow: 0px 0px 0px 10px #ffeaea; border: dashed 2px #ffc3c3; border-radius: 8px;">
-                <p>Title3</p>
-                <p>date</p>
-                <p>article3</p>
-                </div>
-                <div style="width: 0.50px; height: 500px;padding: 2em 2em 30px; margin: 2em 30px; font-weight: bold; color: #565656; background: #ffeaea; box-shadow: 0px 0px 0px 10px #ffeaea; border: dashed 2px #ffc3c3; border-radius: 8px;">
-                <p>Title4</p>
-                <p>date</p>
-                <p>article4</p>
-            </div>
-        </div>
+        <section class="section wb">
+            <div class ="container">
+                <div class="row">
+                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                    <h2 style="padding-top: 0px"> Keyword News </h2>
+                    <?php
+                        $mysql_host = 'localhost';
+						$mysql_user = 'root';
+						$mysql_password = '111111';
+						$mysql_db = 'keya';
+						//connetc 설정(host,user,password)
+						$con = mysqli_connect($mysql_host, $mysql_user, $mysql_password, $mysql_db);
+
+                        
+						if(mysqli_connect_error($con)) {
+							echo "mysql connect fail!!", "<br>";
+							echo mysqli_connect_error();
+							exit(); }
+                            
+                            $result = mysqli_query($con, "select * from raw_news");
+                            $result2 = mysqli_query($con, "select * from user");
+
+                        ?>
+                        <select name="items">
+                            <option value="my_key1">my_key1</option>
+                            <option value="my_key2">my_key2</option>
+                            <option value="my_key3">my_key3</option>
+                        </select>
+
+                        <div class="ban">
+                        <form name = "registerSbmt" id = "registerSbmt" method="post" action="singnup_db.php">
+                            <div class="card">
+                                <img src="upload/blog_square_01.jpg" alt="" height=200px class="card-img-top" />
+                                <div class="card-body">
+                                <p><?php echo mysqli_fetch_assoc($result)['title']; ?></p>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
+                                <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
+                                <input type = "submit" value="store">
+                                <a href="#" class="btn btn-primary">More</a>
+                                </div>
+                            </div></form>
+
+                            <form name = "registerSbmt" id = "registerSbmt" method="post" action="singnup_db.php">
+                            <div class="card">
+                                <img src="upload/blog_square_01.jpg" alt="" height=200px class="card-img-top" />
+                                <div class="card-body">
+                                <p><?php echo mysqli_fetch_assoc($result)['title']; ?></p>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
+                                <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
+                                <input type = "submit" value="store">
+                                <a href="#" class="btn btn-primary">More</a>
+                                </div>
+                            </div></form>
+
+
+                            <form name = "registerSbmt" id = "registerSbmt" method="post" action="singnup_db.php">
+                            <div class="card">
+                                <img src="upload/blog_square_01.jpg" alt="" height=200px class="card-img-top" />
+                                <div class="card-body">
+                                <p><?php echo mysqli_fetch_assoc($result)['title']; ?></p>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
+                                <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
+                                <input type = "submit" value="store">
+                                <a href="#" class="btn btn-primary">More</a>
+                                </div>
+                            </div></form>
+
+                            <form name = "registerSbmt" id = "registerSbmt" method="post" action="singnup_db.php">
+                            <div class="card">
+                                <img src="upload/blog_square_01.jpg" alt="" height=200px class="card-img-top" />
+                                <div class="card-body">
+                                <p><?php echo mysqli_fetch_assoc($result)['title']; ?></p>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
+                                <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
+                                <input type = "submit" value="store">
+                                <a href="#" class="btn btn-primary">More</a>
+                                </div>
+                            </div></form>
+
+
+                            <form name = "registerSbmt" id = "registerSbmt" method="post" action="singnup_db.php">
+                            <div class="card">
+                                <img src="upload/blog_square_01.jpg" alt="" height=200px class="card-img-top" />
+                                <div class="card-body">
+                                <p><?php echo mysqli_fetch_assoc($result)['title']; ?></p>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
+                                <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
+                                <input type = "submit" value="store">
+                                <a href="#" class="btn btn-primary">More</a>
+                                </div>
+                            </div></form>
+
+
+                            <form name = "registerSbmt" id = "registerSbmt" method="post" action="singnup_db.php">
+                            <div class="card">
+                                <img src="upload/blog_square_01.jpg" alt="" height=200px class="card-img-top" />
+                                <div class="card-body">
+                                <p><?php echo mysqli_fetch_assoc($result)['title']; ?></p>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
+                                <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
+                                <input type = "submit" value="store">
+                                <a href="#" class="btn btn-primary">More</a>
+                                </div>
+                            </div></form>
+
+                            
+
+
+                        </div>
+        
+                        <!-- visualization section -->
+                        <div class="a_today_vi_section">
+                            <h2> MY Keywords </h2>
+                            <img src="visual_img/save_name.png" class="a_today_key_img">
+                        </div> <!-- end visualization section -->
+
+                    </div><!-- end col -->
+
+                <!-- sidebar col-->
+                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                    <div class="sidebar">
+                        <div class="widget">
+                            <h2 class="widget-title">Diary</h2>
+                            <div class="blog-list-widget">
+                                <div class="list-group">
+                                    <a href="single.html" class="list-group-item list-group-item-action flex-column align-items-start">
+                                        <div class="w-100 justify-content-between">
+                                            <img src="upload/blog_square_01.jpg" alt="" class="img-fluid float-left">
+                                            <h5 class="mb-1">text11111</h5>
+                                            <small>12 Jan, 2016</small>
+                                        </div>
+                                    </a>
+
+                                    <a href="single.html" class="list-group-item list-group-item-action flex-column align-items-start">
+                                        <div class="w-100 justify-content-between">
+                                            <img src="upload/blog_square_01.jpg" alt="" class="img-fluid float-left">
+                                            <h5 class="mb-1">text22222</h5>
+                                            <small>11 Jan, 2016</small>
+                                        </div>
+                                    </a>
+
+                                    <a href="single.html" class="list-group-item list-group-item-action flex-column align-items-start">
+                                        <div class="w-100 last-item justify-content-between">
+                                            <img src="upload/blog_square_01.jpg" alt="" class="img-fluid float-left">
+                                            <h5 class="mb-1">text33333</h5>
+                                            <small>07 Jan, 2016</small>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div><!-- end blog-list -->
+                        </div><!-- end widget -->
+
+                        <div class="widget">
+                            <h2 class="widget-title">weather</h2>
+                            <div class="banner-spot clearfix">
+                                <div class="banner-img">
+                                    <img src="upload/banner_03.jpg" alt="" class="img-fluid">
+                                </div><!-- end banner-img -->
+                            </div><!-- end banner -->
+                        </div><!-- end widget -->
+                    </div><!-- end sidebar
+                </div><!-- end sidebar col -->
+
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </section>
 
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
@@ -200,6 +386,10 @@
                 }
             ]
         });</script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
         
 </body>
 </html>
