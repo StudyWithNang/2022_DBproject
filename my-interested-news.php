@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+        session_start();
+        echo $_SESSION['id'];
+?>
 <html lang="en">
 
     <!-- Basic -->
@@ -145,7 +149,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="logo">
-                            <a href="main.html"><img src="images/logo.png" width=150px alt=""></a>
+                            <a href="recent-news.php"><img src="images/logo.png" width=150px alt=""></a>
                         </div><!-- end logo -->
                     </div>
                 </div><!-- end row -->
@@ -196,6 +200,7 @@
 						$mysql_user = 'root';
 						$mysql_password = '111111';
 						$mysql_db = 'keya';
+                        echo $_SESSION['id'];
 						//connetc 설정(host,user,password)
 						$con = mysqli_connect($mysql_host, $mysql_user, $mysql_password, $mysql_db);
 
@@ -206,54 +211,38 @@
 							exit(); }
                             
                             $result = mysqli_query($con, "select * from raw_news");
-                            $result2 = mysqli_query($con, "select * from user");
+                            $mini = $_SESSION['id'];
+                            $result2 = mysqli_query($con, "select * from user where id='$mini'");
+                            $row = mysqli_fetch_row($result2);
 
+                            $output = shell_exec("key_news.py".' '.$row[2].' '.$row[3].' '.$row[4].' '.$row[5].' '.$row[6].' '.$row[7]);
                         ?>
                         <select name="items">
-                            <option value="my_key1">my_key1</option>
-                            <option value="my_key2">my_key2</option>
-                            <option value="my_key3">my_key3</option>
+                            <option value="my_key1"><?php echo $row[2]?></option>
+                            <option value="my_key2"><?php echo $row[3]?></option>
+                            <option value="my_key3"><?php echo $row[4]?></option>
+                            <option value="my_key4"><?php echo $row[5]?></option>
+                            <option value="my_key5"><?php echo $row[6]?></option>
+                            <option value="my_key6"><?php echo $row[7]?></option>
+
                         </select>
 
                         <div class="ban">
-                        <form name = "registerSbmt" id = "registerSbmt" method="post" action="singnup_db.php">
+                        <form name = "registerSbmt" id = "registerSbmt" method="post" action="my_key_diary_db.php">
                             <div class="card">
                                 <img src="upload/blog_square_01.jpg" alt="" height=200px class="card-img-top" />
                                 <div class="card-body">
                                 <p><?php echo mysqli_fetch_assoc($result)['title']; ?></p>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
+                                <?php echo $output; ?>
+                                <?php $row = mysqli_fetch_row($result2); ?>
+                                <p class="card-text"><?php echo $row[2]; echo $row[3];echo $row[4];echo $row[5]; ?></p>
                                 <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
                                 <input type = "submit" value="store">
                                 <a href="#" class="btn btn-primary">More</a>
                                 </div>
                             </div></form>
 
-                            <form name = "registerSbmt" id = "registerSbmt" method="post" action="singnup_db.php">
-                            <div class="card">
-                                <img src="upload/blog_square_01.jpg" alt="" height=200px class="card-img-top" />
-                                <div class="card-body">
-                                <p><?php echo mysqli_fetch_assoc($result)['title']; ?></p>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
-                                <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
-                                <input type = "submit" value="store">
-                                <a href="#" class="btn btn-primary">More</a>
-                                </div>
-                            </div></form>
-
-
-                            <form name = "registerSbmt" id = "registerSbmt" method="post" action="singnup_db.php">
-                            <div class="card">
-                                <img src="upload/blog_square_01.jpg" alt="" height=200px class="card-img-top" />
-                                <div class="card-body">
-                                <p><?php echo mysqli_fetch_assoc($result)['title']; ?></p>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
-                                <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
-                                <input type = "submit" value="store">
-                                <a href="#" class="btn btn-primary">More</a>
-                                </div>
-                            </div></form>
-
-                            <form name = "registerSbmt" id = "registerSbmt" method="post" action="singnup_db.php">
+                            <form name = "registerSbmt" id = "registerSbmt" method="post" action="my_key_diary_db.php">
                             <div class="card">
                                 <img src="upload/blog_square_01.jpg" alt="" height=200px class="card-img-top" />
                                 <div class="card-body">
@@ -266,7 +255,19 @@
                             </div></form>
 
 
-                            <form name = "registerSbmt" id = "registerSbmt" method="post" action="singnup_db.php">
+                            <form name = "registerSbmt" id = "registerSbmt" method="post" action="my_key_diary_db.php">
+                            <div class="card">
+                                <img src="upload/blog_square_01.jpg" alt="" height=200px class="card-img-top" />
+                                <div class="card-body">
+                                <p><?php echo mysqli_fetch_assoc($result)['title']; ?></p>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
+                                <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
+                                <input type = "submit" value="store">
+                                <a href="#" class="btn btn-primary">More</a>
+                                </div>
+                            </div></form>
+
+                            <form name = "registerSbmt" id = "registerSbmt" method="post" action="my_key_diary_db.php">
                             <div class="card">
                                 <img src="upload/blog_square_01.jpg" alt="" height=200px class="card-img-top" />
                                 <div class="card-body">
@@ -279,7 +280,20 @@
                             </div></form>
 
 
-                            <form name = "registerSbmt" id = "registerSbmt" method="post" action="singnup_db.php">
+                            <form name = "registerSbmt" id = "registerSbmt" method="post" action="my_key_diary_db.php">
+                            <div class="card">
+                                <img src="upload/blog_square_01.jpg" alt="" height=200px class="card-img-top" />
+                                <div class="card-body">
+                                <p><?php echo mysqli_fetch_assoc($result)['title']; ?></p>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
+                                <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
+                                <input type = "submit" value="store">
+                                <a href="#" class="btn btn-primary">More</a>
+                                </div>
+                            </div></form>
+
+
+                            <form name = "registerSbmt" id = "registerSbmt" method="post" action="my_key_diary_db.php">
                             <div class="card">
                                 <img src="upload/blog_square_01.jpg" alt="" height=200px class="card-img-top" />
                                 <div class="card-body">
@@ -299,7 +313,7 @@
                         <!-- visualization section -->
                         <div class="a_today_vi_section">
                             <h2> MY Keywords </h2>
-                            <img src="visual_img/save_name.png" class="a_today_key_img">
+                            <img src="visual_img/test.png" class="a_today_key_img">
                         </div> <!-- end visualization section -->
 
                     </div><!-- end col -->

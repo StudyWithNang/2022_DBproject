@@ -28,7 +28,7 @@ curs = mydb.cursor()
 
 
 
-stores_info = pd.read_csv('crawl_data/20221113-22.csv')
+stores_info = pd.read_csv('crawl_data/20221116-11.csv')
 
 # time for news_id
 tm = time.localtime()

@@ -68,3 +68,36 @@
 	margin: 0 auto;
 	border: 1px solid #87cefa;
 }
+
+
+
+/* ************Press List table************* */
+
+.news_list caption {
+  text-align: start;
+}
+.news_list table {
+  border: 1px #a39485 solid;
+  font-size: .9em;
+  box-shadow: 0 2px 5px rgba(0,0,0,.25);
+  width: 90%;
+  border-collapse: collapse;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.news_list th {
+  border-bottom: 1px solid #a39485;
+  padding: 1em .5em;
+  font-weight: bold;
+  color: #ffffff;
+  background: #3C5087;
+  text-align: center;
+  vertical-align: middle;
+  margin-right: 20px;
+}
+
+.news_list td{
+  background: #ffffff;
+  vertical-align: middle; 
+}

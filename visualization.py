@@ -4,6 +4,7 @@ from pororo import Pororo
 from wordcloud import WordCloud
 from collections import Counter
 import matplotlib.pyplot as plt
+import datetime
 
 
 #데이터프레임 조회하기
@@ -32,24 +33,33 @@ for i in range(10):
 # print(len(text))
 
 ner_list = []
+tag_list = []
 for i in range(10):
     for word, tag in text[i]:
         if tag in ['PERSON', 'CIVILIZATION','DATE', 'COUNTRY', 'OCCUPATION']:
             ner_list.append(word)
+            tag_list.append(tag)
 
-np.unique(ner_list)
-print(len(np.unique(ner_list)))  # 총 갯수 확인
+# db_main_key = np.unique(ner_list)  
+# b = np.array2string(db_main_key)  # 디비 저장str로 저장
+#print(len(np.unique(ner_list)))  # 총 갯수 확인
+# tag_list
 
-
-counts = Counter(ner_list) #어케 저장하고 디비에 저장할지 고민할 것 ex)태그 따로?
+counts = Counter(ner_list)
+# count_list = list(counts.values())
+# count_str = ','.join(count_list)  # 디비 저장
 tags = counts.most_common(30)
 
-wc = WordCloud(background_color="white", max_font_size=60)
+wc = WordCloud(background_color="white", max_font_size=60, font_path = './font/BMHANNAPro.ttf')
 cloud = wc.generate_from_frequencies(dict(tags))
-# cloud.to_file('test.jpg')
 plt.figure(figsize=(10, 8))
 plt.axis('off')
 plt.imshow(cloud)
 plt.show()
 
-plt.savefig('visual_img/test')
+start_time = datetime.datetime.now()
+file_name = start_time.strftime("%Y%m%d-%H")
+
+plt.savefig('visual_img/'+file_name)
+
+

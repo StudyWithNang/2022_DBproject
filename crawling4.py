@@ -9,6 +9,7 @@ import multiprocessing
 import warnings
 import re
 import json
+import schedule
 
 warnings.filterwarnings(action='ignore')
 
@@ -154,8 +155,8 @@ def main(args):
         print("End Date :", end_time)
         print(start_time.strftime("%Y%m%d-%H") + ', ' + str(all_data.shape) + ', 크롤링을 완료했습니다.')
 
+
 if __name__ == "__main__":
         PARSER = argparse.ArgumentParser()
         ARGS = PARSER.parse_args()
         main(ARGS)
-

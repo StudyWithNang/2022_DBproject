@@ -135,7 +135,7 @@
                 <div class="row">
                     <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
 			<!-- main news list -->
-			<h2> Today Issue </h2>
+			<h2 style="padding-top: 0px"> Today Issue </h2>
 <?php
 						//mysql 접속 계정 정보 설정
 						$mysql_host = 'localhost';

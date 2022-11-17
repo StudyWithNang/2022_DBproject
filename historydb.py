@@ -28,7 +28,7 @@ curs = mydb.cursor()
  
  
 # data = pd.read_csv('soho_seoul.csv', header=None) # KeyError: '상권업종대분류명'
-stores_info = pd.read_csv('crawl_data/20221110-03.csv') # KeyError: '상권업종대분류명'
+stores_info = pd.read_csv('crawl_data/20221116-11.csv') # KeyError: '상권업종대분류명'
 stores_info = stores_info.drop_duplicates(['date'], keep='last')
 print(stores_info)
 
