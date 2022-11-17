@@ -17,7 +17,7 @@ $chat = $_POST['chat'];
 $sql = "
     INSERT INTO diary
     (scrap_id, id, news_id, chat)
-    VALUES('111111', '222222', '2022_11_13_22_15_section_society', '{$chat}'
+    VALUES('22222', 'aheun', '2022_11_13_22_15_section_society', '{$chat}'
     )";
 
 echo $sql;

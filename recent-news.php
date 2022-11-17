@@ -137,16 +137,44 @@
             <div class="container-fluid">
                 <div class="masonry-blog clearfix">
 				<h1 style="margin-left: 20px; color: #000000">Today Issue</h1>
+				<?php
+                                                $mysql_host = 'localhost';
+                                                $mysql_user = 'root';
+                                                $mysql_password = '111111';
+                                                $mysql_db = 'keya';
+
+                                                $con = mysqli_connect($mysql_host, $mysql_user, $mysql_password, $mysql_db);
+                                                if(mysqli_connect_error($con)) {
+                                                        echo "mysql connect fail!!", "<br>";
+                                                        echo mysqli_connect_error();
+                                                        exit(); }
+
+                                                //$result = mysqli_query($con, "select * from raw_news order by rand() limit 5");
+                                                $result1 = mysqli_query($con, "select * from raw_news");
+//						$row = mysqli_fetch_row($result1);
+						$result2 = mysqli_query($con, "select news_id from raw_news");
+/*
+                                                $i = 0;
+                                                while($i<5) {
+                                                        echo mysqli_fetch_assoc($result)['title']."<br>";
+                                                        $i++;
+                                                } */
+                                                
+                                        ?>
+
+
+
                     <div class="left-side">
                         <div class="masonry-box post-media">
-                             <img src="upload/blog_masonry_01.jpg" alt="" class="img-fluid">
+ 			     <?php $row = mysqli_fetch_row($result1); ?>
+                             <img src="<?php echo $row[7];?>" alt="" class="img-fluid">
                              <div class="shadoweffect">
                                 <div class="shadow-desc">
                                     <div class="blog-meta">
-                                        <span class="bg-aqua" style="color: #ffffff">raw_news/category</a></span>
-                                        <h4><a href="single.html" title="">raw_news/title</a></h4>
-                                        <small style="color: #ffffff">raw_news/date</a></small>
-                                        <small style="color: #ffffff">raw_news/editor</a></small>
+                                        <span class="bg-aqua" style="color: #ffffff"><?php echo $row[0];?></a></span>
+                                        <h4><a href="single.html" title=""><?php echo $row[1];?></a></h4>
+                                        <small style="color: #ffffff"><?php echo $row[3];?></a></small>
+                                        <small style="color: #ffffff"><?php echo $row[5];?></a></small>
                                     </div><!-- end meta -->
                                 </div><!-- end shadow-desc -->
                             </div><!-- end shadow -->
@@ -155,14 +183,15 @@
 
                     <div class="center-side">
                         <div class="masonry-box post-media">
-                             <img src="upload/blog_masonry_01.jpg" alt="" class="img-fluid">
+                             <?php $row = mysqli_fetch_row($result1); ?>
+                             <img src="<?php echo $row[7];?>" alt="" class="img-fluid">
                              <div class="shadoweffect">
                                 <div class="shadow-desc">
                                     <div class="blog-meta">
-                                        <span class="bg-aqua" style="color: #ffffff">raw_news/category</a></span>
-                                        <h4><a href="single.html" title="">raw_news/title</a></h4>
-                                        <small style="color: #ffffff">raw_news/date</a></small>
-                                        <small style="color: #ffffff">raw_news/editor</a></small>
+                                        <span class="bg-aqua" style="color: #ffffff"><?php echo $row[0];?></a></span>
+                                        <h4><a href="single.html" title=""><?php echo $row[1];?></a></h4>
+                                        <small style="color: #ffffff"><?php echo $row[3];?></a></small>
+                                        <small style="color: #ffffff"><?php echo $row[5];?></a></small>
                                     </div><!-- end meta -->
                                 </div><!-- end shadow-desc -->
                             </div><!-- end shadow -->
@@ -171,15 +200,15 @@
 
                     <div class="right-side hidden-md-down">
                         <div class="masonry-box post-media">
-                            <div class="masonry-box post-media">
-                             <img src="upload/blog_masonry_01.jpg" alt="" class="img-fluid">
+                             <?php $row = mysqli_fetch_row($result1); ?>
+                             <img src="<?php echo $row[7];?>" alt="" class="img-fluid">
                              <div class="shadoweffect">
                                 <div class="shadow-desc">
                                     <div class="blog-meta">
-                                        <span class="bg-aqua" style="color: #ffffff">raw_news/category</a></span>
-                                        <h4><a href="single.html" title="">raw_news/title</a></h4>
-                                        <small style="color: #ffffff">raw_news/date</a></small>
-                                        <small style="color: #ffffff">raw_news/editor</a></small>
+                                        <span class="bg-aqua" style="color: #ffffff"><?php echo $row[0];?></a></span>
+                                        <h4><a href="single.html" title=""><?php echo $row[1];?></a></h4>
+                                        <small style="color: #ffffff"><?php echo $row[3];?></a></small>
+                                        <small style="color: #ffffff"><?php echo $row[5];?></a></small>
                                     </div><!-- end meta -->
                                 </div><!-- end shadow-desc -->
                             </div><!-- end shadow -->
@@ -193,30 +222,26 @@
         <section class="section">
             <div class="container">
                 <hr class="invis1">
-                <div class="row">
 					<!-- section : press -->
                     <div class="col-lg-9">
                         <div class="blog-list clearfix">
-                            <div class="section-title">
-                                <h3 class="color-green"><a href="blog-category-01.html" title="">Press</a></h3>
-                            </div><!-- end title -->
-
                             <div class="blog-box row">
                                 <div class="col-md-4">
                                     <div class="post-media">
                                         <a href="single.html" title="">
-                                            <img src="upload/blog_square_01.jpg" alt="" class="img-fluid">
+					    <?php $row = mysqli_fetch_row($result1); ?>
+                                            <img src="<?php echo $row[7];?>" alt="" class="img-fluid">
                                             <div class="hovereffect"></div>
                                         </a>
                                     </div><!-- end media -->
                                 </div><!-- end col -->
 
                                 <div class="blog-meta big-meta col-md-8">
-                                    <h4><a href="single.html" title="">5 Beautiful buildings you need to visit without dying</a></h4>
-                                    <p>Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enim nibh, maximus ac felis nec, maximus tempor odio.</p>
-                                    <small><a href="blog-category-01.html" title="">Travel</a></small>
-                                    <small><a href="single.html" title="">21 July, 2017</a></small>
-                                    <small><a href="blog-author.html" title="">by Boby</a></small>
+                                    <h4><a href="single.html" title=""><?php echo $row[1];?></a></h4>
+                                    <p><?php echo $row[2];?></p>
+                                    <small><a href="blog-category-01.html" title=""><?php echo $row[0];?></a></small>
+                                    <small><a href="single.html" title=""><?php echo $sample=$row[3]; ?></a></small>
+                                    <small><a href="blog-author.html" title=""><?php echo $row[5];?></a></small>
                                 </div><!-- end meta -->
                             </div><!-- end blog-box -->
 
@@ -226,18 +251,19 @@
                                 <div class="col-md-4">
                                     <div class="post-media">
                                         <a href="single.html" title="">
-                                            <img src="upload/blog_square_01.jpg" alt="" class="img-fluid">
+                                            <?php $row = mysqli_fetch_row($result1); ?>
+                                            <img src="<?php echo $row[7];?>" alt="" class="img-fluid">
                                             <div class="hovereffect"></div>
                                         </a>
                                     </div><!-- end media -->
                                 </div><!-- end col -->
 
                                 <div class="blog-meta big-meta col-md-8">
-                                    <h4><a href="single.html" title="">Let's make an introduction to the glorious world of history</a></h4>
-                                    <p>Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enim nibh, maximus ac felis nec, maximus tempor odio.</p>
-                                    <small><a href="blog-category-01.html" title="">Travel</a></small>
-                                    <small><a href="single.html" title="">20 July, 2017</a></small>
-                                    <small><a href="blog-author.html" title="">by Samanta</a></small>
+                                    <h4><a href="single.html" title=""><?php echo $row[1];?></a></h4>
+                                    <p><?php echo $row[2];?></p>
+                                    <small><a href="blog-category-01.html" title=""><?php echo $row[0];?></a></small>
+                                    <small><a href="single.html" title=""><?php echo $row[3];?></a></small>
+                                    <small><a href="blog-author.html" title=""><?php echo $row[5];?></a></small>
                                 </div><!-- end meta -->
                             </div><!-- end blog-box -->
 
@@ -247,18 +273,19 @@
                                 <div class="col-md-4">
                                     <div class="post-media">
                                         <a href="single.html" title="">
-                                            <img src="upload/blog_square_01.jpg" alt="" class="img-fluid">
+                                            <?php $row = mysqli_fetch_row($result1); ?>
+                                            <img src="<?php echo $row[7];?>" alt="" class="img-fluid">
                                             <div class="hovereffect"></div>
                                         </a>
                                     </div><!-- end media -->
                                 </div><!-- end col -->
 
                                 <div class="blog-meta big-meta col-md-8">
-                                    <h4><a href="single.html" title="">Did you see the most beautiful sea in the world?</a></h4>
-                                    <p>Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enim nibh, maximus ac felis nec, maximus tempor odio.</p>
-                                    <small><a href="blog-category-01.html" title="">Travel</a></small>
-                                    <small><a href="single.html" title="">19 July, 2017</a></small>
-                                    <small><a href="blog-author.html" title="">by Jackie</a></small>
+                                    <h4><a href="single.html" title=""><?php echo $row[1];?></a></h4>
+                                    <p><?php echo $row[2];?></p>
+                                    <small><a href="blog-category-01.html" title=""><?php echo $row[0];?></a></small>
+                                    <small><a href="single.html" title=""><?php echo $row[3];?></a></small>
+                                    <small><a href="blog-author.html" title=""><?php echo $row[5];?></a></small>
                                 </div><!-- end meta -->
                             </div><!-- end blog-box -->
                         </div><!-- end blog-list -->
@@ -272,65 +299,6 @@
                     </div><!-- end col -->
 
 
-
-                    <div class="col-lg-3">
-                        <div class="section-title">
-                            <h3 class="color-yellow"><a href="blog-category-01.html" title="">Editor</a></h3>
-                        </div><!-- end title -->
-
-                        <div class="blog-box">
-                            <div class="post-media">
-                                <a href="single.html" title="">
-                                    <img src="upload/blog_10.jpg" alt="" class="img-fluid">
-                                    <div class="hovereffect">
-                                        <span class="videohover"></span>
-                                    </div><!-- end hover -->
-                                </a>
-                            </div><!-- end media -->
-                            <div class="blog-meta">
-                                <h4><a href="single.html" title="">We are guests of ABC Design Studio - Vlog</a></h4>
-                                <small><a href="blog-category-01.html" title="">Videos</a></small>
-                                <small><a href="blog-category-01.html" title="">21 July, 2017</a></small>
-                            </div><!-- end meta -->
-                        </div><!-- end blog-box -->
-
-                        <hr class="invis">
-
-                        <div class="blog-box">
-                            <div class="post-media">
-                                <a href="single.html" title="">
-                                    <img src="upload/blog_10.jpg" alt="" class="img-fluid">
-                                    <div class="hovereffect">
-                                        <span class="videohover"></span>
-                                    </div><!-- end hover -->
-                                </a>
-                            </div><!-- end media -->
-                            <div class="blog-meta">
-                                <h4><a href="single.html" title="">Nostalgia at work</a></h4>
-                                <small><a href="blog-category-01.html" title="">Videos</a></small>
-                                <small><a href="blog-category-01.html" title="">20 July, 2017</a></small>
-                            </div><!-- end meta -->
-                        </div><!-- end blog-box -->
-
-                        <hr class="invis">
-
-                        <div class="blog-box">
-                            <div class="post-media">
-                                <a href="single.html" title="">
-                                    <img src="upload/blog_10.jpg" alt="" class="img-fluid">
-                                    <div class="hovereffect">
-                                        <span class="videohover"></span>
-                                    </div><!-- end hover -->
-                                </a>
-                            </div><!-- end media -->
-                            <div class="blog-meta">
-                                <h4><a href="single.html" title="">How to become a good vlogger</a></h4>
-                                <small><a href="blog-category-01.html" title="">Beauty</a></small>
-                                <small><a href="blog-category-01.html" title="">20 July, 2017</a></small>
-                            </div><!-- end meta -->
-                        </div><!-- end blog-box -->                       
-                    </div><!-- end col -->
-                </div><!-- end row -->
             </div><!-- end container -->
         </section>
 
