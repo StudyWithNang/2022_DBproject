@@ -8,7 +8,7 @@ from pororo import Pororo
 from wordcloud import WordCloud
 from collections import Counter
 import matplotlib.pyplot as plt
-import datetime
+from datetime import datetime
 
 sys.stdout = io.TextIOWrapper(sys.stdout.detach(), encoding='utf-8')		#한글처리
 sys.stderr = io.TextIOWrapper(sys.stderr.detach(), encoding='utf-8')		#한글처리
@@ -29,8 +29,20 @@ except pymysql.Error as e:
 # Get Cursor
 curs = mydb.cursor()
 
-sql1 = "select news_id from raw_news where date = '2022-11-16'"
-sql2 = "select article from raw_news where date = '2022-11-16'"
+today = datetime.today()
+
+my_key1 = sys.argv[1]
+my_key2 = sys.argv[2]
+my_key3 = sys.argv[3]
+my_key4 = sys.argv[4]
+my_key5 = sys.argv[5]
+my_key6 = sys.argv[6]
+
+print(my_key1)
+
+
+sql1 = "select news_id from raw_news where date = '" + today + "'"
+sql2 = "select article from raw_news where date = '" + today + "'"
 curs.execute(sql1)
 news_id = curs.fetchall()
 curs.execute(sql2)
@@ -41,43 +53,35 @@ article = curs.fetchall()
 #     print(data)
 # print(type(article))
 
-
-# stores_info = pd.read_csv('crawl_data/20221116-11.csv')
-# article[0].replace('(', ' ')
-# article[0].replace(')',' ')
-# article[0].replace(',',' ')
-
-keyword = ['이재명', 'ai', '윤석열']
-key_news = [[], [], []]
-output_key_news  = [[],[],[]]
+keyword = [my_key1, my_key2, my_key3, my_key4, my_key5, my_key6]
+# keyword = ['my_key1', 'ai','이재명', '보안', '롤드컵', '월드컵']
+key_news = [[], [], [], [], [], []]
+output_key_news  = [[],[],[], [], [], []]
 text = []
-
-
-# for i in range(len(article)):
-#     news = article[i]
-#     # print(news)
-#     for j in range(len(keyword)):
-#         arg = keyword[j]
-#         if arg in news[0]:
-#             key_news[j].append(news_id[i][0])
-
-# for k in range(len(keyword)):
-#     if len(key_news[k]) > 0 and len(key_news[k]) <= 6:
-#         output_key_news[k] = key_news[k][:(len(key_news[k]))]
-#     elif len(key_news[k]) > 6:
-#         output_key_news[k] = key_news[k][:6]
-#     elif len(key_news[k])==0:
-#         pass
-# # print(text)
 
 
 ## 개인 visuallization 파일 만들기 수정!!!!!!!!!!!!!!!!!!!!!
 # #pororo로 ner 분석
+def wordcloud(my_ner_list, keyword, k):
+    counts = Counter(my_ner_list[k])
+    tags = counts.most_common(30)
+    wc = WordCloud(background_color="white", max_font_size=60, font_path = './font/BMHANNAPro.ttf')
+    cloud = wc.generate_from_frequencies(dict(tags))
+    plt.figure(figsize=(10, 8))
+    plt.axis('off')
+    plt.imshow(cloud)
+    plt.show()
+
+    start_time = datetime.datetime.now()
+    file_name = start_time.strftime("%Y%m%d-%H")
+
+    plt.savefig('my_key_visual_img/'+file_name + '_'+ keyword[k])
+
 ner = Pororo(task="ner", lang="ko")
 
 # text = ner(article)
 
-my_ner_list = [[],[],[]]
+my_ner_list = [[],[],[],[], [], []]
 for i in range(10):
     news = article[i]
     text += [ner(news[0])]
@@ -94,52 +98,66 @@ for i in range(10):
 for k in range(len(keyword)):
     if len(key_news[k]) > 0 and len(key_news[k]) <= 6:
         output_key_news[k] = key_news[k][:(len(key_news[k]))]
+        wordcloud(my_ner_list, keyword, k)
 
-        counts = Counter(my_ner_list[k])
-        print("6이하")
-        tags = counts.most_common(30)
-        wc = WordCloud(background_color="white", max_font_size=60, font_path = './font/BMHANNAPro.ttf')
-        cloud = wc.generate_from_frequencies(dict(tags))
-        plt.figure(figsize=(10, 8))
-        plt.axis('off')
-        plt.imshow(cloud)
-        plt.show()
-
-        start_time = datetime.datetime.now()
-        file_name = start_time.strftime("%Y%m%d-%H")
-
-        plt.savefig('my_key_visual_img/'+file_name + '_'+ keyword[k])
     elif len(key_news[k]) > 6:
         output_key_news[k] = key_news[k][:6]
-        counts = Counter(my_ner_list[k])
-        print("6이상")
-        tags = counts.most_common(30)
-        wc = WordCloud(background_color="white", max_font_size=60, font_path = './font/BMHANNAPro.ttf')
-        cloud = wc.generate_from_frequencies(dict(tags))
-        plt.figure(figsize=(10, 8))
-        plt.axis('off')
-        plt.imshow(cloud)
-        plt.show()
-
-        start_time = datetime.datetime.now()
-        file_name = start_time.strftime("%Y%m%d-%H")
-
-        plt.savefig('my_key_visual_img/'+file_name + '_' +keyword[k])
+        wordcloud(my_ner_list, keyword, k)
     elif len(key_news[k])==0:
         pass
 
+# print("key_news", key_news)
+# print("output_key_news", output_key_news)
 
-# for i in range(len(my_ner_list)):
-#     counts = Counter(my_ner_list[i])
-#     tags = counts.most_common(30)
-#     wc = WordCloud(background_color="white", max_font_size=60, font_path = './font/BMHANNAPro.ttf')
-#     cloud = wc.generate_from_frequencies(dict(tags))
-#     plt.figure(figsize=(10, 8))
-#     plt.axis('off')
-#     plt.imshow(cloud)
-#     plt.show()
+#tu = (output_key_news[0][0], output_key_news[0][1], output_key_news[0][2], output_key_news[0][3], output_key_news[0][4], output_key_news[0][5])
 
-#     start_time = datetime.datetime.now()
-#     file_name = start_time.strftime("%Y%m%d-%H")
+#curs.execute("""INSERT IGNORE INTO keyword VALUES (%s, %s, %s)""", tu)
+# print(output_key_news[0])
+# for i in range(6):
+#     sql = "INSERT IGNORE INTO keyword (id, my_key"
+#     sql2 ="('aheun', '" + keyword[i] + "'"
+#     sql3 = ""
+#     for k, output in enumerate(output_key_news[i]):
+#         sql += ", output" + str(k+1);
+#         sql3 += ", '" + output_key_news[i][k] + "'"
+#     # tu = tuple(output_key_news[i])
+#     sql += ") VALUES " + sql2 + sql3 + ")"
+#     # print(sql)
+#     # print(tu)
+#     # for j in range(len(output_key_news[i])):
+#     #     sql2 += ", %s"
 
-#     plt.savefig('my_key_visual_img/'+file_name + keyword[i])
+#     print(sql)
+
+#     curs.execute(sql)
+
+
+for i in range(6):
+    output = len(output_key_news[i])
+
+    if output == 0:
+        sql1 = "INSERT IGNORE INTO keyword (id, my_key) VALUES ('aheun', '"+keyword[i]+"');"
+        curs.execute(str(sql1))
+    elif output == 1:
+        sql2 ="INSERT IGNORE INTO keyword (id, my_key, output1) VALUES ('aheun', '"+keyword[i]+"', '"+output_key_news[i][0]+"');"
+        curs.execute(str(sql2))
+    elif output == 2:
+        sql3 ="INSERT IGNORE INTO keyword (id, my_key, output1, output2) VALUES ('aheun', '"+keyword[i]+"', '"+output_key_news[i][0]+"', '"+output_key_news[i][1]+"');"
+        curs.execute(str(sql3))
+    elif output == 3:
+        sql4 ="INSERT IGNORE INTO keyword (id, my_key, output1, output2, output3) VALUES ('aheun', '"+keyword[i]+"', '"+output_key_news[i][0]+"', '"+output_key_news[i][1]+"', '"+output_key_news[i][2]+"');"
+        curs.execute(str(sql4))  
+    elif output == 4:
+        sql5 ="INSERT IGNORE INTO keyword (id, my_key, output1, output2, output3, output4) VALUES ('aheun', '"+keyword[i]+"', '"+output_key_news[i][0]+"', '"+output_key_news[i][1]+"', '"+output_key_news[i][2]+"', '"+output_key_news[i][3]+"');"
+        curs.execute(str(sql5))
+    elif output == 5:
+        sql6 ="INSERT IGNORE INTO keyword (id, my_key, output1, output2, output3, output4, output5) VALUES ('aheun', '"+keyword[i]+"', '"+output_key_news[i][0]+"', '"+output_key_news[i][1]+"', '"+output_key_news[i][2]+"', '"+output_key_news[i][3]+"', '"+output_key_news[i][4]+"');"
+        curs.execute(str(sql6))
+    elif output == 6:
+        sql7 ="INSERT IGNORE INTO keyword (id, my_key, output1, output2, output3, output4, output5, output6) VALUES ('aheun', '"+keyword[i]+"', '"+output_key_news[i][0]+"', '"+output_key_news[i][1]+"', '"+output_key_news[i][2]+"', '"+output_key_news[i][3]+"', '"+output_key_news[i][4]+"', '"+output_key_news[i][5]+"');"
+        curs.execute(str(sql7))
+    
+
+
+mydb.commit()
+mydb.close()

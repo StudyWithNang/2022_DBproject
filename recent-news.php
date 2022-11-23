@@ -106,13 +106,11 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-md-center" id="cloapediamenu">
                         <ul class="navbar-nav">
-			    <li class="nav-item dropdown has-submenu">
-                                <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Recent News</a>
-                                <ul class="dropdown-menu" aria-labelledby="dropdown02">
-                                    <li><a class="dropdown-item" href="today-issue.php">Today Issue</a></li>
-                                    <li><a class="dropdown-item" href="collect-press.php">Collect Press</a></li>
-                                    <li><a class="dropdown-item" href="collect-editor.php">Collect Editor</a></li>
-                                </ul>
+                            <li class="nav-item">
+                                <a class="nav-link color-aqua-hover" href="today-issue.php">Today Issue</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link color-aqua-hover" href="collect-press.php">Collect Press</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link color-aqua-hover" href="my-interested-news.php">my interested news</a>
@@ -151,7 +149,7 @@
 
                                                 //$result = mysqli_query($con, "select * from raw_news order by rand() limit 5");
                                                 $result1 = mysqli_query($con, "select * from raw_news");
-//						$row = mysqli_fetch_row($result1);
+						$row = mysqli_fetch_row($result1);
 						$result2 = mysqli_query($con, "select news_id from raw_news");
 /*
                                                 $i = 0;

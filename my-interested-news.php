@@ -120,7 +120,56 @@
             background-size: cover;
         }
   </style>
-  
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="js/jquery.min.js"></script>
+    <script src="js/tether.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/slick.min.js"></script>
+    <script src="option.js"></script>
+    <script>
+        // 배너
+        $(".ban").slick({
+            dots: true,
+            infinite: true,
+            slidesToShow:3,
+            slidesToScroll:3,
+            arrows:false,
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        arrows:false,
+                        autoplay: false,
+                        }
+                }
+            ]
+        });
+        
+
+        var selectText ='ai';
+        function changeLangSelect(){
+            var langSelect = document.getElementById("selectbox");
+            var langvalue= document.getElementById("getvalue");
+            // select element에서 선택된 option의 value가 저장된다.
+            var selectValue = langSelect.options[langSelect.selectedIndex].value;
+            
+            // select element에서 선택된 option의 text가 저장된다.
+            selectText = langSelect.options[langSelect.selectedIndex].text;
+            langvalue.innerText = selectText;
+            //document.write(langvalue.innerText);
+            console.log(selectText);
+            return selectText;
+        }
+        //changeLangSelect();
+        selectText = changeLangSelect();
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+
+
 
 </head>
 <body>
@@ -164,13 +213,11 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-md-center" id="cloapediamenu">
                         <ul class="navbar-nav">
-			    <li class="nav-item dropdown has-submenu">
-                                <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Recent News</a>
-                                <ul class="dropdown-menu" aria-labelledby="dropdown02">
-                                    <li><a class="dropdown-item" href="today-issue.php">Today Issue</a></li>
-                                    <li><a class="dropdown-item" href="collect-press.php">Collect Press</a></li>
-                                    <li><a class="dropdown-item" href="collect-editor.php">Collect Editor</a></li>
-                                </ul>
+                            <li class="nav-item">
+                                <a class="nav-link color-aqua-hover" href="today-issue.php">Today Issue</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link color-aqua-hover" href="collect-press.php">Collect Press</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link color-aqua-hover" href="my-interested-news.php">my interested news</a>
@@ -200,7 +247,7 @@
 						$mysql_user = 'root';
 						$mysql_password = '111111';
 						$mysql_db = 'keya';
-                        echo $_SESSION['id'];
+                        // echo $_SESSION['id'];
 						//connetc 설정(host,user,password)
 						$con = mysqli_connect($mysql_host, $mysql_user, $mysql_password, $mysql_db);
 
@@ -215,108 +262,18 @@
                             $result2 = mysqli_query($con, "select * from user where id='$mini'");
                             $row = mysqli_fetch_row($result2);
 
-                            $output = shell_exec("key_news.py".' '.$row[2].' '.$row[3].' '.$row[4].' '.$row[5].' '.$row[6].' '.$row[7]);
+                            exec("python3 DB/key_news.py".' '.'aavv'.' '.$row[3].' '.$row[4].' '.$row[5].' '.$row[6].' '.$row[7]);
                         ?>
-                        <select name="items">
-                            <option value="my_key1"><?php echo $row[2]?></option>
-                            <option value="my_key2"><?php echo $row[3]?></option>
-                            <option value="my_key3"><?php echo $row[4]?></option>
-                            <option value="my_key4"><?php echo $row[5]?></option>
-                            <option value="my_key5"><?php echo $row[6]?></option>
-                            <option value="my_key6"><?php echo $row[7]?></option>
-
-                        </select>
-
-                        <div class="ban">
-                        <form name = "registerSbmt" id = "registerSbmt" method="post" action="my_key_diary_db.php">
-                            <div class="card">
-                                <img src="upload/blog_square_01.jpg" alt="" height=200px class="card-img-top" />
-                                <div class="card-body">
-                                <p><?php echo mysqli_fetch_assoc($result)['title']; ?></p>
-                                <?php echo $output; ?>
-                                <?php $row = mysqli_fetch_row($result2); ?>
-                                <p class="card-text"><?php echo $row[2]; echo $row[3];echo $row[4];echo $row[5]; ?></p>
-                                <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
-                                <input type = "submit" value="store">
-                                <a href="#" class="btn btn-primary">More</a>
-                                </div>
-                            </div></form>
-
-                            <form name = "registerSbmt" id = "registerSbmt" method="post" action="my_key_diary_db.php">
-                            <div class="card">
-                                <img src="upload/blog_square_01.jpg" alt="" height=200px class="card-img-top" />
-                                <div class="card-body">
-                                <p><?php echo mysqli_fetch_assoc($result)['title']; ?></p>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
-                                <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
-                                <input type = "submit" value="store">
-                                <a href="#" class="btn btn-primary">More</a>
-                                </div>
-                            </div></form>
-
-
-                            <form name = "registerSbmt" id = "registerSbmt" method="post" action="my_key_diary_db.php">
-                            <div class="card">
-                                <img src="upload/blog_square_01.jpg" alt="" height=200px class="card-img-top" />
-                                <div class="card-body">
-                                <p><?php echo mysqli_fetch_assoc($result)['title']; ?></p>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
-                                <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
-                                <input type = "submit" value="store">
-                                <a href="#" class="btn btn-primary">More</a>
-                                </div>
-                            </div></form>
-
-                            <form name = "registerSbmt" id = "registerSbmt" method="post" action="my_key_diary_db.php">
-                            <div class="card">
-                                <img src="upload/blog_square_01.jpg" alt="" height=200px class="card-img-top" />
-                                <div class="card-body">
-                                <p><?php echo mysqli_fetch_assoc($result)['title']; ?></p>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
-                                <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
-                                <input type = "submit" value="store">
-                                <a href="#" class="btn btn-primary">More</a>
-                                </div>
-                            </div></form>
-
-
-                            <form name = "registerSbmt" id = "registerSbmt" method="post" action="my_key_diary_db.php">
-                            <div class="card">
-                                <img src="upload/blog_square_01.jpg" alt="" height=200px class="card-img-top" />
-                                <div class="card-body">
-                                <p><?php echo mysqli_fetch_assoc($result)['title']; ?></p>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
-                                <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
-                                <input type = "submit" value="store">
-                                <a href="#" class="btn btn-primary">More</a>
-                                </div>
-                            </div></form>
-
-
-                            <form name = "registerSbmt" id = "registerSbmt" method="post" action="my_key_diary_db.php">
-                            <div class="card">
-                                <img src="upload/blog_square_01.jpg" alt="" height=200px class="card-img-top" />
-                                <div class="card-body">
-                                <p><?php echo mysqli_fetch_assoc($result)['title']; ?></p>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
-                                <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
-                                <input type = "submit" value="store">
-                                <a href="#" class="btn btn-primary">More</a>
-                                </div>
-                            </div></form>
-
-                            
-
-
+                        <div class  ="a_content">
+                            <a style="display:block; width:300px; height:50px;" href="keyinfo.php?press=<?php echo $row[2]?>"><?php echo $row[2]?></a>
+                            <a style="display:block; width:300px; height:50px;" href="keyinfo.php?press=<?php echo $row[3]?>"><?php echo $row[3]?></a>
+                            <a style="display:block; width:300px; height:50px;" href="keyinfo.php?press=<?php echo $row[4]?>"><?php echo $row[4]?></a>
+                            <a style="display:block; width:300px; height:50px;" href="keyinfo.php?press=<?php echo $row[5]?>"><?php echo $row[5]?></a>
+                            <a style="display:block; width:300px; height:50px;" href="keyinfo.php?press=<?php echo $row[6]?>"><?php echo $row[6]?></a>
+                            <a style="display:block; width:300px; height:50px;" href="keyinfo.php?press=<?php echo $row[7]?>"><?php echo $row[7]?></a>
                         </div>
-        
-                        <!-- visualization section -->
-                        <div class="a_today_vi_section">
-                            <h2> MY Keywords </h2>
-                            <img src="visual_img/test.png" class="a_today_key_img">
-                        </div> <!-- end visualization section -->
-
                     </div><!-- end col -->
+        
 
                 <!-- sidebar col-->
                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
@@ -377,33 +334,7 @@
 
     <!-- Core JavaScript
     ================================================== -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/tether.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="js/slick.min.js"></script>
-    <script>
-        // 배너
-        $(".ban").slick({
-            dots: true,
-            infinite: true,
-            slidesToShow:3,
-            slidesToScroll:3,
-            arrows:false,
-            responsive: [
-                {
-                    breakpoint: 768,
-                    settings: {
-                        arrows:false,
-                        autoplay: false,
-                        }
-                }
-            ]
-        });</script>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
         
 </body>
 </html>

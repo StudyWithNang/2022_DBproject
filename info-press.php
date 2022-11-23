@@ -1,212 +1,368 @@
 <!DOCTYPE html>
+<?php
+        session_start();
+        echo $_SESSION['id'];
+?>
 <html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<style>
 
-    <!-- Basic -->
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
-    <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <!-- Site Metas -->
-    <title>keyword article</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    
-    <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-    
-    <!-- Design fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,500,700" rel="stylesheet"> 
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet"> 
+	@import url('https://fonts.googleapis.com/css?family=Abel');
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+	html, body {
+	  background: #FCEEB5;
+	  font-family: Abel, Arial, Verdana, sans-serif;
+	}
 
-    <!-- FontAwesome Icons core CSS -->
-    <link href="css/font-awesome.min.css" rel="stylesheet">
+	.center {
+	  position: absolute;
+	  top: 30%;
+	  left: 50%;
+	  -webkit-transform: translate(-50%, -50%);
+	}
 
-    <!-- Custom styles for this template -->
-    <link href="style.css" rel="stylesheet">
+	.card {
+	  width: 450px;
+	  height: 250px;
+	  background-color: #fff;
+	  background: linear-gradient(#f8f8f8, #fff);
+	  box-shadow: 0 8px 16px -8px rgba(0,0,0,0.4);
+	  border-radius: 6px;
+	  overflow: hidden;
+	  position: relative;
+	  margin: 1.5rem;
+	}
 
-    <!-- Responsive styles for this template -->
-    <link href="css/responsive.css" rel="stylesheet">
+	.card h1 {
+	  text-align: center;
+	}
 
-    <!-- Colors for this template -->
-    <link href="css/colors.css" rel="stylesheet">
+	.card .additional {
+	  position: absolute;
+	  width: 150px;
+	  height: 100%;
+	  background: linear-gradient(#dE685E, #EE786E);
+	  transition: width 0.4s;
+	  overflow: hidden;
+	  z-index: 2;
+	}
 
-    <!-- aheun css -->
-    <link href="css/aheun.css" rel="stylesheet">
-
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+	.card.green .additional {
+	  background: linear-gradient(#92bCa6, #A2CCB6);
+	}
 
 
-    <link rel="stylesheet" href="css/style2.css">
-  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-<!--  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
-  <title>Sign in</title>
+	.card:hover .additional {
+	  width: 100%;
+	  border-radius: 0 5px 5px 0;
+	}
 
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <link href="css/styles.css" rel="stylesheet" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+	.card .additional .user-card {
+	  width: 150px;
+	  height: 100%;
+	  position: relative;
+	  float: left;
+	}
 
-  <style>
-    .jb-default-1 { font-size: 13px; padding-left: 20px; vertical-align: text-top; }
-    .ex6 {vertical-align: super;}
-    .ex8 {vertical-align: text-bottom;}
-  </style>
-  
+	.card .additional .user-card::after {
+	  content: "";
+	  display: block;
+	  position: absolute;
+	  top: 10%;
+	  right: -2px;
+	  height: 80%;
+	  border-left: 2px solid rgba(0,0,0,0.025);*/
+	}
 
+	.card .additional .user-card .level,
+	.card .additional .user-card .points {
+	  top: 15%;
+	  color: #fff;
+	  text-transform: uppercase;
+	  font-size: 0.75em;
+	  font-weight: bold;
+	  background: rgba(0,0,0,0.15);
+	  padding: 0.125rem 0.75rem;
+	  border-radius: 100px;
+	  white-space: nowrap;
+	}
+
+	.card .additional .user-card .points {
+	  top: 85%;
+	}
+
+	.card .additional .user-card svg {
+	  top: 50%;
+	}
+
+	.card .additional .more-info {
+	  width: 300px;
+	  float: left;
+	  position: absolute;
+	  left: 150px;
+	  height: 100%;
+	}
+
+	.card .additional .more-info h1 {
+	  color: #fff;
+	  margin-bottom: 0;
+	}
+
+	.card.green .additional .more-info h1 {
+	  color: #224C36;
+	}
+
+	.card .additional .coords {
+	  margin: 0 1rem;
+	  color: #fff;
+	  font-size: 1rem;
+	}
+
+	.card.green .additional .coords {
+	  color: #325C46;
+	}
+
+	.card .additional .coords span + span {
+	  float: right;
+	}
+
+	.card .additional .stats {
+	  font-size: 2rem;
+	  display: flex;
+	  position: absolute;
+	  bottom: 1rem;
+	  left: 1rem;
+	  right: 1rem;
+	  top: auto;
+	  color: #fff;
+	}
+
+	.card.green .additional .stats {
+	  color: #325C46;
+	}
+
+	.card .additional .stats > div {
+	  flex: 1;
+	  text-align: center;
+	}
+
+	.card .additional .stats i {
+	  display: block;
+	}
+
+	.card .additional .stats div.title {
+	  font-size: 0.75rem;
+	  font-weight: bold;
+	  text-transform: uppercase;
+	}
+
+	.card .additional .stats div.value {
+	  font-size: 1.5rem;
+	  font-weight: bold;
+	  line-height: 1.5rem;
+	}
+
+	.card .additional .stats div.value.infinity {
+	  font-size: 2.5rem;
+	}
+
+	.card .general {
+	  width: 300px;
+	  height: 100%;
+	  position: absolute;
+	  top: 0;
+	  right: 0;
+	  z-index: 1;
+	  box-sizing: border-box;
+	  padding: 1rem;
+	  padding-top: 0;
+	}
+
+	.card .general .more {
+	  position: absolute;
+	  bottom: 1rem;
+	  right: 1rem;
+	  font-size: 0.9em;
+	}
+
+
+*{
+  line-height:1.3;
+}
+ul{list-style:none;}
+.tabmenu{ 
+  max-width:600px; 
+  margin: 0 auto; 
+  position:relative; 
+}
+.tabmenu ul{
+  position: relative;
+}
+.tabmenu ul li{
+  display:  inline-block;
+  width:33.33%; 
+  float:left;  
+  text-align:center; 
+  background :#f9f9f9;
+  line-height:40px;
+}
+.tabmenu label{
+  display:block;
+  width:100%; 
+  height:40px;
+  line-height:40px;
+}
+.tabmenu input{display:none;}
+.tabCon{
+  display:none; 
+  width: 100%;
+  text-align:left; 
+  padding: 20px;
+  position:absolute; 
+  left:0; top:40px; 
+  box-sizing: border-box; 
+  border : 5px solid #f9f9f9;
+}
+.tabmenu input:checked ~ label{
+  background:#ccc;
+}
+.tabmenu input:checked ~ .tabCon{
+  display:block;
+}
+
+.img_news img{
+	width: 80px;
+	-webkit-transform: translate(45%, 100%);
+}
+	</style>
 </head>
+
 <body>
+<div class="center">
+  <div class="logo" style="text-align: center">
+    <a href="recent-news.php"><img src="images/logo.png" width=150px alt=""></a>
+  </div><!-- end logo -->
 
-    <!-- LOADER -->
-    <div id="preloader">
-        <img class="preloader" src="images/loader.gif" alt="">
-    </div><!-- end loader -->
-    <!-- END LOADER -->
+  <div class="card green">
+    <div class="additional">
+      <div class="user-card">
+        <div class="level center">
+          PRESS
+        </div>
+		<div class="img_news">
+			<img src="./images/img_news.png"/>
+		</div>
+      </div>
 
-    <div id="wrapper">
-        <div class="collapse top-search" id="collapseExample">
-            <div class="card card-block">
-                <div class="newsletter-widget text-center">
-                    <form class="form-inline">
-                        <input type="text" class="form-control" placeholder="What you are looking for?">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-                    </form>
-                </div><!-- end newsletter -->
-            </div>
-       </div><!-- end top-search -->
+      <?php $pname = $_GET[press]; $categ = $_GET[c]; 
+		$mysql_host = 'localhost';
+        $mysql_user = 'root';
+        $mysql_password = '111111';
+        $mysql_db = 'keya';
 
+		$con = mysqli_connect($mysql_host, $mysql_user, $mysql_password, $mysql_db);
+		if(mysqli_connect_error($con)) {
+			echo "mysql connect fail!!"."<br>";
+			echo mysqli_connect_error();
+			exit(); }
+		
+		$press = mysqli_query($con, "select * from press where press_id='$pname'");
+		$prow = mysqli_fetch_row($press);
 
-        <div class="header-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="logo">
-                            <a href="recent-news.php"><img src="images/logo.png" width=150px alt=""></a>
-                        </div><!-- end logo -->
-                    </div>
-                </div><!-- end row -->
-            </div><!-- end header-logo -->
-        </div><!-- end header -->
+		$editor = mysqli_query($con, "select count(editor_id) from editor where press_id='$pname'");
+		$erow = mysqli_fetch_row($editor);
 
-        <header class="header">
-            <div class="container">
-                <nav class="navbar navbar-inverse navbar-toggleable-md">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#cloapediamenu" aria-controls="cloapediamenu" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-md-center" id="cloapediamenu">
-                        <ul class="navbar-nav">
-			    <li class="nav-item dropdown has-submenu">
-                                <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Recent News</a>
-                                <ul class="dropdown-menu" aria-labelledby="dropdown02">
-                                    <li><a class="dropdown-item" href="today-issue.php">Today Issue</a></li>
-                                    <li><a class="dropdown-item" href="collect-press.php">Collect Press</a></li>
-                                    <li><a class="dropdown-item" href="collect-editor.php">Collect Editor</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link color-aqua-hover" href="my-interested-news.php">my interested news</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link color-pink-hover" href="keya-info.php">keya INFO</a>
-                            </li>
-                            <!-- <li class="nav-item">
-                                <a class="nav-link color-pink-hover" font-size=20%>금일 뉴스 수집</a>
-                            </li> -->
-                        </ul>
-                    </div>
-               </nav>
-            </div><!-- end container -->
-        </header><!-- end header -->
+	  ?>
+	
 
-
-
-        <section class="section wb">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-						<!-- main news list -->
-						<div class="press_information">
-							<h2 style="padding-top: 0px"> Press Information </h2>
-							<?php $press = $_GET["press"]; echo $press; ?>
-						</div><!-- end main news list -->
-
-					</div><!-- end col -->
-
-
-		    <!-- sidebar col-->
-                    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                        <div class="sidebar">
-                            <div class="widget">
-                                <h2 class="widget-title">Diary</h2>
-                                <div class="blog-list-widget">
-                                    <div class="list-group">
-                                        <a href="single.html" class="list-group-item list-group-item-action flex-column align-items-start">
-                                            <div class="w-100 justify-content-between">
-                                                <img src="upload/blog_square_01.jpg" alt="" class="img-fluid float-left">
-                                                <h5 class="mb-1">text11111</h5>
-                                                <small>12 Jan, 2016</small>
-                                            </div>
-                                        </a>
-
-                                        <a href="single.html" class="list-group-item list-group-item-action flex-column align-items-start">
-                                            <div class="w-100 justify-content-between">
-                                                <img src="upload/blog_square_01.jpg" alt="" class="img-fluid float-left">
-                                                <h5 class="mb-1">text22222</h5>
-                                                <small>11 Jan, 2016</small>
-                                            </div>
-                                        </a>
-
-                                        <a href="single.html" class="list-group-item list-group-item-action flex-column align-items-start">
-                                            <div class="w-100 last-item justify-content-between">
-                                                <img src="upload/blog_square_01.jpg" alt="" class="img-fluid float-left">
-                                                <h5 class="mb-1">text33333</h5>
-                                                <small>07 Jan, 2016</small>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div><!-- end blog-list -->
-                            </div><!-- end widget -->
-
-                            <div class="widget">
-                                <h2 class="widget-title">weather</h2>
-                                <div class="banner-spot clearfix">
-                                    <div class="banner-img">
-                                        <img src="upload/banner_03.jpg" alt="" class="img-fluid">
-                                    </div><!-- end banner-img -->
-                                </div><!-- end banner -->
-                            </div><!-- end widget -->
-                        </div><!-- end sidebar
-                    </div><!-- end sidebar col -->
-
-                </div><!-- end row -->
-            </div><!-- end container -->
-        </section>
+      <div class="more-info">
+        <h1><?php echo $pname; ?></h1>
+        <div class="coords">
+          <span>Group Name</span>
+          <span><?php echo $pname; ?></span>
+        </div>
+        <div class="coords">
+          <span>Category</span>
+          <span><?php echo $categ; ?></span>
+        </div>
+        <div class="stats">
+          <div>
+            <div class="title">Reporters</div>
+            <i class="fa fa-trophy"></i>
+            <div class="value"><?php echo $erow[0]; ?></div>
+          </div>
+          <div>
+            <div class="title">Articles</div>
+            <i class="fa fa-gamepad"></i>
+            <div class="value"><?php echo $prow[1]; ?></div>
+          </div>
+          <div>
+            <div class="title">Goods</div>
+            <i class="fa fa-group"></i>
+            <div class="value"><?php echo $prow[2]; ?></div>
+          </div>
+          <div>
+            <div class="title"></div>
+            <i class="fa fa-coffee"></i>
+            <div class="value infinity">♥</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="general">
+      <h1><?php echo $pname; ?></h1>
+      <p>설명을 뭘 넣어야 할까?</p>
+      <span class="more">Mouse over the card for more info</span>
+    </div>
+  </div>
 
 
+<div class="tabmenu out-tabmenu">
+  <ul>
+    <li id="tab1" class="btnCon"> 
+      <input type="radio" checked name="tabmenu" id="tabmenu1">
+      <label for="tabmenu1">Article</label>
+      <div class="tabCon" >
+	<?php
+	        $articles = mysqli_query($con, "select title from raw_news where press_id='$pname'");
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <!-- <script src="../js/scripts.js"></script> -->
+		$i = 0;
+		while ($i<5) {
+			echo "- ".mysqli_fetch_assoc($articles)['title']."<br>";
+			echo "<br>";
+			$i++;
+		}
+	?>
+      </div>
+    </li>
 
-        <div class="dmtop">Scroll to Top</div>
-        
-    </div><!-- end wrapper -->
+    <li id="tab2" class="btnCon"><input type="radio" name="tabmenu" id="tabmenu2">
+      <label for="tabmenu2">Reporter</label>
+      <div class="tabCon" >
+	<?php
+                $reporters = mysqli_query($con, "select editor_id from editor where press_id='$pname'");
 
-    <!-- Core JavaScript
-    ================================================== -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/tether.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/custom.js"></script>
+                $i = 0;
+                while ($i<5) {
+                        echo "- ".mysqli_fetch_assoc($reporters)['editor_id']."<br>";
+                        echo "<br>";
+                        $i++;
+                }
+        ?>
+
+      </div>
+    </li>
+
+    <li id="tab3" class="btnCon"><input type="radio" name="tabmenu" id="tabmenu3">
+      <label for="tabmenu3">Etc</label>
+      <div class="tabCon" >
+	<p> wow </p>
+      </div>
+    </li>
+
+  </ul>
+</div>
 
 </body>
 </html>

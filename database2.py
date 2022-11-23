@@ -24,13 +24,13 @@ curs = mydb.cursor()
  
  
 # data = pd.read_csv('soho_seoul.csv', header=None) # KeyError: '상권업종대분류명'
-stores_info = pd.read_csv('crawl_data/20221110-03.csv') # KeyError: '상권업종대분류명'
+stores_info = pd.read_csv('crawl_data/20221122-11.csv') # KeyError: '상권업종대분류명'
 
 for index, row in stores_info.iterrows():
     # format = "%Y-%m-%d"
     # date = datetime.datetime.strptime(row.date, format)
-    now = datetime.datetime.now()
-    tu = (row.title,now[10])
+    now = str(datetime.datetime.now())
+    tu = (row.title, now[:10])
     # print(datetime.datetime.now())
     # pre =  """INSERT IGNORE INTO raw_news (title, date) VALUES (%s, %s)"""
     curs.execute("""INSERT IGNORE INTO raw_news (title, date) VALUES (%s, %s)""", tu)
@@ -46,7 +46,7 @@ curs.execute(query)
 # curs.execute(query2)
 result = curs.fetchall()
 
-print(result)
+#print(result)
 
 
 

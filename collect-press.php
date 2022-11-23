@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+        session_start();
+        echo $_SESSION['id'];
+?>
 <html lang="ko">
 
     <!-- Basic -->
@@ -97,7 +101,7 @@
             </div><!-- end header-logo -->
         </div><!-- end header -->
 
-        <header class="header">
+		<header class="header">
             <div class="container">
                 <nav class="navbar navbar-inverse navbar-toggleable-md">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#cloapediamenu" aria-controls="cloapediamenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -105,13 +109,11 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-md-center" id="cloapediamenu">
                         <ul class="navbar-nav">
-			    <li class="nav-item dropdown has-submenu">
-                                <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Recent News</a>
-                                <ul class="dropdown-menu" aria-labelledby="dropdown02">
-                                    <li><a class="dropdown-item" href="today-issue.php">Today Issue</a></li>
-                                    <li><a class="dropdown-item" href="collect-press.php">Collect Press</a></li>
-                                    <li><a class="dropdown-item" href="collect-editor.php">Collect Editor</a></li>
-                                </ul>
+                            <li class="nav-item">
+                                <a class="nav-link color-aqua-hover" href="today-issue.php">Today Issue</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link color-aqua-hover" href="collect-press.php">Collect Press</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link color-aqua-hover" href="my-interested-news.php">my interested news</a>
@@ -120,8 +122,11 @@
                                 <a class="nav-link color-pink-hover" href="keya-info.php">keya INFO</a>
                             </li>
                             <!-- <li class="nav-item">
-                                <a class="nav-link color-pink-hover" font-size=20%>금일 뉴스 수집</a>
+                                <a class="nav-link color-pink-hover" font-size=20%>���� ���� ����</a>
                             </li> -->
+                            <!--<span class="jb-default-1 ex6">���� ���� ����</span>
+                            <span class="jb-default-1 ex8">��ü ���� ����</span>
+				-->
                         </ul>
                     </div>
                </nav>
