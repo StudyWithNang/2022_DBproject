@@ -13,7 +13,7 @@ import datetime
 # df['열이름'] : 해당되는 열을 확인
 
 #외부 데이터 읽기
-df = pd.read_csv('crawl_data/20221114-02.csv')  # df['contents']부분으로
+df = pd.read_csv('crawl_data/crawl_data.csv')  # df['contents']부분으로
 #print(df) #자동으로 인덱스 부여 확인 가능
 #csv pandas없이 읽기
 # with open(./trian.cs) as csvfile:

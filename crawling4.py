@@ -10,6 +10,14 @@ import warnings
 import re
 import json
 import schedule
+import pandas as pd
+import numpy as np
+from pororo import Pororo
+from wordcloud import WordCloud
+from collections import Counter
+import matplotlib.pyplot as plt
+import datetime
+
 
 warnings.filterwarnings(action='ignore')
 
@@ -154,6 +162,46 @@ def main(args):
         all_data.to_csv(os.path.join(BASE_DIR, DATA_DIR, start_time.strftime("%Y%m%d-%H") + '.csv', ), encoding='utf-8' ,index=False, mode='a')
         print("End Date :", end_time)
         print(start_time.strftime("%Y%m%d-%H") + ', ' + str(all_data.shape) + ', 크롤링을 완료했습니다.')
+
+
+        # #pororo로 ner 분석
+        ner = Pororo(task="ner", lang="ko")
+        text = []
+
+        for i in range(10):
+            text += [ner(all_data['contents'][i])]
+
+        # print(len(text))
+
+        ner_list = []
+        tag_list = []
+        for i in range(10):
+            for word, tag in text[i]:
+                if tag in ['PERSON', 'CIVILIZATION','DATE', 'COUNTRY', 'OCCUPATION']:
+                    ner_list.append(word)
+                    tag_list.append(tag)
+
+        # db_main_key = np.unique(ner_list)  
+        # b = np.array2string(db_main_key)  # 디비 저장str로 저장
+        #print(len(np.unique(ner_list)))  # 총 갯수 확인
+        # tag_list
+
+        counts = Counter(ner_list)
+        # count_list = list(counts.values())
+        # count_str = ','.join(count_list)  # 디비 저장
+        tags = counts.most_common(30)
+
+        wc = WordCloud(background_color="white", max_font_size=60, font_path = './font/BMHANNAPro.ttf')
+        cloud = wc.generate_from_frequencies(dict(tags))
+        plt.figure(figsize=(10, 8))
+        plt.axis('off')
+        plt.imshow(cloud)
+        plt.show()
+
+        start_time = datetime.datetime.now()
+        file_name = start_time.strftime("%Y%m%d-%H")
+
+        plt.savefig('visual_img/'+file_name)
 
 
 if __name__ == "__main__":
