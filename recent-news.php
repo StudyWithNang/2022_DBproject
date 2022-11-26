@@ -2,26 +2,28 @@
 <?php
         session_start();
         echo $_SESSION['id'];
+	$date = date("Y-m-d");
+	echo $date;
 ?>
 <html lang="ko">
 
     <!-- Basic -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
+
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+
     <!-- Site Metas -->
     <title>keyword article</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
-    
+
     <!-- Site Icons -->
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-    
+
     <!-- Design fonts -->
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,500,700" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet"> 
@@ -62,7 +64,7 @@
     .ex6 {vertical-align: super;}
     .ex8 {vertical-align: text-bottom;}
   </style>
-  
+
 
 </head>
 <body>
@@ -105,7 +107,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-md-center" id="cloapediamenu">
-                        <ul class="navbar-nav">
+                        <ul class="navbar-nav dropdown has-submenu">
                             <li class="nav-item">
                                 <a class="nav-link color-aqua-hover" href="today-issue.php">Today Issue</a>
                             </li>
@@ -118,54 +120,37 @@
                             <li class="nav-item">
                                 <a class="nav-link color-pink-hover" href="keya-info.php">keya INFO</a>
                             </li>
-                            <!-- <li class="nav-item">
-                                <a class="nav-link color-pink-hover" font-size=20%>���� ���� ����</a>
-                            </li> -->
-                            <!--<span class="jb-default-1 ex6">���� ���� ����</span>
-                            <span class="jb-default-1 ex8">��ü ���� ����</span>
-				-->
                         </ul>
                     </div>
                </nav>
             </div><!-- end container -->
         </header><!-- end header -->
 
+	<?php
+		$mysql_host = 'localhost';
+		$mysql_user = 'root';
+		$mysql_password = '111111';
+		$mysql_db = 'keya';
+
+		$con = mysqli_connect($mysql_host, $mysql_user, $mysql_password, $mysql_db);
+		if(mysqli_connect_error($con)) {
+			echo "mysql connect fail!!", "<br>";
+			echo mysqli_connect_error();
+			exit(); }
+
+		$result1 = mysqli_query($con, "select * from raw_news where date='".$date."'");
+		$row = mysqli_fetch_row($result1);
+		$result2 = mysqli_query($con, "select news_id from raw_news");
+	?>
+
 	<!-- Section : Today Issue -->
         <section class="section first-section">
             <div class="container-fluid">
                 <div class="masonry-blog clearfix">
-				<h1 style="margin-left: 20px; color: #000000">Today Issue</h1>
-				<?php
-                                                $mysql_host = 'localhost';
-                                                $mysql_user = 'root';
-                                                $mysql_password = '111111';
-                                                $mysql_db = 'keya';
-
-                                                $con = mysqli_connect($mysql_host, $mysql_user, $mysql_password, $mysql_db);
-                                                if(mysqli_connect_error($con)) {
-                                                        echo "mysql connect fail!!", "<br>";
-                                                        echo mysqli_connect_error();
-                                                        exit(); }
-
-                                                //$result = mysqli_query($con, "select * from raw_news order by rand() limit 5");
-                                                $result1 = mysqli_query($con, "select * from raw_news");
-						$row = mysqli_fetch_row($result1);
-						$result2 = mysqli_query($con, "select news_id from raw_news");
-/*
-                                                $i = 0;
-                                                while($i<5) {
-                                                        echo mysqli_fetch_assoc($result)['title']."<br>";
-                                                        $i++;
-                                                } */
-                                                
-                                        ?>
-
-
-
+		    <h1 style="margin-left: 20px; color: #000000">Today Issue</h1>
                     <div class="left-side">
                         <div class="masonry-box post-media">
- 			     <?php $row = mysqli_fetch_row($result1); ?>
-                             <img src="<?php echo $row[7];?>" alt="" class="img-fluid">
+                             <img src="<?php echo $row[6];?>" alt="" class="img-fluid">
                              <div class="shadoweffect">
                                 <div class="shadow-desc">
                                     <div class="blog-meta">
@@ -179,34 +164,36 @@
                         </div><!-- end post-media -->
                     </div><!-- end left-side -->
 
+
+                    <?php $row = mysqli_fetch_row($result1); ?>
                     <div class="center-side">
                         <div class="masonry-box post-media">
-                             <?php $row = mysqli_fetch_row($result1); ?>
-                             <img src="<?php echo $row[7];?>" alt="" class="img-fluid">
+                             <img src="<?php echo $row[6];?>" alt="" class="img-fluid">
                              <div class="shadoweffect">
                                 <div class="shadow-desc">
                                     <div class="blog-meta">
                                         <span class="bg-aqua" style="color: #ffffff"><?php echo $row[0];?></a></span>
                                         <h4><a href="single.html" title=""><?php echo $row[1];?></a></h4>
                                         <small style="color: #ffffff"><?php echo $row[3];?></a></small>
-                                        <small style="color: #ffffff"><?php echo $row[5];?></a></small>
+                                        <small style="color: #ffffff"><?php echo $row[5];?></a></a></small>
                                     </div><!-- end meta -->
                                 </div><!-- end shadow-desc -->
                             </div><!-- end shadow -->
                         </div><!-- end post-media -->
                     </div><!-- end center-side -->
 
+                    <?php $row = mysqli_fetch_row($result1); ?>
                     <div class="right-side hidden-md-down">
                         <div class="masonry-box post-media">
-                             <?php $row = mysqli_fetch_row($result1); ?>
-                             <img src="<?php echo $row[7];?>" alt="" class="img-fluid">
+                            <div class="masonry-box post-media">
+                             <img src="<?php echo $row[6];?>" alt="" class="img-fluid">
                              <div class="shadoweffect">
                                 <div class="shadow-desc">
                                     <div class="blog-meta">
                                         <span class="bg-aqua" style="color: #ffffff"><?php echo $row[0];?></a></span>
                                         <h4><a href="single.html" title=""><?php echo $row[1];?></a></h4>
                                         <small style="color: #ffffff"><?php echo $row[3];?></a></small>
-                                        <small style="color: #ffffff"><?php echo $row[5];?></a></small>
+                                        <small style="color: #ffffff"><?php echo $row[5];?></a></a></small>
                                     </div><!-- end meta -->
                                 </div><!-- end shadow-desc -->
                             </div><!-- end shadow -->
@@ -220,37 +207,16 @@
         <section class="section">
             <div class="container">
                 <hr class="invis1">
-					<!-- section : press -->
+                <div class="row">
+   		    <!-- section : press -->
                     <div class="col-lg-9">
                         <div class="blog-list clearfix">
+                            <?php $row = mysqli_fetch_row($result1); ?>
                             <div class="blog-box row">
                                 <div class="col-md-4">
                                     <div class="post-media">
                                         <a href="single.html" title="">
-					    <?php $row = mysqli_fetch_row($result1); ?>
-                                            <img src="<?php echo $row[7];?>" alt="" class="img-fluid">
-                                            <div class="hovereffect"></div>
-                                        </a>
-                                    </div><!-- end media -->
-                                </div><!-- end col -->
-
-                                <div class="blog-meta big-meta col-md-8">
-                                    <h4><a href="single.html" title=""><?php echo $row[1];?></a></h4>
-                                    <p><?php echo $row[2];?></p>
-                                    <small><a href="blog-category-01.html" title=""><?php echo $row[0];?></a></small>
-                                    <small><a href="single.html" title=""><?php echo $sample=$row[3]; ?></a></small>
-                                    <small><a href="blog-author.html" title=""><?php echo $row[5];?></a></small>
-                                </div><!-- end meta -->
-                            </div><!-- end blog-box -->
-
-                            <hr class="invis">
-
-                            <div class="blog-box row">
-                                <div class="col-md-4">
-                                    <div class="post-media">
-                                        <a href="single.html" title="">
-                                            <?php $row = mysqli_fetch_row($result1); ?>
-                                            <img src="<?php echo $row[7];?>" alt="" class="img-fluid">
+                                            <img src="<?php echo $row[6];?>" alt="" class="img-fluid">
                                             <div class="hovereffect"></div>
                                         </a>
                                     </div><!-- end media -->
@@ -267,12 +233,12 @@
 
                             <hr class="invis">
 
+                            <?php $row = mysqli_fetch_row($result1); ?>
                             <div class="blog-box row">
                                 <div class="col-md-4">
                                     <div class="post-media">
                                         <a href="single.html" title="">
-                                            <?php $row = mysqli_fetch_row($result1); ?>
-                                            <img src="<?php echo $row[7];?>" alt="" class="img-fluid">
+                                            <img src="<?php echo $row[6];?>" alt="" class="img-fluid">
                                             <div class="hovereffect"></div>
                                         </a>
                                     </div><!-- end media -->
@@ -280,6 +246,28 @@
 
                                 <div class="blog-meta big-meta col-md-8">
                                     <h4><a href="single.html" title=""><?php echo $row[1];?></a></h4>
+                                    <p><?php echo $row[2];?></p>
+                                    <small><a href="blog-category-01.html" title=""><?php echo $row[0];?></a></small>
+                                    <small><a href="single.html" title=""><?php echo $row[3];?></a></small>
+                                    <small><a href="blog-author.html" title=""><?php echo $row[5];?></a></small>
+                                </div><!-- end meta -->
+                            </div><!-- end blog-box -->
+
+                            <hr class="invis">
+
+                            <?php $row = mysqli_fetch_row($result1); ?>
+                            <div class="blog-box row">
+                                <div class="col-md-4">
+                                    <div class="post-media">
+                                        <a href="single.html" title="">
+                                            <img src="<?php echo $row[6];?>" alt="" class="img-fluid">
+                                            <div class="hovereffect"></div>
+                                        </a>
+                                    </div><!-- end media -->
+                                </div><!-- end col -->
+
+                                <div class="blog-meta big-meta col-md-8">
+                                    <h4><a href="single.html" title=""><?php echo $row[1];?>?</a></h4>
                                     <p><?php echo $row[2];?></p>
                                     <small><a href="blog-category-01.html" title=""><?php echo $row[0];?></a></small>
                                     <small><a href="single.html" title=""><?php echo $row[3];?></a></small>
@@ -295,8 +283,7 @@
                             </div><!-- end title -->
                         </div><!-- end blog-list -->
                     </div><!-- end col -->
-
-
+                </div><!-- end row -->
             </div><!-- end container -->
         </section>
 
@@ -306,7 +293,7 @@
         <!-- <script src="../js/scripts.js"></script> -->
 
         <div class="dmtop">Scroll to Top</div>
-        
+
     </div><!-- end wrapper -->
 
     <!-- Core JavaScript

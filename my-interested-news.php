@@ -147,22 +147,22 @@
         });
         
 
-        var selectText ='ai';
-        function changeLangSelect(){
-            var langSelect = document.getElementById("selectbox");
-            var langvalue= document.getElementById("getvalue");
-            // select element에서 선택된 option의 value가 저장된다.
-            var selectValue = langSelect.options[langSelect.selectedIndex].value;
+        // var selectText ='ai';
+        // function changeLangSelect(){
+        //     var langSelect = document.getElementById("selectbox");
+        //     var langvalue= document.getElementById("getvalue");
+        //     // select element에서 선택된 option의 value가 저장된다.
+        //     var selectValue = langSelect.options[langSelect.selectedIndex].value;
             
-            // select element에서 선택된 option의 text가 저장된다.
-            selectText = langSelect.options[langSelect.selectedIndex].text;
-            langvalue.innerText = selectText;
-            //document.write(langvalue.innerText);
-            console.log(selectText);
-            return selectText;
-        }
-        //changeLangSelect();
-        selectText = changeLangSelect();
+        //     // select element에서 선택된 option의 text가 저장된다.
+        //     selectText = langSelect.options[langSelect.selectedIndex].text;
+        //     langvalue.innerText = selectText;
+        //     //document.write(langvalue.innerText);
+        //     console.log(selectText);
+        //     return selectText;
+        // }
+        // //changeLangSelect();
+        // selectText = changeLangSelect();
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
@@ -223,6 +223,9 @@
                                 <a class="nav-link color-aqua-hover" href="my-interested-news.php">my interested news</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link color-aqua-hover" href="diary.php">diary</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link color-pink-hover" href="keya-info.php">keya INFO</a>
                             </li>
                             <!-- <li class="nav-item">
@@ -262,7 +265,11 @@
                             $result2 = mysqli_query($con, "select * from user where id='$mini'");
                             $row = mysqli_fetch_row($result2);
 
-                            exec("python3 DB/key_news.py".' '.'aavv'.' '.$row[3].' '.$row[4].' '.$row[5].' '.$row[6].' '.$row[7]);
+                            $key1 = $row[2];
+
+                            system("python3 key_news.py".' '.$row[2].' '.$row[3].' '.$row[4].' '.$row[5].' '.$row[6].' '.$row[7]);
+                            //system("cd DB/&& python3 key_news.py".' '."hi");
+                            
                         ?>
                         <div class  ="a_content">
                             <a style="display:block; width:300px; height:50px;" href="keyinfo.php?press=<?php echo $row[2]?>"><?php echo $row[2]?></a>
@@ -272,6 +279,10 @@
                             <a style="display:block; width:300px; height:50px;" href="keyinfo.php?press=<?php echo $row[6]?>"><?php echo $row[6]?></a>
                             <a style="display:block; width:300px; height:50px;" href="keyinfo.php?press=<?php echo $row[7]?>"><?php echo $row[7]?></a>
                         </div>
+                        <div class ="btn-holder">
+                              <button class="btn btn-2 hover-opacity" href="keyinfo.php?press=<?php echo $row[2]?>">
+                                <span><?php echo $row[2]?></span>
+                            </button>
                     </div><!-- end col -->
         
 

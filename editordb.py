@@ -28,7 +28,7 @@ curs = mydb.cursor()
 
 
 
-stores_info = pd.read_csv('crawl_data/20221116-11.csv') # KeyError: '상권업종대분류명'
+stores_info = pd.read_csv('crawl_data/20221122-11.csv') # KeyError: '상권업종대분류명'
 editor_cnt = stores_info['editor'].value_counts(sort=False)
 stores_info = stores_info.drop_duplicates(['editor'], keep='first', ignore_index=True)
 stores_info['count_enews'] = pd.DataFrame(editor_cnt.to_numpy())

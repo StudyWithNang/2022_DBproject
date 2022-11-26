@@ -29,7 +29,9 @@ except pymysql.Error as e:
 # Get Cursor
 curs = mydb.cursor()
 
-today = datetime.today()
+now = datetime.now()
+today = now.strftime('%Y-%m-%d')
+# print(today)
 
 my_key1 = sys.argv[1]
 my_key2 = sys.argv[2]
@@ -38,11 +40,13 @@ my_key4 = sys.argv[4]
 my_key5 = sys.argv[5]
 my_key6 = sys.argv[6]
 
-print(my_key1)
+# print(my_key1,my_key3,my_key4,my_key5,my_key6)
 
 
 sql1 = "select news_id from raw_news where date = '" + today + "'"
 sql2 = "select article from raw_news where date = '" + today + "'"
+# sql1 = "select news_id from raw_news where date = '2022-11-22'"
+# sql2 = "select article from raw_news where date = '2022-11-22'"
 curs.execute(sql1)
 news_id = curs.fetchall()
 curs.execute(sql2)
@@ -54,11 +58,11 @@ article = curs.fetchall()
 # print(type(article))
 
 keyword = [my_key1, my_key2, my_key3, my_key4, my_key5, my_key6]
-# keyword = ['my_key1', 'ai','이재명', '보안', '롤드컵', '월드컵']
+# keyword = ['윤석열', 'ai','이재명', '보안', '롤드컵', '월드컵']
 key_news = [[], [], [], [], [], []]
 output_key_news  = [[],[],[], [], [], []]
 text = []
-
+print(keyword)
 
 ## 개인 visuallization 파일 만들기 수정!!!!!!!!!!!!!!!!!!!!!
 # #pororo로 ner 분석
@@ -76,14 +80,15 @@ def wordcloud(my_ner_list, keyword, k):
     file_name = start_time.strftime("%Y%m%d-%H")
 
     plt.savefig('my_key_visual_img/'+file_name + '_'+ keyword[k])
-
+print("before ner")
 ner = Pororo(task="ner", lang="ko")
-
-# text = ner(article)
+print("after ner")
+text = ner(article)
 
 my_ner_list = [[],[],[],[], [], []]
 for i in range(10):
     news = article[i]
+    print("news")
     text += [ner(news[0])]
     for j in range(len(keyword)):
         arg = keyword[j]
@@ -106,30 +111,10 @@ for k in range(len(keyword)):
     elif len(key_news[k])==0:
         pass
 
-# print("key_news", key_news)
-# print("output_key_news", output_key_news)
+print("key_news", key_news)
+print("output_key_news", output_key_news)
 
-#tu = (output_key_news[0][0], output_key_news[0][1], output_key_news[0][2], output_key_news[0][3], output_key_news[0][4], output_key_news[0][5])
 
-#curs.execute("""INSERT IGNORE INTO keyword VALUES (%s, %s, %s)""", tu)
-# print(output_key_news[0])
-# for i in range(6):
-#     sql = "INSERT IGNORE INTO keyword (id, my_key"
-#     sql2 ="('aheun', '" + keyword[i] + "'"
-#     sql3 = ""
-#     for k, output in enumerate(output_key_news[i]):
-#         sql += ", output" + str(k+1);
-#         sql3 += ", '" + output_key_news[i][k] + "'"
-#     # tu = tuple(output_key_news[i])
-#     sql += ") VALUES " + sql2 + sql3 + ")"
-#     # print(sql)
-#     # print(tu)
-#     # for j in range(len(output_key_news[i])):
-#     #     sql2 += ", %s"
-
-#     print(sql)
-
-#     curs.execute(sql)
 
 
 for i in range(6):
