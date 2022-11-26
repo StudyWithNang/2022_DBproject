@@ -209,88 +209,86 @@
 							echo mysqli_connect_error();
 							exit(); }
                             
-                            $result = mysqli_query($con, "select * from raw_news");
+                            // $result = mysqli_query($con, "select * from raw_news");
+                            $result1 = mysqli_query($con, "select * from raw_news where date='2022-11-25'");
                             $mini = $_SESSION['id'];
-                            $result2 = mysqli_query($con, "select * from user where id='$mini'");
-                            $row = mysqli_fetch_row($result2);
+                            $row = mysqli_fetch_row($result1);
+                            // $result2 = mysqli_query($con, "select * from user where id='$mini'");
 
-                            $output = shell_exec("key_news.py".' '.$row[2].' '.$row[3].' '.$row[4].' '.$row[5].' '.$row[6].' '.$row[7]);
-                            exec('python3 key_news.py', $_SESSION['id']);
-                            
                         ?>
 
                         <div class="ban">
                         <form name = "registerSbmt" id = "registerSbmt" method="post" action="my_key_diary_db.php">
                             <div class="card">
-                                <img src="upload/blog_square_01.jpg" alt="" height=200px class="card-img-top" />
+                                <img src="<?php echo $row[6];?>" alt="" height=200px class="card-img-top" />
                                 <div class="card-body">
-                                <p><?php echo mysqli_fetch_assoc($result)['title']; ?></p>
-                                <?php echo $output; ?>
-                                <?php $row = mysqli_fetch_row($result2); ?>
-                                <p class="card-text"><?php echo $row[2]; echo $row[3];echo $row[4];echo $row[5]; ?></p>
+                                <p><?php echo $row[1];?></p>
+                                <p class="card-text"><?php echo $row[2]; ?></p>
                                 <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
                                 <input type = "submit" value="store">
                                 <a href="#" class="btn btn-primary">More</a>
                                 </div>
                             </div></form>
 
+                            <?php $row = mysqli_fetch_row($result1); ?>
                             <form name = "registerSbmt" id = "registerSbmt" method="post" action="my_key_diary_db.php">
                             <div class="card">
-                                <img src="upload/blog_square_01.jpg" alt="" height=200px class="card-img-top" />
+                                <img src="<?php echo $row[6];?>" alt="" height=200px class="card-img-top" />
                                 <div class="card-body">
-                                <p><?php echo mysqli_fetch_assoc($result)['title']; ?></p>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
+                                <p><?php echo $row[1];?></p>
+                                <p class="card-text"><?php echo $row[2]; ?></p>
                                 <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
                                 <input type = "submit" value="store">
                                 <a href="#" class="btn btn-primary">More</a>
                                 </div>
                             </div></form>
 
-
+                            <?php $row = mysqli_fetch_row($result1); ?>
                             <form name = "registerSbmt" id = "registerSbmt" method="post" action="my_key_diary_db.php">
                             <div class="card">
-                                <img src="upload/blog_square_01.jpg" alt="" height=200px class="card-img-top" />
+                                <img src="<?php echo $row[6];?>" alt="" height=200px class="card-img-top" />
                                 <div class="card-body">
-                                <p><?php echo mysqli_fetch_assoc($result)['title']; ?></p>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
+                                <p><?php echo $row[1];?></p>
+                                <p class="card-text"><?php echo $row[2]; ?></p>
                                 <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
                                 <input type = "submit" value="store">
                                 <a href="#" class="btn btn-primary">More</a>
                                 </div>
                             </div></form>
 
+                            <?php $row = mysqli_fetch_row($result1); ?>
                             <form name = "registerSbmt" id = "registerSbmt" method="post" action="my_key_diary_db.php">
                             <div class="card">
-                                <img src="upload/blog_square_01.jpg" alt="" height=200px class="card-img-top" />
+                                <img src="<?php echo $row[6];?>" alt="" height=200px class="card-img-top" />
                                 <div class="card-body">
-                                <p><?php echo mysqli_fetch_assoc($result)['title']; ?></p>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
+                                <p><?php echo $row[1];?></p>
+                                <p class="card-text"><?php echo $row[2]; ?></p>
                                 <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
                                 <input type = "submit" value="store">
                                 <a href="#" class="btn btn-primary">More</a>
                                 </div>
                             </div></form>
 
-
+                            <?php $row = mysqli_fetch_row($result1); ?>
                             <form name = "registerSbmt" id = "registerSbmt" method="post" action="my_key_diary_db.php">
                             <div class="card">
-                                <img src="upload/blog_square_01.jpg" alt="" height=200px class="card-img-top" />
+                                <img src="<?php echo $row[6];?>" alt="" height=200px class="card-img-top" />
                                 <div class="card-body">
-                                <p><?php echo mysqli_fetch_assoc($result)['title']; ?></p>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
+                                <p><?php echo $row[1];?></p>
+                                <p class="card-text"><?php echo $row[2]; ?></p>
                                 <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
                                 <input type = "submit" value="store">
                                 <a href="#" class="btn btn-primary">More</a>
                                 </div>
                             </div></form>
 
-
+                            <?php $row = mysqli_fetch_row($result1); ?>
                             <form name = "registerSbmt" id = "registerSbmt" method="post" action="my_key_diary_db.php">
                             <div class="card">
-                                <img src="upload/blog_square_01.jpg" alt="" height=200px class="card-img-top" />
+                                <img src="<?php echo $row[6];?>" alt="" height=200px class="card-img-top" />
                                 <div class="card-body">
-                                <p><?php echo mysqli_fetch_assoc($result)['title']; ?></p>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
+                                <p><?php echo $row[1];?></p>
+                                <p class="card-text"><?php echo $row[2]; ?></p>
                                 <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
                                 <input type = "submit" value="store">
                                 <a href="#" class="btn btn-primary">More</a>

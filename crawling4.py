@@ -17,6 +17,9 @@ from wordcloud import WordCloud
 from collections import Counter
 import matplotlib.pyplot as plt
 import datetime
+import pandas as pd
+from gensim.summarization.summarizer import summarize
+import re
 
 
 warnings.filterwarnings(action='ignore')
@@ -130,15 +133,32 @@ def crawling(news_type, num):
                     except:
                         driver.get(t_url)
                         print("noooo")
-
-
-    
-            
-
-            
            
     driver.quit()
     return data_list
+
+def textsum(text):
+    key_sentence = []
+
+    for news in text:
+        if len(news.split('.')) < 5:
+            continue
+        su = summarize(news, word_count=20)
+        # poporo일 경우엔??
+        # summ = Pororo(task = "summarization", model = "abstractive", lang ="ko")
+        # summ(news, beam=5, len_panalty = 0.6, no_repeat_ngram_size=3, top_k = 50, top_p=0.7)
+        su = re.sub('\n', ' ', su)
+        if len(su) == 0:
+            continue
+        key_sentence.append(su)
+
+    # print(key_sentence)
+
+    df2 = pd.DataFrame(key_sentence, columns = ['news_sum'])
+
+    return df2
+
+
 
 def main(args):
         num_cpu = multiprocessing.cpu_count() - 1
@@ -159,8 +179,6 @@ def main(args):
 #         all_data = list(result)
 #         all_data = pd.concat(all_data).reset_index(drop=True)
 
-        all_data.to_csv(os.path.join(BASE_DIR, DATA_DIR, start_time.strftime("%Y%m%d-%H") + '.csv', ), encoding='utf-8' ,index=False, mode='a')
-        print("End Date :", end_time)
         print(start_time.strftime("%Y%m%d-%H") + ', ' + str(all_data.shape) + ', 크롤링을 완료했습니다.')
 
 
@@ -201,7 +219,14 @@ def main(args):
         start_time = datetime.datetime.now()
         file_name = start_time.strftime("%Y%m%d-%H")
 
-        plt.savefig('visual_img/'+file_name)
+        plt.savefig('visual_img/'+file_name)  # today visualization 저장
+
+        # text sum
+        all_data['news_sum'] = textsum(all_data['contents'])
+        #textsum 의 데이터 합치기
+        all_data.to_csv(os.path.join(BASE_DIR, DATA_DIR, start_time.strftime("%Y%m%d-%H") + '.csv', ), encoding='utf-8' ,index=False, mode='a')
+        print("End Date :", end_time)
+
 
 
 if __name__ == "__main__":

@@ -241,10 +241,10 @@
                                                         exit(); }
 
                                                 //$result = mysqli_query($con, "select * from raw_news order by rand() limit 5");
-                                                $result1 = mysqli_query($con, "select * from raw_news");
-						$row = mysqli_fetch_row($result1);
-						$result2 = mysqli_query($con, "select news_id from raw_news");
-/*
+                                                $mini = $_SESSION['id'];
+                                                $result1 = mysqli_query($con, "select * from diary where id='$mini'");
+						                        $row = mysqli_fetch_row($result1);
+                                                /*  
                                                 $i = 0;
                                                 while($i<5) {
                                                         echo mysqli_fetch_assoc($result)['title']."<br>";
@@ -258,69 +258,108 @@
 
                                 <div class="band">
                                 <div class="item-1">
+                                            <?php 
+                                                $news_id = $row[2];
+                                                // $query = "select * from raw_news where news_id = '$news_id'";
+                                                $result2 = mysqli_query($con, "select * from raw_news where news_id = '$news_id'");
+                                                $r_row = mysqli_fetch_row($result2);?>
                                         <a href=# class="card">
-                                        <div class="thumb" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/flex-1.jpg);"></div>
+                                        <!-- <img src="<?php echo $t_row[6];?>" alt="" height=200px class="card-img-top" /> -->
+                                        <div class="thumb" style="background-image: url(<?php echo $r_row[6];?>);"></div>
                                         <article>
-                                            <h1>International Artist Feature: Malaysia</h1>
-                                            <span>Mary Winkler</span>
+                                            <h1><?php echo $r_row[1]?></h1>
+                                            <span><?php echo $row[3];?></span>
                                         </article>
                                         </a>
                                 </div>
                                 <div class="item-2">
+                                        <?php $row = mysqli_fetch_row($result1); ?>
+                                        <?php 
+                                                $news_id = $row[2];
+                                                // $query = "select * from raw_news where news_id = '$news_id'";
+                                                $result2 = mysqli_query($con, "select * from raw_news where news_id = '$news_id'");
+                                                $r_row = mysqli_fetch_row($result2);?>
                                         <a href=# class="card">
-                                        <div class="thumb" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/users-2.png);"></div>
+                                        <div class="thumb" style="background-image: url(<?php echo $r_row[6];?>;"></div>
                                         <article>
-                                            <h1>How to Conduct Remote Usability Testing</h1>
-                                            <span>Harry Brignull</span>
+                                            <h1><?php echo $r_row[1]?></h1>
+                                            <span><?php echo $row[3];?></span>
                                         </article>
                                         </a>
                                 </div>
                                 <div class="item-3">
+                                    <?php $row = mysqli_fetch_row($result1); ?>
+                                    <?php 
+                                                $news_id = $row[2];
+                                                // $query = "select * from raw_news where news_id = '$news_id'";
+                                                $result2 = mysqli_query($con, "select * from raw_news where news_id = '$news_id'");
+                                                $r_row = mysqli_fetch_row($result2);?>
                                     <a href=# class="card">
-                                    <div class="thumb" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/flex-5.jpg);"></div>
+                                    <div class="thumb" style="background-image: url(<?php echo $r_row[6];?>;"></div>
                                     <article>
-                                        <h1>Created by You, July Edition</h1>
-                                        <p>Welcome to our monthly feature of fantastic tutorial results created by you, the Envato Tuts+ community! </p>
-                                        <span>Melody Nieves</span>
-                                    </article>
+                                            <h1><?php echo $r_row[1]?></h1>
+                                            <span><?php echo $row[3];?></span>
+                                        </article>
                                     </a>
                                 </div>
                                 <div class="item-4">
+                                    <?php $row = mysqli_fetch_row($result1); ?>
+                                    <?php 
+                                                $news_id = $row[2];
+                                                // $query = "select * from raw_news where news_id = '$news_id'";
+                                                $result2 = mysqli_query($con, "select * from raw_news where news_id = '$news_id'");
+                                                $r_row = mysqli_fetch_row($result2);?>
                                         <a href=# class="card">
-                                        <div class="thumb" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/landing.png);"></div>
+                                        <div class="thumb" style="background-image: url(<?php echo $r_row[6];?>;"></div>
                                         <article>
-                                            <h1>How to Code a Scrolling “Alien Lander” Website</h1>
-                                            <p>We’ll be putting things together so that as you scroll down from the top of the page you’ll see an “Alien Lander” making its way to touch down.</p>
-                                            <span>Kezz Bracey</span>
+                                            <h1><?php echo $r_row[1]?></h1>
+                                            <span><?php echo $row[3];?></span>
                                         </article>
                                         </a>
                                 </div>
                                 <div class="item-5">
+                                    <?php $row = mysqli_fetch_row($result1); ?>
+                                    <?php 
+                                                $news_id = $row[2];
+                                                // $query = "select * from raw_news where news_id = '$news_id'";
+                                                $result2 = mysqli_query($con, "select * from raw_news where news_id = '$news_id'");
+                                                $r_row = mysqli_fetch_row($result2);?>
                                         <a href=# class="card">
-                                        <div class="thumb" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/strange.jpg);"></div>
+                                        <div class="thumb" style="background-image: url(<?php echo $r_row[6];?>;"></div>
                                         <article>
-                                            <h1>How to Create a “Stranger Things” Text Effect in Adobe Photoshop</h1>
-                                            <span>Rose</span>
+                                            <h1><?php echo $r_row[1]?></h1>
+                                            <span><?php echo $row[3];?></span>
                                         </article>
                                         </a>
                                 </div>
                                 <div class="item-6">
+                                    <?php $row = mysqli_fetch_row($result1); ?>
+                                    <?php 
+                                                $news_id = $row[2];
+                                                // $query = "select * from raw_news where news_id = '$news_id'";
+                                                $result2 = mysqli_query($con, "select * from raw_news where news_id = '$news_id'");
+                                                $r_row = mysqli_fetch_row($result2);?>
                                     <a href=# class="card">
-                                    <div class="thumb" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/flor.jpg);"></div>
+                                    <div class="thumb" style="background-image: url(<?php echo $r_row[6];?>;"></div>
                                     <article>
-                                        <h1>5 Inspirational Business Portraits and How to Make Your Own</h1>
-                                        
-                                        <span>Marie Gardiner</span>
-                                    </article>
+                                            <h1><?php echo $r_row[1]?></h1>
+                                            <span><?php echo $row[3];?></span>
+                                        </article>
                                     </a>
                                 </div>
                                 <div class="item-7">
+                                    <?php $row = mysqli_fetch_row($result1); ?>
+                                    <?php 
+                                                $news_id = $row[2];
+                                                // $query = "select * from raw_news where news_id = '$news_id'";
+                                                $result2 = mysqli_query($con, "select * from raw_news where news_id = '$news_id'");
+                                                $r_row = mysqli_fetch_row($result2);?>
                                     <a href=# class="card">
-                                    <div class="thumb" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/china.png);"></div>
+                                    <div class="thumb" style="background-image: url(<?php echo $r_row[6];?>;"></div>
                                     <article>
-                                        <h1>Notes From Behind the Firewall: The State of Web Design in China</h1>
-                                        <span>Kendra Schaefer</span>
-                                    </article>
+                                            <h1><?php echo $r_row[1]?></h1>
+                                            <span><?php echo $row[3];?></span>
+                                        </article>
                                     </a>
                                 </div>
                                 </div><!-- 디자인 애니메이션 소스 끝  -->

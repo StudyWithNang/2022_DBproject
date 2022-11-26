@@ -28,7 +28,7 @@ curs = mydb.cursor()
  
  
 # data = pd.read_csv('soho_seoul.csv', header=None) # KeyError: '상권업종대분류명'
-stores_info = pd.read_csv('crawl_data/20221116-11.csv') # KeyError: '상권업종대분류명'
+stores_info = pd.read_csv('crawl_data/20221122-11.csv') # KeyError: '상권업종대분류명'
 stores_info = stores_info.drop_duplicates(['date'], keep='last')
 print(stores_info)
 
@@ -41,7 +41,7 @@ hour = tm.tm_hour
 i=0
 
 for index, row in stores_info.iterrows():
-    news_id = str(year)+'_'+str(month)+'_'+str(day)+'_'+str(hour)+'_'+str(i)
+    #news_id = str(year)+'_'+str(month)+'_'+str(day)+'_'+str(hour)+'_'+str(i)
     i = i+1
     tu = (row.date, 1, 2, 3)
     curs.execute("""INSERT IGNORE INTO history (date, temp, rain, dust) VALUES (%s, %s, %s, %s)""", tu)
