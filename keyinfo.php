@@ -74,7 +74,7 @@
     .ban img {border: 4px solid #dcdcdc;}
     .ban img:hover {border-color: #98bcdc;}
     .ban .slick-slide {margin: 10px;}
-    .ban .slick-dots {position: absolute; bottom: 15px; display: block; width: 100%; text-align: center;}
+    .ban .slick-dots {bottom: 15px; display: block; width: 100%; text-align: center;}
     .ban .slick-dots li {display: inline-block; width: 15px; height: 15px; margin: 5px;}
     .ban .slick-dots li button {font-size: 0; line-height: 0; display: block; width: 15px; height: 15px; cursor: pointer; background: #5dbfeb; border-radius: 50%;}
     .ban .slick-dots li.slick-active button {background: #2b91c8;}
@@ -117,7 +117,7 @@
             width: 28px; 
             height: 28px;
             background: url(https://webstoryboy.github.io/web2022/webs_img/card02_arrow.svg);
-            background-size: cover;
+           background-size: cover;
         }
   </style>
 
@@ -175,6 +175,9 @@
                                 <a class="nav-link color-aqua-hover" href="my-interested-news.php">my interested news</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link color-aqua-hover" href="diary.php">diary</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link color-pink-hover" href="keya-info.php">keya INFO</a>
                             </li>
                             <!-- <li class="nav-item">
@@ -210,9 +213,10 @@
 							exit(); }
                             
                             // $result = mysqli_query($con, "select * from raw_news");
-                            $result1 = mysqli_query($con, "select * from raw_news where date='2022-11-25'");
                             $mini = $_SESSION['id'];
-                            $row = mysqli_fetch_row($result1);
+                            $result1 = mysqli_query($con, "select * from keyword where my_key='$keyword'");
+                            $row= mysqli_fetch_row($result1);
+                            
                             // $result2 = mysqli_query($con, "select * from user where id='$mini'");
 
                         ?>
@@ -220,78 +224,113 @@
                         <div class="ban">
                         <form name = "registerSbmt" id = "registerSbmt" method="post" action="my_key_diary_db.php">
                             <div class="card">
-                                <img src="<?php echo $row[6];?>" alt="" height=200px class="card-img-top" />
+                                <?php 
+                                    $news_id = $row[2];
+                                    $result2 = mysqli_query($con, "select * from raw_news where news_id ='$news_id'");
+                                    $key_news = mysqli_fetch_row($result2);
+                                    ?>
+                                <img src="<?php echo $key_news[6];?>" alt="" height=200px class="card-img-top" />
                                 <div class="card-body">
-                                <p><?php echo $row[1];?></p>
-                                <p class="card-text"><?php echo $row[2]; ?></p>
-                                <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
+                                <p><?php echo $key_news[1];?></p>
+                                <p class="card-text"><?php echo $key_news[9]; ?></p>
+                                <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"style="width:150px;height:35px;font-size:17px;"/>
+				                <input name="news_id" type="hidden" value="<?php echo $news_id; ?>" />
                                 <input type = "submit" value="store">
-                                <a href="#" class="btn btn-primary">More</a>
+                                <a href="<?php echo $key_news[8];?>" class="btn btn-primary">More</a>
                                 </div>
                             </div></form>
 
-                            <?php $row = mysqli_fetch_row($result1); ?>
                             <form name = "registerSbmt" id = "registerSbmt" method="post" action="my_key_diary_db.php">
                             <div class="card">
-                                <img src="<?php echo $row[6];?>" alt="" height=200px class="card-img-top" />
+                                <?php 
+                                    $news_id = $row[3];
+                                    $result2 = mysqli_query($con, "select * from raw_news where news_id ='$news_id'");
+                                    $key_news = mysqli_fetch_row($result2);
+                                    ?>
+                                <img src="<?php echo $key_news[6];?>" alt="" height=200px class="card-img-top" />
                                 <div class="card-body">
-                                <p><?php echo $row[1];?></p>
-                                <p class="card-text"><?php echo $row[2]; ?></p>
-                                <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
+                                <p><?php echo $key_news[1];?></p>
+                                <p class="card-text"><?php echo $key_news[9]; ?></p>
+                                <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat" style="width:150px;height:35px;font-size:17px;"/>
+                                <input name="news_id" type="hidden" value="<?php echo $news_id; ?>" />
                                 <input type = "submit" value="store">
-                                <a href="#" class="btn btn-primary">More</a>
+                                <a href="<?php echo $key_news[8];?>" class="btn btn-primary">More</a>
                                 </div>
                             </div></form>
 
-                            <?php $row = mysqli_fetch_row($result1); ?>
+                            
                             <form name = "registerSbmt" id = "registerSbmt" method="post" action="my_key_diary_db.php">
                             <div class="card">
-                                <img src="<?php echo $row[6];?>" alt="" height=200px class="card-img-top" />
+                                <?php 
+                                    $news_id = $row[4];
+                                    $result2 = mysqli_query($con, "select * from raw_news where news_id ='$news_id'");
+                                    $key_news = mysqli_fetch_row($result2);
+                                    ?>
+                                <img src="<?php echo $key_news[6];?>" alt="" height=200px class="card-img-top" />
                                 <div class="card-body">
-                                <p><?php echo $row[1];?></p>
-                                <p class="card-text"><?php echo $row[2]; ?></p>
-                                <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
+                                <p><?php echo $key_news[1];?></p>
+                                <p class="card-text"><?php echo $key_news[9]; ?></p>
+                                <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat" style="width:150px;height:35px;font-size:17px;"/>
+                                <input name="news_id" type="hidden" value="<?php echo $news_id; ?>" />
                                 <input type = "submit" value="store">
-                                <a href="#" class="btn btn-primary">More</a>
+                                <a href="<?php echo $key_news[8];?>" class="btn btn-primary">More</a>
                                 </div>
                             </div></form>
 
-                            <?php $row = mysqli_fetch_row($result1); ?>
+                            
                             <form name = "registerSbmt" id = "registerSbmt" method="post" action="my_key_diary_db.php">
                             <div class="card">
-                                <img src="<?php echo $row[6];?>" alt="" height=200px class="card-img-top" />
+                                <?php 
+                                    $news_id = $row[5];
+                                    $result2 = mysqli_query($con, "select * from raw_news where news_id ='$news_id'");
+                                    $key_news = mysqli_fetch_row($result2);
+                                    ?>
+                                <img src="<?php echo $key_news[6];?>" alt="" height=200px class="card-img-top" />
                                 <div class="card-body">
-                                <p><?php echo $row[1];?></p>
-                                <p class="card-text"><?php echo $row[2]; ?></p>
-                                <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
+                                <p><?php echo $key_news[1];?></p>
+                                <p class="card-text"><?php echo $key_news[9]; ?></p>
+                                <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat" style="width:150px;height:35px;font-size:17px;"/>
+                                <input name="news_id" type="hidden" value="<?php echo $news_id; ?>" />
                                 <input type = "submit" value="store">
-                                <a href="#" class="btn btn-primary">More</a>
+                                <a href="<?php echo $key_news[8];?>" class="btn btn-primary">More</a>
                                 </div>
                             </div></form>
 
-                            <?php $row = mysqli_fetch_row($result1); ?>
+                            
                             <form name = "registerSbmt" id = "registerSbmt" method="post" action="my_key_diary_db.php">
                             <div class="card">
-                                <img src="<?php echo $row[6];?>" alt="" height=200px class="card-img-top" />
+                                <?php 
+                                    $news_id = $row[6];
+                                    $result2 = mysqli_query($con, "select * from raw_news where news_id ='$news_id'");
+                                    $key_news = mysqli_fetch_row($result2);
+                                    ?>
+                                <img src="<?php echo $key_news[6];?>" alt="" height=200px class="card-img-top" />
                                 <div class="card-body">
-                                <p><?php echo $row[1];?></p>
-                                <p class="card-text"><?php echo $row[2]; ?></p>
-                                <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
+                                <p><?php echo $key_news[1];?></p>
+                                <p class="card-text"><?php echo $key_news[9]; ?></p>
+                                <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat" style="width:150px;height:35px;font-size:17px;"/>
+                                <input name="news_id" type="hidden" value="<?php echo $news_id; ?>" />
                                 <input type = "submit" value="store">
-                                <a href="#" class="btn btn-primary">More</a>
+                                <a href="<?php echo $key_news[8];?>" class="btn btn-primary">More</a>
                                 </div>
                             </div></form>
 
-                            <?php $row = mysqli_fetch_row($result1); ?>
+                            
                             <form name = "registerSbmt" id = "registerSbmt" method="post" action="my_key_diary_db.php">
                             <div class="card">
-                                <img src="<?php echo $row[6];?>" alt="" height=200px class="card-img-top" />
+                                <?php 
+                                    $news_id = $row[7];
+                                    $result2 = mysqli_query($con, "select * from raw_news where news_id ='$news_id'");
+                                    $key_news = mysqli_fetch_row($result2);
+                                    ?>
+                                <img src="<?php echo $key_news[6];?>" alt="" height=200px class="card-img-top" />
                                 <div class="card-body">
-                                <p><?php echo $row[1];?></p>
-                                <p class="card-text"><?php echo $row[2]; ?></p>
-                                <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat"/>
+                                <p><?php echo $key_news[1];?></p>
+                                <p class="card-text"><?php echo $key_news[9]; ?></p>
+                                <input class="form-control" name= "chat" id="chat" type="text" placeholder="chat" style="width:150px;height:35px;font-size:17px;" />
+                                <input name="news_id" type="hidden" value="<?php echo $news_id; ?>" />
                                 <input type = "submit" value="store">
-                                <a href="#" class="btn btn-primary">More</a>
+                                <a href="<?php echo $key_news[8];?>" class="btn btn-primary">More</a>
                                 </div>
                             </div></form>
 
@@ -301,7 +340,12 @@
                         <!-- visualization section -->
                         <div class="a_today_vi_section">
                             <h2> MY Keywords </h2>
-                            <img src="my_key_visual_img/20221117-10_윤석열.png" class="a_today_key_img">
+                            <?php $today = date("Ymd");
+                                //$src = "my_key_visual_img/20221126-23"."_".$keyword.".png";
+                                $src = "my_key_visual_img/".$today."_".$keyword.".png";
+                                //echo $src; 
+                                // echo $today;?>
+                            <img src="<?php echo $src?>" class="a_today_key_img" style="border: 1px solid #87cefa;">
                         </div> <!-- end visualization section -->
 
                     </div><!-- end col -->
@@ -349,20 +393,7 @@
         });
         
 
-        var selectText ='ai';
-        function changeLangSelect(){
-            var langSelect = document.getElementById("selectbox");
-            var langvalue= document.getElementById("getvalue");
-            // select element에서 선택된 option의 value가 저장된다.
-            var selectValue = langSelect.options[langSelect.selectedIndex].value;
-            
-            // select element에서 선택된 option의 text가 저장된다.
-            selectText = langSelect.options[langSelect.selectedIndex].text;
-            langvalue.innerText = selectText;
-            //document.write(langvalue.innerText);
-            console.log(selectText);
-            return selectText;
-        }
+        
         //changeLangSelect();
         selectText = changeLangSelect();
     </script>

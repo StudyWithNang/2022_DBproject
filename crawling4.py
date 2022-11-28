@@ -142,14 +142,17 @@ def textsum(text):
 
     for news in text:
         if len(news.split('.')) < 5:
-            continue
-        su = summarize(news, word_count=20)
+            su = "요약 불가"
+            #continue
+        else:
+            su = summarize(news, word_count=20)
         # poporo일 경우엔??
         # summ = Pororo(task = "summarization", model = "abstractive", lang ="ko")
         # summ(news, beam=5, len_panalty = 0.6, no_repeat_ngram_size=3, top_k = 50, top_p=0.7)
         su = re.sub('\n', ' ', su)
         if len(su) == 0:
-            continue
+            su = "요약 불가"
+            #continue
         key_sentence.append(su)
 
     # print(key_sentence)
@@ -165,19 +168,12 @@ def main(args):
         start_time = datetime.datetime.now()
         print("Start Time :", start_time)
 
-#         pool = multiprocessing.Pool(2)
-#         result = pool.imap(crawling, news_type_list)
-
-#         pool.close()
-#         pool.join()
         result = []
         for (t,num) in news_type_list:
             result += crawling(t, num)
 
         end_time = datetime.datetime.now()
         all_data = pd.concat(result).reset_index(drop=True)
-#         all_data = list(result)
-#         all_data = pd.concat(all_data).reset_index(drop=True)
 
         print(start_time.strftime("%Y%m%d-%H") + ', ' + str(all_data.shape) + ', 크롤링을 완료했습니다.')
 
@@ -217,14 +213,14 @@ def main(args):
         plt.show()
 
         start_time = datetime.datetime.now()
-        file_name = start_time.strftime("%Y%m%d-%H")
+        file_name = start_time.strftime("%Y%m%d")
 
         plt.savefig('visual_img/'+file_name)  # today visualization 저장
 
         # text sum
         all_data['news_sum'] = textsum(all_data['contents'])
         #textsum 의 데이터 합치기
-        all_data.to_csv(os.path.join(BASE_DIR, DATA_DIR, start_time.strftime("%Y%m%d-%H") + '.csv', ), encoding='utf-8' ,index=False, mode='a')
+        all_data.to_csv(os.path.join(BASE_DIR, DATA_DIR, start_time.strftime("%Y%m%d-%H") + '.csv', ), encoding='utf-8' ,index=False, mode='w')
         print("End Date :", end_time)
 
 

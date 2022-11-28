@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <?php
         session_start();
-        echo $_SESSION['id'];
+        //echo $_SESSION['id'];
 	$date = date("Y-m-d");
-	echo $date;
+	//echo $date;
 ?>
 <html lang="ko">
 
@@ -21,8 +21,9 @@
     <meta name="author" content="">
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="images/keya_favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="icon" href="images/keya_favicon.ico">
 
     <!-- Design fonts -->
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,500,700" rel="stylesheet"> 
@@ -118,7 +119,10 @@
                                 <a class="nav-link color-aqua-hover" href="my-interested-news.php">my interested news</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link color-pink-hover" href="keya-info.php">keya INFO</a>
+                                <a class="nav-link color-aqua-hover" href="diary.php">diary</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link color-pink-hover" href="keya-info.php">Keya Info</a>
                             </li>
                         </ul>
                     </div>
@@ -138,24 +142,24 @@
 			echo mysqli_connect_error();
 			exit(); }
 
-		$result1 = mysqli_query($con, "select * from raw_news where date='".$date."'");
-		$row = mysqli_fetch_row($result1);
-		$result2 = mysqli_query($con, "select news_id from raw_news");
+		$query = "select * from raw_news where date='".$date."'";
+		$result1 = mysqli_query($con, $query);
+		$row = mysqli_fetch_array($result1);
 	?>
 
 	<!-- Section : Today Issue -->
         <section class="section first-section">
             <div class="container-fluid">
                 <div class="masonry-blog clearfix">
-		    <h1 style="margin-left: 20px; color: #000000">Today Issue</h1>
+		    <h1 style="margin-left: 20px;">Today Issue</h1>
                     <div class="left-side">
                         <div class="masonry-box post-media">
                              <img src="<?php echo $row[6];?>" alt="" class="img-fluid">
                              <div class="shadoweffect">
                                 <div class="shadow-desc">
                                     <div class="blog-meta">
-                                        <span class="bg-aqua" style="color: #ffffff"><?php echo $row[0];?></a></span>
-                                        <h4><a href="single.html" title=""><?php echo $row[1];?></a></h4>
+                                        <span class="bg-aqua" style="color: #ffffff"><?php echo $row[0];?></span>
+                                        <h4><a href="<?php echo $row[8];?>" title=""><?php echo $row[1];?></a></h4>
                                         <small style="color: #ffffff"><?php echo $row[3];?></a></small>
                                         <small style="color: #ffffff"><?php echo $row[5];?></a></small>
                                     </div><!-- end meta -->
@@ -165,15 +169,15 @@
                     </div><!-- end left-side -->
 
 
-                    <?php $row = mysqli_fetch_row($result1); ?>
+                    <?php $row = mysqli_fetch_array($result1); ?>
                     <div class="center-side">
                         <div class="masonry-box post-media">
                              <img src="<?php echo $row[6];?>" alt="" class="img-fluid">
                              <div class="shadoweffect">
                                 <div class="shadow-desc">
                                     <div class="blog-meta">
-                                        <span class="bg-aqua" style="color: #ffffff"><?php echo $row[0];?></a></span>
-                                        <h4><a href="single.html" title=""><?php echo $row[1];?></a></h4>
+                                        <span class="bg-aqua" style="color: #ffffff"><?php echo $row['news_id'];?></a></span>
+                                        <h4><a href="<?php echo $row[8];?>" title=""><?php echo $row[1];?></a></h4>
                                         <small style="color: #ffffff"><?php echo $row[3];?></a></small>
                                         <small style="color: #ffffff"><?php echo $row[5];?></a></a></small>
                                     </div><!-- end meta -->
@@ -182,7 +186,7 @@
                         </div><!-- end post-media -->
                     </div><!-- end center-side -->
 
-                    <?php $row = mysqli_fetch_row($result1); ?>
+                    <?php $row = mysqli_fetch_array($result1); ?>
                     <div class="right-side hidden-md-down">
                         <div class="masonry-box post-media">
                             <div class="masonry-box post-media">
@@ -190,8 +194,8 @@
                              <div class="shadoweffect">
                                 <div class="shadow-desc">
                                     <div class="blog-meta">
-                                        <span class="bg-aqua" style="color: #ffffff"><?php echo $row[0];?></a></span>
-                                        <h4><a href="single.html" title=""><?php echo $row[1];?></a></h4>
+                                        <span class="bg-aqua" style="color: #ffffff"><?php echo $row['news_id'];?></a></span>
+                                        <h4><a href="<?php echo $row[8];?>" title=""><?php echo $row[1];?></a></h4>
                                         <small style="color: #ffffff"><?php echo $row[3];?></a></small>
                                         <small style="color: #ffffff"><?php echo $row[5];?></a></a></small>
                                     </div><!-- end meta -->
@@ -207,11 +211,12 @@
         <section class="section">
             <div class="container">
                 <hr class="invis1">
+
                 <div class="row">
    		    <!-- section : press -->
-                    <div class="col-lg-9">
-                        <div class="blog-list clearfix">
-                            <?php $row = mysqli_fetch_row($result1); ?>
+                    <div class="col-lg-9" style="width:100%;">
+                       <!--  <div class="blog-list clearfix"> -->
+                            <?php $row = mysqli_fetch_array($result1); ?>
                             <div class="blog-box row">
                                 <div class="col-md-4">
                                     <div class="post-media">
@@ -223,17 +228,17 @@
                                 </div><!-- end col -->
 
                                 <div class="blog-meta big-meta col-md-8">
-                                    <h4><a href="single.html" title=""><?php echo $row[1];?></a></h4>
-                                    <p><?php echo $row[2];?></p>
-                                    <small><a href="blog-category-01.html" title=""><?php echo $row[0];?></a></small>
-                                    <small><a href="single.html" title=""><?php echo $row[3];?></a></small>
-                                    <small><a href="blog-author.html" title=""><?php echo $row[5];?></a></small>
+                                    <h4><a href="<?php echo $row[8]; ?>" title="" style="color: #4585b7"><?php echo $row[1];?></a></h4>
+                                    <p><?php echo $row[9];?></p>
+                                    <small style="color: #4585b7"><?php echo $row[0];?></small>
+                                    <small style="color: #4585b7"><?php echo $row[3];?></small>
+                                    <small style="color: #4585b7"><?php echo $row[5];?></small>
                                 </div><!-- end meta -->
                             </div><!-- end blog-box -->
 
                             <hr class="invis">
 
-                            <?php $row = mysqli_fetch_row($result1); ?>
+                            <?php $row = mysqli_fetch_array($result1); ?>
                             <div class="blog-box row">
                                 <div class="col-md-4">
                                     <div class="post-media">
@@ -244,18 +249,41 @@
                                     </div><!-- end media -->
                                 </div><!-- end col -->
 
-                                <div class="blog-meta big-meta col-md-8">
-                                    <h4><a href="single.html" title=""><?php echo $row[1];?></a></h4>
-                                    <p><?php echo $row[2];?></p>
-                                    <small><a href="blog-category-01.html" title=""><?php echo $row[0];?></a></small>
-                                    <small><a href="single.html" title=""><?php echo $row[3];?></a></small>
-                                    <small><a href="blog-author.html" title=""><?php echo $row[5];?></a></small>
+				<div class="blog-meta big-meta col-md-8">
+                                    <h4><a href="<?php echo $row[8]; ?>" title="" style="color: #4585b7"><?php echo $row[1];?></a></h4>
+                                    <p><?php echo $row[9];?></p>
+                                    <small style="color: #4585b7"><?php echo $row[0];?></small>
+                                    <small style="color: #4585b7"><?php echo $row[3];?></small>
+                                    <small style="color: #4585b7"><?php echo $row[5];?></small>
                                 </div><!-- end meta -->
                             </div><!-- end blog-box -->
 
                             <hr class="invis">
 
-                            <?php $row = mysqli_fetch_row($result1); ?>
+                            <?php $row = mysqli_fetch_array($result1); ?>
+                            <div class="blog-box row">
+                                <div class="col-md-4">
+                                    <div class="post-media">
+                                        <a href="single.html" title="">
+                                            <img src="<?php echo $row[6];?>" alt="" class="img-fluid">
+                                            <div class="hovereffect"></div>
+                                        </a>
+                                    </div><!-- end media -->
+                                </div><!-- end col -->
+
+				<div class="blog-meta big-meta col-md-8">
+                                    <h4><a href="<?php echo $row[8]; ?>" title="" style="color: #4585b7"><?php echo $row[1];?></a></h4>
+                                    <p><?php echo $row[9];?></p>
+                                    <small style="color: #4585b7"><?php echo $row[0];?></small>
+                                    <small style="color: #4585b7"><?php echo $row[3];?></small>
+                                    <small style="color: #4585b7"><?php echo $row[5];?></small>
+                                </div><!-- end meta -->
+                            </div><!-- end blog-box -->
+
+
+                            <hr class="invis">
+
+                            <?php $row = mysqli_fetch_array($result1); ?>
                             <div class="blog-box row">
                                 <div class="col-md-4">
                                     <div class="post-media">
@@ -267,18 +295,60 @@
                                 </div><!-- end col -->
 
                                 <div class="blog-meta big-meta col-md-8">
-                                    <h4><a href="single.html" title=""><?php echo $row[1];?>?</a></h4>
-                                    <p><?php echo $row[2];?></p>
-                                    <small><a href="blog-category-01.html" title=""><?php echo $row[0];?></a></small>
-                                    <small><a href="single.html" title=""><?php echo $row[3];?></a></small>
-                                    <small><a href="blog-author.html" title=""><?php echo $row[5];?></a></small>
+                                    <h4><a href="<?php echo $row[8]; ?>" title="" style="color: #4585b7"><?php echo $row[1];?></a></h4>
+                                    <p><?php echo $row[9];?></p>
+                                    <small style="color: #4585b7"><?php echo $row[0];?></small>
+                                    <small style="color: #4585b7"><?php echo $row[3];?></small>
+                                    <small style="color: #4585b7"><?php echo $row[5];?></small>
                                 </div><!-- end meta -->
                             </div><!-- end blog-box -->
-                        </div><!-- end blog-list -->
 
-                        <hr class="invis">
 
-                        <div class="blog-list clearfix">
+                            <hr class="invis">
+
+                            <?php $row = mysqli_fetch_array($result1); ?>
+                            <div class="blog-box row">
+                                <div class="col-md-4">
+                                    <div class="post-media">
+                                        <a href="single.html" title="">
+                                            <img src="<?php echo $row[6];?>" alt="" class="img-fluid">
+                                            <div class="hovereffect"></div>
+                                        </a>
+                                    </div><!-- end media -->
+                                </div><!-- end col -->
+
+                                <div class="blog-meta big-meta col-md-8">
+                                    <h4><a href="<?php echo $row[8]; ?>" title="" style="color: #4585b7"><?php echo $row[1];?></a></h4>
+                                    <p><?php echo $row[9];?></p>
+                                    <small style="color: #4585b7"><?php echo $row[0];?></small>
+                                    <small style="color: #4585b7"><?php echo $row[3];?></small>
+                                    <small style="color: #4585b7"><?php echo $row[5];?></small>
+                                </div><!-- end meta -->
+                            </div><!-- end blog-box -->
+
+
+                            <hr class="invis">
+
+                            <?php $row = mysqli_fetch_array($result1); ?>
+                            <div class="blog-box row">
+                                <div class="col-md-4">
+                                    <div class="post-media">
+                                        <a href="single.html" title="">
+                                            <img src="<?php echo $row[6];?>" alt="" class="img-fluid">
+                                            <div class="hovereffect"></div>
+                                        </a>
+                                    </div><!-- end media -->
+                                </div><!-- end col -->
+
+                                <div class="blog-meta big-meta col-md-8">
+                                    <h4><a href="<?php echo $row[8]; ?>" title="" style="color: #4585b7"><?php echo $row[1];?></a></h4>
+                                    <p><?php echo $row[9];?></p>
+                                    <small style="color: #4585b7"><?php echo $row[0];?></small>
+                                    <small style="color: #4585b7"><?php echo $row[3];?></small>
+                                    <small style="color: #4585b7"><?php echo $row[5];?></small>
+                                </div><!-- end meta -->
+                            </div><!-- end blog-box -->
+
                             <div class="section-title">
                             </div><!-- end title -->
                         </div><!-- end blog-list -->

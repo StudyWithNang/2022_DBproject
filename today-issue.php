@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<?php 
+	session_start();
+	$date = date("Y-m-d");
+	$visual_date = date("Ymd");
+?>
 <html lang="ko">
 
     <!-- Basic -->
@@ -15,7 +20,7 @@
     <meta name="author" content="">
     
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="images/keya_favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     
     <!-- Design fonts -->
@@ -104,7 +109,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-md-center" id="cloapediamenu">
-                        <ul class="navbar-nav">
+                        <ul class="navbar-nav" style="margin: 0 auto;">
                             <li class="nav-item">
                                 <a class="nav-link color-aqua-hover" href="today-issue.php">Today Issue</a>
                             </li>
@@ -115,7 +120,10 @@
                                 <a class="nav-link color-aqua-hover" href="my-interested-news.php">my interested news</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link color-pink-hover" href="keya-info.php">keya INFO</a>
+                                <a class="nav-link color-aqua-hover" href="diary.php">diary</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link color-pink-hover" href="keya-info.php">keya Info</a>
                             </li>
                             <!-- <li class="nav-item">
                                 <a class="nav-link color-pink-hover" font-size=20%>���� ���� ����</a>
@@ -132,43 +140,26 @@
 
         <section class="section wb">
             <div class="container">
-                <div class="row">
+                <div class="row" style="margin-left:170px;">
                     <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
 			<!-- main news list -->
 			<h2 style="padding-top: 0px"> Today Issue </h2>
-<?php
-						//mysql 접속 계정 정보 설정
-						$mysql_host = 'localhost';
-						$mysql_user = 'root';
-						$mysql_password = '111111';
-						$mysql_db = 'keya';
-						//connetc 설정(host,user,password)
-						$con = mysqli_connect($mysql_host, $mysql_user, $mysql_password, $mysql_db);
-						if(mysqli_connect_error($con)) {
-							echo "mysql connect fail!!", "<br>";
-							echo mysqli_connect_error();
-							exit(); }
-						echo "mysql connect success!!";
+				<?php
+					//mysql 접속 계정 정보 설정
+					$mysql_host = 'localhost';
+					$mysql_user = 'root';
+					$mysql_password = '111111';
+					$mysql_db = 'keya';
+					//connetc 설정(host,user,password)
+					$con = mysqli_connect($mysql_host, $mysql_user, $mysql_password, $mysql_db);
+					if(mysqli_connect_error($con)) {
+						echo "mysql connect fail!!", "<br>";
+						echo mysqli_connect_error();
+						exit(); }
+					//echo "mysql connect success!!";
 
-						//$result = mysqli_query($con, "select * from raw_news order by rand() limit 5");
-                                                $result = mysqli_query($con, "select * from raw_news");
-						/*
-						//while($row = mysqli_fetch_assoc($result)) {
-							//echo $row['title']."<br>";
-							//echo mysqli_fetch_assoc($result)['title']."<br>";
-							//echo mysqli_fetch_assoc($result)['title'];
-
-						//}
-						
-						$i = 0;
-						while($i<5) {
-							echo mysqli_fetch_assoc($result)['title']."<br>";
-							$i++;
-						}
-
-						//echo "<br><br><br>".$row['title'][0];
-						*/
-					?>
+					$query = "select * from raw_news where date='".$date."'";
+				?>
 
 
 			<div class="a_main">
@@ -178,29 +169,81 @@
 				<input type="radio" id="a_tab-4" name="show" />
 				<input type="radio" id="a_tab-5" name="show" />
 				<div class="a_tab">
-					<label for="a_tab-1">main news</label>
-					<label for="a_tab-2">politics</label>
-					<label for="a_tab-3">economy</label>
-					<label for="a_tab-4">society</label>
-					<label for="a_tab-5">it</label>
+					<label for="a_tab-1">POLITICS</label>
+					<label for="a_tab-2">ECONOMY</label>
+					<label for="a_tab-3">SOCIETY</label>
+					<label for="a_tab-4">WORLD</label>
+					<label for="a_tab-5">IT</label>
 				</div>
 
 				<div class="a_content">
 					<div class="a_content-dis">
-						<?php echo mysqli_fetch_assoc($result)['title']; ?>
+						<?php
+                                                        $result = mysqli_query($con, $query." and category='section_politics'");
+                                                        $i = 0;
+                                                        while($i<5) {
+                                                                $info = mysqli_fetch_assoc($result);
+                                                                $news_url = $info['news_url'];
+                                                                $title = $info['title'];
+                                                                echo "- <a href='".$news_url."' style='color: black;'>".$title."</a><br>";
+                                                                $i++;
+                                                        }
+                                                ?>
+
 					</div>
 					<div class="a_content-dis">
-                                                <?php echo mysqli_fetch_assoc($result)['title']; ?>
+						<?php
+                                                        $result = mysqli_query($con, $query." and category='section_economy'");
+                                                        $i = 0;
+                                                        while($i<5) {
+                                                                $info = mysqli_fetch_assoc($result);
+                                                                $news_url = $info['news_url'];
+                                                                $title = $info['title'];
+                                                                echo "- <a href='".$news_url."' style='color: black;'>".$title."</a><br>";
+                                                                $i++;
+                                                        }
+                                                ?>
+
 					</div>
 					<div class="a_content-dis">
-                                                <?php echo mysqli_fetch_assoc($result)['title']; ?>
-					</div>
-					<div class="a_content-dis">
-                                                <?php echo mysqli_fetch_assoc($result)['title']; ?>
+                                                <?php
+                                                        $result = mysqli_query($con, $query." and category='section_society'");
+                                                        $i = 0;
+                                                        while($i<5) {
+                                                                $info = mysqli_fetch_assoc($result);
+                                                                $news_url = $info['news_url'];
+                                                                $title = $info['title'];
+                                                                echo "- <a href='".$news_url."' style='color: black;'>".$title."</a><br>";
+                                                                $i++;
+                                                        }
+                                                ?>
 					</div>
         	                        <div class="a_content-dis">
-                                                <?php echo mysqli_fetch_assoc($result)['title']; ?>
+                                                <?php
+                                                        $result = mysqli_query($con, $query." and category='section_world'");
+                                                        $i = 0;
+                                                        while($i<5) {
+                                                                $info = mysqli_fetch_assoc($result);
+                                                                $news_url = $info['news_url'];
+                                                                $title = $info['title'];
+                                                                echo "- <a href='".$news_url."' style='color: black;'>".$title."</a><br>";
+                                                                $i++;
+                                                        }
+                                                ?>
                         	        </div>
+                                        <div class="a_content-dis">
+                                                <?php
+                                                        $result = mysqli_query($con, $query." and category='section_it'");
+                                                        $i = 0;
+                                                        while($i<5) {
+                                                                $info = mysqli_fetch_assoc($result);
+                                                                $news_url = $info['news_url'];
+                                                                $title = $info['title'];
+                                                                echo "- <a href='".$news_url."' style='color: black;'>".$title."</a><br>";
+                                                                $i++;
+                                                        }
+                                                ?>
+                                        </div>
 				</div>
 			</div> <!-- end main news list -->
 
@@ -208,56 +251,12 @@
 			<!-- visualization section -->
 			<div class="a_today_vi_section">
 				<h2> Today Keywords </h2>
-				<img src="visual_img/20221117-03.png" class="a_today_key_img">
+				<img src="visual_img/<?php echo $visual_date; ?>.png" class="a_today_key_img">
 			</div> <!-- end visualization section -->
 
                     </div><!-- end col -->
 
 
-		    <!-- sidebar col-->
-                    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                        <div class="sidebar">
-                            <div class="widget">
-                                <h2 class="widget-title">Diary</h2>
-                                <div class="blog-list-widget">
-                                    <div class="list-group">
-                                        <a href="single.html" class="list-group-item list-group-item-action flex-column align-items-start">
-                                            <div class="w-100 justify-content-between">
-                                                <img src="upload/blog_square_01.jpg" alt="" class="img-fluid float-left">
-                                                <h5 class="mb-1">text11111</h5>
-                                                <small>12 Jan, 2016</small>
-                                            </div>
-                                        </a>
-
-                                        <a href="single.html" class="list-group-item list-group-item-action flex-column align-items-start">
-                                            <div class="w-100 justify-content-between">
-                                                <img src="upload/blog_square_01.jpg" alt="" class="img-fluid float-left">
-                                                <h5 class="mb-1">text22222</h5>
-                                                <small>11 Jan, 2016</small>
-                                            </div>
-                                        </a>
-
-                                        <a href="single.html" class="list-group-item list-group-item-action flex-column align-items-start">
-                                            <div class="w-100 last-item justify-content-between">
-                                                <img src="upload/blog_square_01.jpg" alt="" class="img-fluid float-left">
-                                                <h5 class="mb-1">text33333</h5>
-                                                <small>07 Jan, 2016</small>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div><!-- end blog-list -->
-                            </div><!-- end widget -->
-
-                            <div class="widget">
-                                <h2 class="widget-title">weather</h2>
-                                <div class="banner-spot clearfix">
-                                    <div class="banner-img">
-                                        <img src="upload/banner_03.jpg" alt="" class="img-fluid">
-                                    </div><!-- end banner-img -->
-                                </div><!-- end banner -->
-                            </div><!-- end widget -->
-                        </div><!-- end sidebar
-                    </div><!-- end sidebar col -->
 
                 </div><!-- end row -->
             </div><!-- end container -->

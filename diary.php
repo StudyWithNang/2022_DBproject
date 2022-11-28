@@ -19,7 +19,7 @@
     <meta name="author" content="">
     
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="images/keya_favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     
     <!-- Design fonts -->
@@ -62,10 +62,8 @@
     .ex6 {vertical-align: super;}
     .ex8 {vertical-align: text-bottom;}
     html {
-        background: #f5f7f8;
         font-family: 'Roboto', sans-serif;
         -webkit-font-smoothing: antialiased;
-        padding: 20px 0;
         }
 
         .band {
@@ -167,17 +165,6 @@
     <!-- END LOADER -->
 
     <div id="wrapper">
-        <div class="collapse top-search" id="collapseExample">
-            <div class="card card-block">
-                <div class="newsletter-widget text-center">
-                    <form class="form-inline">
-                        <input type="text" class="form-control" placeholder="What you are looking for?">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-                    </form>
-                </div><!-- end newsletter -->
-            </div>
-       </div><!-- end top-search -->
-
 
         <div class="header-section">
             <div class="container">
@@ -209,7 +196,10 @@
                                 <a class="nav-link color-aqua-hover" href="my-interested-news.php">my interested news</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link color-pink-hover" href="keya-info.php">keya INFO</a>
+                                <a class="nav-link color-aqua-hover" href="diary.php">diary</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link color-pink-hover" href="keya-info.php">keya Info</a>
                             </li>
                             <!-- <li class="nav-item">
                                 <a class="nav-link color-pink-hover" font-size=20%>���� ���� ����</a>
@@ -227,7 +217,6 @@
         <section class="section first-section">
             <div class="container-fluid">
                 <!-- <div class="masonry-blog clearfix"> -->
-				<h2 style="padding-top: 0px"> Keyword News </h2>
 				<?php
                                                 $mysql_host = 'localhost';
                                                 $mysql_user = 'root';
@@ -255,7 +244,7 @@
 
                            <!-- 디자인 애니메이션 소스 시작-->             
                         <div class="support-grid"></div>
-
+                        <h2 style="padding-top: 0px; margin-left: 330px;"> My Diary </h2>
                                 <div class="band">
                                 <div class="item-1">
                                             <?php 
