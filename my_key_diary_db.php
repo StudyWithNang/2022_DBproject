@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <?php
         session_start();
-        echo $_SESSION['id'];
+        //echo $_SESSION['id'];
+        $prevPage = $_SERVER['HTTP_REFERER'];
 ?>
 <?php
 $conn = mysqli_connect('localhost','root','111111','keya');
@@ -16,16 +17,20 @@ if($conn->connect_error){
 }
 $chat = $_POST['chat'];
 $mini = $_SESSION['id'];
+$news_id = $_POST['news_id'];
+$scrap_id = $mini."_".$news_id;
 
+//echo $mini;
+//echo $news_id;
 // $sql = "INSERT INTO diary (chat) VALUES('{$chat}')";
 
 $sql = "
     INSERT INTO diary
     (scrap_id, id, news_id, chat)
-    VALUES('22222', '$mini', '2022_11_13_22_15_section_society', '{$chat}'
+    VALUES('$scrap_id', '$mini', '$news_id', '$chat'
     )";
 
-echo $sql;
+//echo $sql;
 
 
 
@@ -35,12 +40,18 @@ if ($result) {
 ?>
     <script>
         alert("<?php echo "글이 등록되었습니다."?>");
-        
+        history.back();
     </script>
+
 <?php
 } 
 else {
-    echo "FAIL";
+    ?>
+    <script>
+        alert("<?php echo "등록되지 않았습니다."?>");
+        history.back();
+    </script>
+    <?php
 }
 ?>
 

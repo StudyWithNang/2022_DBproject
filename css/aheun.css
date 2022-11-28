@@ -9,7 +9,7 @@
 #a_tab-4:checked ~ .a_tab label:nth-child(4),
 #a_tab-5:checked ~ .a_tab label:nth-child(5) {
 	/*background-color: rgba(0, 0, 0, 0.2);*/
-	background-color: #4169e1;
+	background-color:#4585b7;
 	color: white;
 	border: none;
 	box-shadow: none;

@@ -30,7 +30,7 @@ def main(args):
 
 
     ## read csv file
-    stores_info = pd.read_csv('crawl_data/20221125-04.csv')
+    stores_info = pd.read_csv('crawl_data/20221127-17.csv')
 
 
     ## time for news_id
@@ -93,8 +93,8 @@ def main(args):
 
     for index, row in stores_info.iterrows():
         news_id = str(year)+'_'+str(month)+'_'+str(day)+'_'+str(hour)+'_'+str(i)+'_'+str(row.news_type)
-        tu = tu = (news_id, row.title, row.all_contents, row.date, row.press, row.editor, row.image_url, row.news_type, row.news_url)
-        curs.execute("""INSERT IGNORE INTO raw_news (news_id, title, article, date, press_id, editor_id, image_url, category, news_url) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)""", tu)
+        tu = tu = (news_id, row.title, row.all_contents, row.date, row.press, row.editor, row.image_url, row.news_type, row.news_url, row.news_sum)
+        curs.execute("""INSERT IGNORE INTO raw_news (news_id, title, article, date, press_id, editor_id, image_url, category, news_url, news_sum) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", tu)
         i += 1
 
     print("--success raw_news--")

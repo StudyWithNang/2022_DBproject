@@ -19,7 +19,7 @@
     <meta name="author" content="">
     
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="images/keya_favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     
     <!-- Design fonts -->
@@ -119,57 +119,630 @@
             background: url(https://webstoryboy.github.io/web2022/webs_img/card02_arrow.svg);
             background-size: cover;
         }
+
+
+        /* buttonType */
+        * {
+        box-sizing: border-box;
+        margin: 0; padding: 0;
+        }
+        body {
+        font-family: 'Roboto', sans-serif;
+        color: rgb(85,75,85);
+        background-color: rgb(255,255,255);
+        }
+        h1 {
+        padding: 50px 0;
+        font-size: 45px;
+        text-align: center;
+        color: rgb(54, 56, 55);
+        }
+        :active, :hover, :focus {
+        outline: 0!important;
+        outline-offset: 0;
+        }
+        ::before,
+        ::after {
+        position: absolute;
+        content: "";
+        }
+
+        .btn-holder {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 1000px;
+        margin: 10px auto 35px;
+        }
+        .btn {
+        position: relative;
+        display: inline-block;
+        width: auto; height: auto;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        margin: 0px 25px 15px;
+        min-width: 150px;
+        }
+        .btn span {         
+            position: relative;
+            display: inline-block;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            top: 0; left: 0;
+            width: 100%;
+            padding: 15px 20px;
+            transition: 0.3s;
+        }
+
+        /*--- btn-1 ---*/
+        .btn-1::before {
+        background-color: white;
+        transition: 0.3s ease-out;
+        }
+        .btn-1 span {
+        color: black;
+        border: 1px solid rgb(28, 31, 30);
+        transition: 0.2s 0.1s;
+        }
+        .btn-1 span:hover {
+        color: rgb(28, 31, 30);
+        transition: 0.2s 0.1s;
+        }
+
+        /* 1.hover-filled-slide-down */
+        .btn.hover-filled-slide-down::before {
+        bottom: 0; left: 0; right: 0; 
+        height: 100%; width: 100%;
+        }
+        .btn.hover-filled-slide-down:hover::before {
+        height: 0%;
+        }
+
+        /* 2.hover-filled-slide-up */
+        .btn.hover-filled-slide-up::before {
+        top: 0; left: 0; right: 0;
+        height: 100%; width: 100%;
+        }
+        .btn.hover-filled-slide-up:hover::before {
+        height: 0%;
+        }
+
+        /* 3.hover-filled-slide-left */
+        .btn.hover-filled-slide-left::before {
+        top: 0; bottom: 0; left: 0;
+        height: 100%; width: 100%;
+        }
+        .btn.hover-filled-slide-left:hover::before {
+        width: 0%;
+        }
+
+        /* 4. hover-filled-slide-right */
+        .btn.hover-filled-slide-right::before {
+        top:0; bottom: 0; right: 0;
+        height: 100%; width: 100%;
+        }
+        .btn.hover-filled-slide-right:hover::before {
+        width: 0%;
+        }
+
+        /* 5. hover-filled-opacity */
+        .btn.hover-filled-opacity::before {
+        top:0; bottom: 0; right: 0;
+        height: 100%; width: 100%;
+        opacity: 1;
+        }
+        .btn.hover-filled-opacity:hover::before {
+        opacity: 0;
+        }
+
+        /*--- btn-2 ---*/
+        .btn-2::before {
+        background-color: rgb(28, 31, 30);
+        transition: 0.3s ease-out;
+        }
+        .btn-2 span {
+        color: rgb(28, 31, 30);
+        border: 1px solid rgb(28, 31, 30);
+        transition: 0.2s;
+        }  
+        .btn-2 span:hover {
+        color: rgb(255,255,255);
+        transition: 0.2s 0.1s;
+        }
+
+        /* 6. hover-slide-down */
+        .btn.hover-slide-down::before {
+        top: 0; left: 0; right: 0; 
+        height: 0%; width: 100%;
+        }
+        .btn.hover-slide-down:hover::before {
+        height: 100%;
+        }
+
+        /* 7. hover-slide-up */
+        .btn.hover-slide-up::before {
+        bottom: 0; left: 0; right: 0; 
+        height: 0%; width: 100%;
+        }
+        .btn.hover-slide-up:hover::before {
+        height: 100%;
+        }
+
+        /* 8. hover-slide-left */
+        .btn.hover-slide-left::before {
+        top: 0; bottom: 0; right: 0; 
+        height: 100%; width: 0%;
+        }
+        .btn.hover-slide-left:hover::before {
+        width: 100%;
+        }
+
+        /* 9. hover-slide-right */
+        .btn.hover-slide-right::before {
+        top: 0; bottom: 0; left: 0; 
+        height: 100%; width: 0%;
+        }
+        .btn.hover-slide-right:hover::before {
+        width: 100%;
+        }
+
+        /* 10. hover-opacity */
+        .btn.hover-opacity::before {
+        top:0; bottom: 0; right: 0;
+        height: 100%; width: 100%;
+        opacity: 0;
+        }
+        .btn.hover-opacity:hover::before {
+        opacity: 1;
+        }
+
+        /*--- btn-3 ---*/
+        .btn-3 {
+        padding: 5px;
+        }
+        .btn-3 span {
+        color: rgb(255, 255, 255);
+        background-color: rgb(54, 56, 55);
+        }
+        .btn-3::before,
+        .btn-3::after {
+        background: transparent;
+        z-index: 2;
+        }
+
+        /* 11. hover-border-1 */
+        .btn.hover-border-1::before,
+        .btn.hover-border-1::after {
+        width: 10%; height: 25%;
+        transition: 0.35s;
+        }
+        .btn.hover-border-1::before {
+        top: 0; left: 0;
+        border-left: 1px solid rgb(28, 31, 30);
+        border-top: 1px solid rgb(28, 31, 30);
+        }
+        .btn.hover-border-1::after {
+        bottom: 0; right: 0;
+        border-right: 1px solid rgb(28, 31, 30);
+        border-bottom: 1px solid rgb(28, 31, 30);
+        }
+        .btn.hover-border-1:hover::before,
+        .btn.hover-border-1:hover::after {
+        width: 99%;
+        height: 98%;
+        }
+
+        /* 12. hover-border-2 */
+        .btn.hover-border-2::before,
+        .btn.hover-border-2::after {
+        width: 10%; height: 25%;
+        transition: 0.35s;
+        }
+        .btn.hover-border-2::before {
+        bottom: 0; left: 0;
+        border-left: 1px solid rgb(28, 31, 30);
+        border-bottom: 1px solid rgb(28, 31, 30);
+        }
+        .btn.hover-border-2::after {
+        top: 0; right: 0;
+        border-right: 1px solid rgb(28, 31, 30);
+        border-top: 1px solid rgb(28, 31, 30);
+        }
+        .btn.hover-border-2:hover::before,
+        .btn.hover-border-2:hover::after {
+        width: 99%;
+        height: 99%;
+        }
+
+        /* 13. hover-border-3 */
+        .btn.hover-border-3::before,
+        .btn.hover-border-3::after {
+        width: 0%; height: 0%;
+        opacity: 0;
+        transition: width 0.2s 0.15s linear, height 0.15s linear, opacity 0s 0.35s;
+        }
+        .btn.hover-border-3::before {
+        top: 0; right: 0;
+        border-top: 1px solid rgb(28, 31, 30);
+        border-left: 1px solid rgb(28, 31, 30);
+        }
+        .btn.hover-border-3::after {
+        bottom: 0; left: 0;
+        border-bottom: 1px solid rgb(28, 31, 30);
+        border-right: 1px solid rgb(28, 31, 30);
+        }
+        .btn.hover-border-3:hover::before,
+        .btn.hover-border-3:hover::after {
+        width: 100%; height: 99%;
+        opacity: 1;
+        transition: width 0.2s linear, height 0.15s 0.2s linear, opacity 0s;   
+        }
+
+        /* 14. hover-border-4 */
+        .btn.hover-border-4::before,
+        .btn.hover-border-4::after {
+        width: 0%; height: 0%;
+        opacity: 0;
+        transition: width 0.2s linear, height 0.15s 0.2s ease-out, opacity 0s 0.35s;
+        }
+        .btn.hover-border-4::before {
+        bottom: 0; left: -1px;
+        border-top: 1px solid rgb(28, 31, 30);
+        border-left: 1px solid rgb(28, 31, 30);
+        }
+        .btn.hover-border-4::after {
+        top: 0; right: 0;
+        border-bottom: 1px solid rgb(28, 31, 30);
+        border-right: 1px solid rgb(28, 31, 30);
+        }
+        .btn.hover-border-4:hover::before,
+        .btn.hover-border-4:hover::after {
+        width: 100%; height: 99%;
+        opacity: 1;
+        transition: width 0.2s 0.15s ease-out, height 0.15s ease-in, opacity 0s;   
+        }
+
+        /* 15. hover-border-5 */
+        .btn.hover-border-5::before,
+        .btn.hover-border-5::after {
+        width: 0%; height: 0%;
+        opacity: 0;
+        }
+        .btn.hover-border-5::before {
+        top: 0; right: 0;
+        border-top: 1px solid rgb(28, 31, 30);
+        border-left: 1px solid rgb(28, 31, 30);
+        transition: width 0.2s 0.5s ease-out, height 0.15s 0.35s linear, opacity 0s 0.7s;
+        }
+        .btn.hover-border-5::after {
+        bottom: 0; left: 0px;
+        border-bottom: 1px solid rgb(28, 31, 30);
+        border-right: 1px solid rgb(28, 31, 30);
+        transition: width 0.2s 0.15s linear, height 0.15s ease-in, opacity 0s 0.35s;
+        }
+        .btn.hover-border-5:hover::before,
+        .btn.hover-border-5:hover::after {
+        width: 100%; height: 96%;
+        opacity: 1;
+        }
+        .btn.hover-border-5:hover::before {
+        transition: width 0.2s ease-in, height 0.15s 0.2s linear, opacity 0s;   /* 1,2 */
+        }
+        .btn.hover-border-5:hover::after {
+        transition: width 0.2s 0.35s linear, height 0.15s 0.5s ease-out, opacity 0s 0.3s; 
+        } 
+
+        /*--- btn-4 ---*/
+        .btn-4 span {
+        color: rgb(28, 31, 30);
+        background-color: rgb(245,245,245);
+        }
+        .btn-4 span:hover {
+        color: rgb(54, 56, 55);
+        }
+        .btn-4::before,
+        .btn-4::after {
+        width: 15%; height: 2px;
+        background-color: rgb(54, 56, 55);
+        z-index: 2;
+        }
+
+        /* 16. hover-border-6 */
+        .btn.hover-border-6::before,
+        .btn.hover-border-6::after {
+        top: 0;
+        transition: width 0.2s 0.35s ease-out;
+        }
+        .btn.hover-border-6::before {
+        right: 50%;
+        }
+        .btn.hover-border-6::after {
+        left: 50%;
+        }
+        .btn.hover-border-6:hover::before,
+        .btn.hover-border-6:hover::after {
+        width: 50%;
+        transition: width 0.2s ease-in;   
+        }
+
+        .btn.hover-border-6 span::before,
+        .btn.hover-border-6 span::after {
+        width: 0%; height: 0%;
+        background: transparent;
+        opacity: 0;
+        z-index: 2;
+        transition: width 0.2s ease-in, height 0.15s 0.2s linear, opacity 0s 0.35s;
+        }
+        .btn.hover-border-6 span::before {
+        top: 0; left: 0;
+        border-left: 2px solid rgb(54, 56, 55);
+        border-bottom: 2px solid rgb(54, 56, 55);
+        }
+        .btn.hover-border-6 span::after {
+        top: 0; right: 0;
+        border-right: 2px solid rgb(54, 56, 55);
+        border-bottom: 2px solid rgb(54, 56, 55);
+        }
+        .btn.hover-border-6 span:hover::before,
+        .btn.hover-border-6 span:hover::after {
+        width: 50%; height: 96%;
+        opacity: 1;
+        transition: height 0.2s 0.2s ease-in, width 0.2s 0.4s linear, opacity 0s 0.2s;   
+        }
+
+        /* 17. hover-border-7 */
+        .btn.hover-border-7::before,
+        .btn.hover-border-7::after {
+        bottom: 0;
+        transition: width 0.2s 0.35s ease-out;
+        }
+        .btn.hover-border-7::before {
+        right: 50%;
+        }
+        .btn.hover-border-7::after {
+        left: 50%;
+        }
+        .btn.hover-border-7:hover::before,
+        .btn.hover-border-7:hover::after {
+        width: 50%;
+        transition: width 0.2s ease-in;   
+        }
+
+        .btn.hover-border-7 span::before,
+        .btn.hover-border-7 span::after {
+        width: 0%; height: 0%;
+        background: transparent;
+        opacity: 0;
+        z-index: 2;
+        transition: width 0.2s ease-in, height 0.15s 0.2s linear, opacity 0s 0.35s;
+        }
+        .btn.hover-border-7 span::before {
+        bottom: 0; left: 0;
+        border-left: 2px solid rgb(54, 56, 55);
+        border-top: 2px solid rgb(54, 56, 55);
+        }
+        .btn.hover-border-7 span::after {
+        bottom: 0; right: 0;
+        border-right: 2px solid rgb(54, 56, 55);
+        border-top: 2px solid rgb(54, 56, 55);
+        }
+        .btn.hover-border-7 span:hover::before,
+        .btn.hover-border-7 span:hover::after {
+        width: 50%; height: 96%;
+        opacity: 1;
+        transition: height 0.2s 0.2s ease-in, width 0.2s 0.4s linear, opacity 0s 0.2s;   
+        }
+
+        /* 18. hover-border-8 */
+        .btn.hover-border-8::before,
+        .btn.hover-border-8::after {
+        bottom: 0;
+        width: 15%;
+        transition: width 0.2s 0.35s ease-out;
+        }
+        .btn.hover-border-8::before {
+        right: 50%;
+        }
+        .btn.hover-border-8::after {
+        left: 50%;
+        }
+        .btn.hover-border-8:hover::before {
+        width: 50%;
+        transition: width 0.2s ease-in;   
+        }
+        .btn.hover-border-8:hover::after {
+        width: 50%;
+        transition: width 0.1s ease-in;   
+        }
+
+        .btn.hover-border-8 span::before,
+        .btn.hover-border-8 span::after {
+        width: 0%; height: 0%;
+        bottom: 0;
+        background: transparent;
+        opacity: 0;
+        z-index: 2;
+        }
+        .btn.hover-border-8 span::before {
+        left: 0%;
+        border-left: 2px solid rgb(54, 56, 55);
+        transition: height 0.25s ease-in, opacity 0s 0.35s;   
+        }
+        .btn.hover-border-8 span:hover::before {
+        height: 96%;
+        opacity: 1;
+        transition: height 0.25s 0.2s ease-out, opacity 0s 0.2s;   
+        }
+        .btn.hover-border-8 span::after {
+        right: 0%;
+        border-right: 2px solid rgb(54, 56, 55);
+        border-top: 2px solid rgb(54, 56, 55);
+        transition: width 0.2s ease-in, height 0.15s 0.2s linear, opacity 0s 0.35s;   
+        }
+        .btn.hover-border-8 span:hover::after {
+        width: 99%; height: 96%;
+        opacity: 1;
+        transition: height 0.15s 0.1s linear, width 0.2s 0.25s linear, opacity 0s 0.1s;   
+        }
+
+        /* 19. hover-border-9 */
+        .btn.hover-border-9::before,
+        .btn.hover-border-9::after {
+        bottom: 0;
+        width: 15%;
+        transition: width 0.2s 0.35s ease-out;
+        }
+        .btn.hover-border-9::before {
+        right: 50%;
+        }
+        .btn.hover-border-9::after {
+        left: 50%;
+        }
+        .btn.hover-border-9:hover::before {
+        width: 50%;
+        transition: width 0.1s ease-in;   
+        }
+        .btn.hover-border-9:hover::after {
+        width: 50%;
+        transition: width 0.2s ease-in;   
+        }
+
+        .btn.hover-border-9 span::before,
+        .btn.hover-border-9 span::after {
+        width: 0%; height: 0%;
+        bottom: 0;
+        background: transparent;
+        opacity: 0;
+        z-index: 2;
+        }
+        .btn.hover-border-9 span::after {
+        right: 0%;
+        border-right: 2px solid rgb(54, 56, 55);
+        transition: height 0.25s ease-in, opacity 0s 0.35s;   
+        }
+        .btn.hover-border-9 span:hover::after {
+        height: 96%;
+        opacity: 1;
+        transition: height 0.25s 0.2s ease-out, opacity 0s 0.2s;   
+        }
+        .btn.hover-border-9 span::before {
+        left: 0%;
+        border-left: 2px solid rgb(54, 56, 55);
+        border-top: 2px solid rgb(54, 56, 55);
+        transition: width 0.2s ease-in, height 0.15s 0.2s linear, opacity 0s 0.35s;   
+        }
+        .btn.hover-border-9 span:hover::before {
+        width: 98.5%; height: 96%;
+        opacity: 1;
+        transition: height 0.15s 0.1s linear, width 0.2s 0.25s linear, opacity 0s 0.1s;   
+        }
+
+        /* 20. hover-border-10 */
+        .btn.hover-border-10::before,
+        .btn.hover-border-10::after {
+        left: 0%;
+        height: 30%;
+        width: 2px;
+        transition: height 0.2s 0.35s ease-out;
+        }
+        .btn.hover-border-10::before {
+        top: 50%;
+        }
+        .btn.hover-border-10::after {
+        bottom: 50%;
+        }
+        .btn.hover-border-10:hover::before {
+        height: 50%;
+        transition: height 0.2s ease-in;   
+        }
+        .btn.hover-border-10:hover::after {
+        height: 50%;
+        transition: height 0.1s ease-in;   
+        }
+
+        .btn.hover-border-10 span::before,
+        .btn.hover-border-10 span::after {
+        width: 0%; height: 0%;
+        background: transparent;
+        opacity: 0;
+        z-index: 2;
+        }
+        .btn.hover-border-10 span::after {
+        bottom: 0; left: 0%;
+        border-bottom: 2px solid rgb(54, 56, 55);
+        transition: width 0.25s ease-in, opacity 0s 0.35s;   
+        }
+        .btn.hover-border-10 span:hover::after {
+        width: 100%;
+        opacity: 1;
+        transition: width 0.25s 0.2s ease-out, opacity 0s 0.2s;   
+        }
+        .btn.hover-border-10 span::before {
+        top: 0%; left: 0%;
+        border-top: 2px solid rgb(54, 56, 55);
+        border-right: 2px solid rgb(54, 56, 55);
+        transition: height 0.15s ease-in, width 0.2s 0.15s linear, opacity 0s 0.35s;   
+        }
+        .btn.hover-border-10 span:hover::before {
+        width: 98.5%; height: 96%;
+        opacity: 1;
+        transition: width 0.2s 0.1s linear, height 0.15s 0.3s ease-out, opacity 0s 0.1s;   
+        }
+
+        /*--- btn-5 ---*/
+        .btn-5 span {
+        color: rgb(28, 31, 30);
+        border: 2px solid rgb(249, 211, 27);
+        transition: 0.2s;
+        }
+        .btn-5 span:hover {
+        background-color: rgb(245,245,245);
+        }
+
+        /* 21. hover-border-11 */
+        .btn.hover-border-11::before,
+        .btn.hover-border-11::after {
+        width: 100%; height: 2px;
+        background-color: rgb(54, 56, 55);
+        z-index: 2;
+        transition: 0.35s; 
+        }
+        .btn.hover-border-11::before {
+        top: 0; right: 0;
+        }
+        .btn.hover-border-11::after {
+        bottom: 0; left: 0;
+        }
+        .btn.hover-border-11:hover::before,
+        .btn.hover-border-11:hover::after {
+        width: 0%;
+        transition: 0.2s 0.2s ease-out; 
+        }
+
+        .btn.hover-border-11 span::before,
+        .btn.hover-border-11 span::after {
+        width: 2px; height: 100%;
+        background-color: rgb(54, 56, 55);
+        z-index: 2;
+        transition: 0.25s; 
+        }
+        .btn.hover-border-11 span::before {
+        bottom: 0; right: -2px;
+        }
+        .btn.hover-border-11 span::after {
+        top: 0; left: -2px;
+        }
+        .btn.hover-border-11 span:hover::before,
+        .btn.hover-border-11 span:hover::after {
+        height: 0%;
+        }
+
+
+
   </style>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="js/jquery.min.js"></script>
-    <script src="js/tether.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="js/slick.min.js"></script>
-    <script src="option.js"></script>
-    <script>
-        // 배너
-        $(".ban").slick({
-            dots: true,
-            infinite: true,
-            slidesToShow:3,
-            slidesToScroll:3,
-            arrows:false,
-            responsive: [
-                {
-                    breakpoint: 768,
-                    settings: {
-                        arrows:false,
-                        autoplay: false,
-                        }
-                }
-            ]
-        });
-        
-
-        // var selectText ='ai';
-        // function changeLangSelect(){
-        //     var langSelect = document.getElementById("selectbox");
-        //     var langvalue= document.getElementById("getvalue");
-        //     // select element에서 선택된 option의 value가 저장된다.
-        //     var selectValue = langSelect.options[langSelect.selectedIndex].value;
-            
-        //     // select element에서 선택된 option의 text가 저장된다.
-        //     selectText = langSelect.options[langSelect.selectedIndex].text;
-        //     langvalue.innerText = selectText;
-        //     //document.write(langvalue.innerText);
-        //     console.log(selectText);
-        //     return selectText;
-        // }
-        // //changeLangSelect();
-        // selectText = changeLangSelect();
-    </script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
-
-
 
 </head>
 <body>
@@ -226,7 +799,7 @@
                                 <a class="nav-link color-aqua-hover" href="diary.php">diary</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link color-pink-hover" href="keya-info.php">keya INFO</a>
+                                <a class="nav-link color-pink-hover" href="keya-info.php">keya Info</a>
                             </li>
                             <!-- <li class="nav-item">
                                 <a class="nav-link color-pink-hover" font-size=20%>���� ���� ����</a>
@@ -242,7 +815,7 @@
 
         <section class="section wb">
             <div class ="container">
-                <div class="row">
+                <div class="row" style="margin-left:170px">
                     <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                     <h2 style="padding-top: 0px"> Keyword News </h2>
                     <?php
@@ -265,71 +838,52 @@
                             $result2 = mysqli_query($con, "select * from user where id='$mini'");
                             $row = mysqli_fetch_row($result2);
 
-                            $key1 = $row[2];
+                            // $key1 = $row[2];
 
-                            system("python3 key_news.py".' '.$row[2].' '.$row[3].' '.$row[4].' '.$row[5].' '.$row[6].' '.$row[7]);
+                            // system("python3 key_news.py".' '.$row[2].' '.$row[3].' '.$row[4].' '.$row[5].' '.$row[6].' '.$row[7]);
                             //system("cd DB/&& python3 key_news.py".' '."hi");
                             
                         ?>
-                        <div class  ="a_content">
+                        <!-- <div class  ="a_content">
                             <a style="display:block; width:300px; height:50px;" href="keyinfo.php?press=<?php echo $row[2]?>"><?php echo $row[2]?></a>
                             <a style="display:block; width:300px; height:50px;" href="keyinfo.php?press=<?php echo $row[3]?>"><?php echo $row[3]?></a>
                             <a style="display:block; width:300px; height:50px;" href="keyinfo.php?press=<?php echo $row[4]?>"><?php echo $row[4]?></a>
                             <a style="display:block; width:300px; height:50px;" href="keyinfo.php?press=<?php echo $row[5]?>"><?php echo $row[5]?></a>
                             <a style="display:block; width:300px; height:50px;" href="keyinfo.php?press=<?php echo $row[6]?>"><?php echo $row[6]?></a>
                             <a style="display:block; width:300px; height:50px;" href="keyinfo.php?press=<?php echo $row[7]?>"><?php echo $row[7]?></a>
-                        </div>
-                        <div class ="btn-holder">
-                              <button class="btn btn-2 hover-opacity" href="keyinfo.php?press=<?php echo $row[2]?>">
+                        </div> -->
+
+			<!-- <button type="button" class="navyBtn" onClick="location.href='keyinfo.php?press=<?php echo $row[2]?>'"> -->
+                    <div class  ="a_content">        
+                        <div class="btn-holder"style="margin-left: 60px; width: 100%;">
+                            <button type="button" class="btn btn-1 hover-filled-slide-left" onClick="location.href='keyinfo.php?press=<?php echo $row[2]?>'">
                                 <span><?php echo $row[2]?></span>
                             </button>
+                            <button type="button" class="btn btn-1 hover-filled-slide-left" onClick="location.href='keyinfo.php?press=<?php echo $row[3]?>'">
+                                <span><?php echo $row[3]?></span>
+                            </button>
+                            <button type="button" class="btn btn-1 hover-filled-slide-left" onClick="location.href='keyinfo.php?press=<?php echo $row[4]?>'">
+                                <span><?php echo $row[4]?></span>
+                            </button>
+                        
+                        </dv></div>
+
+                        <div class  ="a_content">        
+                        <div class="btn-holder" style="margin-left: 60px; width: 100%;">
+                            
+                            <button type="button" class="btn btn-1 hover-filled-slide-left" onClick="location.href='keyinfo.php?press=<?php echo $row[5]?>'">
+                                <span><?php echo $row[5]?></span>
+                            </button>
+                            <button type="button" class="btn btn-1 hover-filled-slide-left" onClick="location.href='keyinfo.php?press=<?php echo $row[6]?>'">
+                                <span><?php echo $row[6]?></span>
+                            </button>
+                            <button type="button" class="btn btn-1 hover-filled-slide-left" onClick="location.href='keyinfo.php?press=<?php echo $row[7]?>'">                            
+                                <span><?php echo $row[7]?></span>
+                            </button>
+                        </dv></div>
+
                     </div><!-- end col -->
         
-
-                <!-- sidebar col-->
-                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                    <div class="sidebar">
-                        <div class="widget">
-                            <h2 class="widget-title">Diary</h2>
-                            <div class="blog-list-widget">
-                                <div class="list-group">
-                                    <a href="single.html" class="list-group-item list-group-item-action flex-column align-items-start">
-                                        <div class="w-100 justify-content-between">
-                                            <img src="upload/blog_square_01.jpg" alt="" class="img-fluid float-left">
-                                            <h5 class="mb-1">text11111</h5>
-                                            <small>12 Jan, 2016</small>
-                                        </div>
-                                    </a>
-
-                                    <a href="single.html" class="list-group-item list-group-item-action flex-column align-items-start">
-                                        <div class="w-100 justify-content-between">
-                                            <img src="upload/blog_square_01.jpg" alt="" class="img-fluid float-left">
-                                            <h5 class="mb-1">text22222</h5>
-                                            <small>11 Jan, 2016</small>
-                                        </div>
-                                    </a>
-
-                                    <a href="single.html" class="list-group-item list-group-item-action flex-column align-items-start">
-                                        <div class="w-100 last-item justify-content-between">
-                                            <img src="upload/blog_square_01.jpg" alt="" class="img-fluid float-left">
-                                            <h5 class="mb-1">text33333</h5>
-                                            <small>07 Jan, 2016</small>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div><!-- end blog-list -->
-                        </div><!-- end widget -->
-
-                        <div class="widget">
-                            <h2 class="widget-title">weather</h2>
-                            <div class="banner-spot clearfix">
-                                <div class="banner-img">
-                                    <img src="upload/banner_03.jpg" alt="" class="img-fluid">
-                                </div><!-- end banner-img -->
-                            </div><!-- end banner -->
-                        </div><!-- end widget -->
-                    </div><!-- end sidebar
-                </div><!-- end sidebar col -->
 
                 </div><!-- end row -->
             </div><!-- end container -->
@@ -345,6 +899,56 @@
 
     <!-- Core JavaScript
     ================================================== -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="js/jquery.min.js"></script>
+    <script src="js/tether.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/slick.min.js"></script>
+    <script src="option.js"></script>
+    <script>
+        // 배너
+        $(".ban").slick({
+            dots: true,
+            infinite: true,
+            slidesToShow:3,
+            slidesToScroll:3,
+            arrows:false,
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        arrows:false,
+                        autoplay: false,
+                        }
+                }
+            ]
+        });
+        
+
+        // var selectText ='ai';
+        // function changeLangSelect(){
+        //     var langSelect = document.getElementById("selectbox");
+        //     var langvalue= document.getElementById("getvalue");
+        //     // select element에서 선택된 option의 value가 저장된다.
+        //     var selectValue = langSelect.options[langSelect.selectedIndex].value;
+            
+        //     // select element에서 선택된 option의 text가 저장된다.
+        //     selectText = langSelect.options[langSelect.selectedIndex].text;
+        //     langvalue.innerText = selectText;
+        //     //document.write(langvalue.innerText);
+        //     console.log(selectText);
+        //     return selectText;
+        // }
+        // //changeLangSelect();
+        // selectText = changeLangSelect();
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+
+
 
         
 </body>

@@ -116,6 +116,9 @@
                                 <a class="nav-link color-aqua-hover" href="my-interested-news.php">my interested news</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link color-aqua-hover" href="diary.php">diary</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link color-pink-hover" href="keya-info.php">keya INFO</a>
                             </li>
                             <!-- <li class="nav-item">

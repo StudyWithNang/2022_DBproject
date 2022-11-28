@@ -11,7 +11,7 @@
 	@import url('https://fonts.googleapis.com/css?family=Abel');
 
 	html, body {
-	  background: #FCEEB5;
+	  background: white;
 	  font-family: Abel, Arial, Verdana, sans-serif;
 	}
 
@@ -204,7 +204,7 @@ ul{list-style:none;}
   width:33.33%; 
   float:left;  
   text-align:center; 
-  background :#f9f9f9;
+  background :#FCEEB5;
   line-height:40px;
 }
 .tabmenu label{
@@ -222,10 +222,10 @@ ul{list-style:none;}
   position:absolute; 
   left:0; top:40px; 
   box-sizing: border-box; 
-  border : 5px solid #f9f9f9;
+  border : 5px solid #ffd700;
 }
 .tabmenu input:checked ~ label{
-  background:#ccc;
+  background:#ffd700;
 }
 .tabmenu input:checked ~ .tabCon{
   display:block;
@@ -312,7 +312,8 @@ ul{list-style:none;}
     </div>
     <div class="general">
       <h1><?php echo $pname; ?></h1>
-      <p>설명을 뭘 넣어야 할까?</p>
+      <p><?php $intro = mysqli_query($con, "select intro from press where press_id='$pname'");
+	  	echo mysqli_fetch_row($intro)[0];?></p>
       <span class="more">Mouse over the card for more info</span>
     </div>
   </div>
