@@ -30,8 +30,7 @@ def main(args):
 
 
     ## read csv file
-    stores_info = pd.read_csv('crawl_data/20221127-17.csv')
-
+    stores_info = pd.read_csv('crawl_data/20221129-11.csv')
 
     ## time for news_id
     tm = time.localtime()

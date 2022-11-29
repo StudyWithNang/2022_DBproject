@@ -61,7 +61,7 @@ def key_visul(user, article, news_id, my_key1, my_key2, my_key3, my_key4, my_key
 
     # text = ner(article)
 
-    my_ner_list = [[],[],[],[], [], []]  
+    my_ner_list = [[],[],[],[],[],[]]  
     ## 오류나는 이유가 article은 계속도는데 다른 list가 다 차서 생기는 것 같음
     # 아니면 숫자 크게하면 왜 article이 없다는 식일까...?
     print(len(article))
@@ -137,7 +137,7 @@ def main(args):
     # sql2 = "select article from raw_news where date = '" + today + "'"
     first = "truncate keyword"
     curs.execute(first)
-    
+    print(today)
     sql1 = "select news_id from raw_news where date = '" + today +"'"
     sql2 = "select article from raw_news where date = '" + today +"'"
     print(sql1)
