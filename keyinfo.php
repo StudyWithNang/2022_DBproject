@@ -202,7 +202,7 @@
 						$mysql_user = 'root';
 						$mysql_password = '111111';
 						$mysql_db = 'keya';
-                        echo $_SESSION['id'];
+                        //echo $_SESSION['id'];
 						//connetc 설정(host,user,password)
 						$con = mysqli_connect($mysql_host, $mysql_user, $mysql_password, $mysql_db);
 
@@ -339,7 +339,7 @@
         
                         <!-- visualization section -->
                         <div class="a_today_vi_section">
-                            <h2> MY Keywords </h2>
+                            <h2> MY Keywords </h2> <br>
                             <?php $today = date("Ymd");
                                 //$src = "my_key_visual_img/20221126-23"."_".$keyword.".png";
                                 $src = "my_key_visual_img/".$today."_".$keyword.".png";
