@@ -32,6 +32,8 @@
 
 <p align="center"><img src="https://user-images.githubusercontent.com/76648555/209395815-877c2bbd-e01b-4ac3-aca1-ae82ac1e39bf.gif"></p>
 
++ 고화질 시연영상 : https://youtu.be/qp1J4iHhrJE
+
 
 ## 기대 효과
 
